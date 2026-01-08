@@ -3,29 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- SEO / Social preview -->
-    <link rel="canonical" href="https://ckc300.github.io/" />
-    <meta name="robots" content="index,follow,max-image-preview:large" />
-    <meta name="theme-color" content="#0b3a4a" />
-
-    <meta property="og:locale" content="zh_TW" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="劉雨軒的 Pathways 動力中心" />
-    <meta property="og:title" content="劉雨軒的 Pathways 動力中心" />
-    <meta property="og:description" content="劉雨軒的 Pathways 動力中心 - 為 Toastmasters 中文會員設計的 Pathways 教學平台。" />
-    <meta property="og:url" content="https://ckc300.github.io/" />
-    <meta property="og:image" content="https://ckc300.github.io/images/Pathways_走路.jpg" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="劉雨軒的 Pathways 動力中心" />
-    <meta name="twitter:description" content="劉雨軒的 Pathways 動力中心 - 為 Toastmasters 中文會員設計的 Pathways 教學平台。" />
-    <meta name="twitter:image" content="https://ckc300.github.io/images/Pathways_走路.jpg" />
     <meta name="description" content="劉雨軒的 Pathways 動力中心 - 為 Toastmasters 中文會員設計的 Pathways 教學平台。">
     <meta name="keywords" content="Toastmasters, Pathways, 劉雨軒, DTM, 演講, 領導力, 計時器, 教練計畫">
     <meta name="author" content="劉雨軒 Yu-Xian Liu">
     <title>劉雨軒的 Pathways 動力中心</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link href="css/style.css" rel="stylesheet" />
 </head>
 <body>
