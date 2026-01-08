@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>講評與回饋｜單元簡介</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+    /* === 優化_final_v2版 CSS === */
+
+    /* Main 區域 */
+    main {
+        max-width: 880px;
+        margin: 2em auto;
+        padding: 1.2em;
+    }
+
+    /* 標題置中 */
+    .unit-header-wrapper {
+        text-align: center;
+        margin-bottom: 1.5em;
+    }
+/* Sticky Header 優化版 */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: rgba(0, 65, 101, 0.95);  /* 半透明深藍色，與母版一致 */
+    backdrop-filter: blur(4px); /* 增加背景模糊感，滑動時更有層次 */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* 加點陰影，立體感 */
+}
+
+    .unit-header {
+        display: inline-block;
+        font-size: 2.4em;
+        font-weight: bold;
+        color: #004165;
+        padding: 0.4em 1em;
+        background-color: rgba(255,255,255,0.3);
+        border: 3px solid #004165;
+        border-radius: 14px;
+        opacity: 0;
+        animation: fadeInTitle 1.2s ease-in-out forwards;
+    }
+
+    @keyframes fadeInTitle {
+        from { opacity: 0; transform: translateY(-15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 區塊樣式 */
+    .unit-section {
+        background-color: rgba(255,255,255,0.75);
+        margin: 1.8em 0;
+        padding: 1em 1.4em;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .unit-section h2 {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #004165;
+        margin-bottom: 0.4em;
+        border-left: 6px solid #772432;
+        padding-left: 0.6em;
+    }
+
+    .unit-section p {
+        font-size: 1.1em;
+        line-height: 2.2;
+        color: #222;
+        margin: 0.3em 0;
+    }
+
+    /* 按鈕區 */
+    .button-row {
+        text-align: center;
+        margin-top: 2.8em;
+    }
+
+    .button-row a {
+        display: inline-block;
+        margin: 0.5em 0.8em;
+        background-color: #004165;
+        color: white;
+        padding: 0.6em 1.2em;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .button-row a:hover {
+        background-color: #006699;
+        box-shadow: 0 4px 12px rgba(0, 65, 101, 0.3);
+    }
+
+    /* 回首頁 → 獨立樣式 */
+    .button-row a.btn-home {
+        display: inline-block !important;
+        background-color: #772432;
+        color: #F2DF74;
+        padding: 0.6em 1.2em;
+        margin: 0.5em auto;
+        font-weight: bold;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .button-row a.btn-home:hover {
+        background-color: #A9445E;
+        color: #FFFFFF;
+        box-shadow: 0 4px 12px rgba(119, 36, 50, 0.4);
+    }
+
+    /* 手機版 RWD */
+@media (max-width: 600px) {
+    .button-row a.btn-home {
+        width: fit-content;
+        min-width: 0;
+        padding: 0.25em 0.5em;   /* ← 再縮減！ */
+        font-size: 1.1em;
+        margin: 0.5em auto;
+    }
+    .unit-header {
+        font-size: 1.8em;
+    }
+}
+    </style>
+</head>
+<body oncontextmenu="return false;" onselectstart="return false;">
+<header>
+    <div class="logo-title-wrapper">
+        <img class="logo" src="../images/Pathways Power Hub.PNG" alt="Logo" />
+        <div class="site-title">劉雨軒的Pathways動力中心</div>
+    </div>
+
+    <nav class="navbar">
+        <a href="../index.html">首頁</a>
+        <a href="javascript:history.back()">我的路徑</a>
+        <a href="../DTM/index.html">專案計畫</a>
+        <a href="../Timer/timer.html">雨軒計時器</a>
+    </nav>
+</header>
+<main>
+    <div class="unit-header-wrapper">
+        <div class="unit-header">講評與回饋</div>
+    </div>
+
+    <div class="unit-section" style="background-color: rgba(119,36,50,0.75); padding-left: 1.6em; padding-right: 1.6em;">
+        <h2 style="color: #F2DF74; border-left: 6px solid #F2DF74; padding-left: 0.6em;">🧭 單元簡介</h2>
+        <p style="color: white; line-height: 1.6">
+            講評與回饋<br/>
+            本單元著重於學習給予與接收回饋的技巧，幫助你了解如何提供建設性建議、有效接納回饋，並實際運用在演講中。
+        </p>
+    </div>
+
+    <div class="unit-section" style="background-color: rgba(0,65,101,0.75); padding-left: 1.6em; padding-right: 1.6em;">
+        <h2 style="color: #F2DF74; border-left: 6px solid #F2DF74; padding-left: 0.6em;">🎯 單元目的：</h2>
+        <p style="color: white; line-height: 1.6">
+            透過本單元，你將練習運用講評所得到的建議，並於分會例會中擔任講評員的角色。
+        </p>
+    </div>
+
+    <div class="unit-section" style="background-color: rgba(169,178,177,0.75); padding-left: 1.6em; padding-right: 1.6em;">
+        <h2 style="color: #004165; border-left: 6px solid #004165; padding-left: 0.6em;">📜 內容概要：</h2>
+        <p style="line-height: 1.6">
+            本單元包含兩次 5 至 7 分鐘的演講，以及一次擔任講評員的實作機會。
+        </p>
+    </div>
+
+    <div class="unit-section" style="background-color: rgba(255,255,255,0.75); padding-left: 1.6em; padding-right: 1.6em;">
+        <h2 style="color: #772432; border-left: 6px solid #772432; padding-left: 0.6em;">📦 本單元包含：</h2>
+        <p style="line-height: 1.6">
+            ▪ 第一次演講：一篇 5 至 7 分鐘的演講，主題自訂。<br/>
+            ▪ 第二次演講：一篇 5 至 7 分鐘的演講，內容需融入第一次演講後所收到的部分或全部回饋。你可以選擇重講第一次的演講、修改後重講，或全新準備另一篇演講，視你的學習目標與回饋內容而定。<br/>
+            ▪ 擔任一次分會會員的演講講評員，提供具建設性的回饋意見。<br/>
+            演講 1：選擇任一主題進行第一次「講評與回饋」演講。演講結束後，仔細檢視你收到的講評與建議。<br/>
+            演講 2：於下一次分會例會中，發表第二次「講評與回饋」演講。你可以選擇重新撰寫一篇新演講、修改第一次的內容，或再次發表第一次的演講，若你的目標是專注於演講表達技巧的提升。<br/>
+            應用回饋：第二次演講應清楚展現你如何吸收並應用第一次演講後所收到的回饋意見。<br/>
+            擔任講評員：完成兩次演講後，於分會例會中擔任講評員，針對另一位會員的演講給予具體且正向的建議。
+        </p>
+    </div>
+
+    <div class="button-row">
+        <a href="javascript:history.back()" class="btn-home">← 回上一頁</a>
+        <a href="../pdf/8100A_講評與回饋(第一篇演講).pdf" target="_blank">📄 下載講評單→ 第1篇演講</a>
+        <a href="../pdf/8100B_講評與回饋(第二篇演講).pdf" target="_blank">📄 下載講評單→ 第2篇演講</a>
+    </div>
+</main>
+<footer>
+    ©2025 劉雨軒的Pathways動力中心｜版次:2025/6/6
+</footer>
+
+<!-- 浮動按鈕 -->
+<a aria-label="回首頁" class="fab-home" href="../index.html" role="button" title="回首頁">🏠</a>
+<a aria-label="回頂端" class="fab-top" href="#" role="button" title="回頂端">🔼</a>
+
+<!-- JS -->
+<script src="../js/fadein.js"></script>
+<script src="../js/parallax.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>導師計畫｜DTM專案</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+    .route-title-wrapper {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+    .route-title {
+        font-size: clamp(1.8rem, 5vw, 2.6rem);
+        font-weight: bold;
+        color: #004165;
+        background-color: rgba(169, 178, 177, 0.8);
+        padding: 12px 24px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        text-align: center;
+    }
+    .unit-level {
+        background-color: rgba(255, 255, 255, 0.65);
+        margin: 20px auto;
+        padding: 1em 1.2em;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        width: 90%;
+        max-width: 800px;
+        transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    .unit-block {
+      width: auto;
+      padding: 1em 1.2em;
+      margin: 1em auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      backdrop-filter: blur(3px);
+    }
+    .unit-list { list-style: none; padding-left: 1em; }
+    .unit-list li { margin: 4px 0; }
+    .unit-list li a {
+      display: inline-block;
+      padding: 0.1em 0.2em;
+      border-radius: 4px;
+      transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+      color: inherit;
+      text-decoration: none;
+    }
+    .unit-list li a:hover {
+      transform: scale(1.05);
+      background-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 4px rgba(0,0,0,0.3);
+      text-decoration: underline dotted;
+      color: #003366;
+    }
+    .block-label {
+      font-weight: bold;
+      margin-bottom: 0.5em;
+    }
+    .required-label {
+      color: #004488;
+      border-left: 5px solid #0074D9;
+      padding-left: 0.6em;
+      background-color: rgba(102, 178, 255, 0.65);
+      border-radius: 6px;
+      margin-bottom: 0.5em;
+    }
+    .optional-label {
+      color: #8A4B00;
+      border-left: 5px solid #FF851B;
+      padding-left: 0.6em;
+      background-color: rgba(255, 204, 102, 0.65);
+      border-radius: 6px;
+      margin-bottom: 0.5em;
+    }
+    .unit-num {
+        font-size: 1.6em;
+        font-weight: bold;
+        color: #004165;
+        margin: 0 2px;
+    }
+    .unit-sub {
+        font-size: 0.9em;
+        font-weight: normal;
+        color: #333;
+        margin-left: 0.3em;
+    }
+    
+/* === v7_fixed_v2 → header 改為 fixed === */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 65, 101, 0.85);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+/* 避免被 header 蓋住 → main 加 padding-top */
+main {
+    padding-top: 80px;
+}
+
+/* === v7_fixed_v3 patch → route-title-wrapper 間距優化 === */
+.route-title-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0 20px 0;  /* 上方留 30px 空隙，底部 20px */
+}
+</style>
+</head>
+
+<body oncontextmenu="return false;" onselectstart="return false;">
+<header>
+    <div class="logo-title-wrapper">
+        <img class="logo" src="../images/Pathways Power Hub.PNG" alt="Logo" />
+        <div class="site-title">劉雨軒的Pathways動力中心</div>
+    </div>
+
+    <nav class="navbar">
+        <a href="../index.html">首頁</a>
+        <a aria-disabled="true" class="disabled">我的路徑</a>
+        <a href="../DTM/index.html">專案計畫</a>
+        <a href="../Timer/timer.html">雨軒計時器</a>
+    </nav>
+</header>
+<main>
+    <div class="route-title-wrapper">
+  <div class="route-title">專案｜計畫</div>
+</div>
+
+    <section class="unit-level fade-in">
+      <h3>🔵 <span class="level-number">Pathways 導師計畫</span>（必修 ×3）</h3>
+      <div class="required-block"><div class="block-label required-label">📘 必修單元</div><ul class="unit-list required">
+<li><a aria-pressed="false" href="../Projects/8311_為成為導師做準備.html" role="button">★ 為成為導師做準備 (本單元不包含演講)</a></li>
+<li><a aria-pressed="false" href="../Projects/8410_指導.html" role="button">★ 指導</a></li>
+<li><a aria-pressed="false" href="../Projects/8500_進階指導.html" role="button">★ 進階指導</a></li>
+      </ul></div>
+    </section>
+
+    <section class="unit-level fade-in">
+      <h3>🔵 <span class="level-number">DTM 專案</span>（必修 ×1）</h3>
+      <div class="required-block"><div class="block-label required-label">📘 必修單元</div><ul class="unit-list required">
+<li><a aria-pressed="false" href="../Projects/8599_傑出會員專案.html" role="button">★ 傑出會員專案 (於第2條路徑的第3級之後提出申請)</a></li>
+      </ul></div>
+    </section>
+  </main>
+<footer>
+    ©2025 劉雨軒的Pathways動力中心｜版次:2025/6/6
+</footer>
+
+<!-- 浮動按鈕 -->
+<a aria-label="回首頁" class="fab-home" href="../index.html" role="button" title="回首頁">🏠</a>
+<a aria-label="回頂端" class="fab-top" href="#" role="button" title="回頂端">🔼</a>
+
+<!-- JS -->
+<script src="../js/fadein.js"></script>
+<script src="../js/parallax.js"></script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SR_策略關係｜我的路徑</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+    .route-title-wrapper {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+    .route-title {
+        font-size: clamp(1.8rem, 5vw, 2.6rem);
+        font-weight: bold;
+        color: #004165;
+        background-color: rgba(169, 178, 177, 0.8);
+        padding: 12px 24px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        text-align: center;
+    }
+    .unit-level {
+        background-color: rgba(255, 255, 255, 0.65);
+        margin: 20px auto;
+        padding: 1em 1.2em;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        width: 90%;
+        max-width: 800px;
+        transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    .unit-block {
+      width: auto;
+      padding: 1em 1.2em;
+      margin: 1em auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      backdrop-filter: blur(3px);
+    }
+    .unit-list { list-style: none; padding-left: 1em; }
+    .unit-list li { margin: 4px 0; }
+    .unit-list li a {
+      display: inline-block;
+      padding: 0.1em 0.2em;
+      border-radius: 4px;
+      transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+      color: inherit;
+      text-decoration: none;
+    }
+    .unit-list li a:hover {
+      transform: scale(1.05);
+      background-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 4px rgba(0,0,0,0.3);
+      text-decoration: underline dotted;
+      color: #003366;
+    }
+    .block-label {
+      font-weight: bold;
+      margin-bottom: 0.5em;
+    }
+    .required-label {
+      color: #004488;
+      border-left: 5px solid #0074D9;
+      padding-left: 0.6em;
+      background-color: rgba(102, 178, 255, 0.65);
+      border-radius: 6px;
+      margin-bottom: 0.5em;
+    }
+    .optional-label {
+      color: #8A4B00;
+      border-left: 5px solid #FF851B;
+      padding-left: 0.6em;
+      background-color: rgba(255, 204, 102, 0.65);
+      border-radius: 6px;
+      margin-bottom: 0.5em;
+    }
+    .unit-num {
+        font-size: 1.6em;
+        font-weight: bold;
+        color: #004165;
+        margin: 0 2px;
+    }
+    .unit-sub {
+        font-size: 0.9em;
+        font-weight: normal;
+        color: #333;
+        margin-left: 0.3em;
+    }
+    
+/* === v7_fixed_v2 → header 改為 fixed === */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 65, 101, 0.85);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+/* 避免被 header 蓋住 → main 加 padding-top */
+main {
+    padding-top: 80px;
+}
+
+/* === v7_fixed_v3 patch → route-title-wrapper 間距優化 === */
+.route-title-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0 20px 0;  /* 上方留 30px 空隙，底部 20px */
+}
+</style>
+</head>
+
+<body oncontextmenu="return false;" onselectstart="return false;">
+<header>
+    <div class="logo-title-wrapper">
+        <img class="logo" src="../images/Pathways Power Hub.PNG" alt="Logo" />
+        <div class="site-title">劉雨軒的Pathways動力中心</div>
+    </div>
+
+    <nav class="navbar">
+        <a href="../index.html">首頁</a>
+        <a href="../Projects/SR_策略關係.html" class="active">我的路徑</a>
+        <a href="../DTM/index.html">專案計畫</a>
+        <a href="../Timer/timer.html">雨軒計時器</a>
+    </nav>
+</header>
+<main>
+    <div class="route-title-wrapper">
+  <div class="route-title">SR_策略關係</div>
+</div>
+
+    <section class="unit-level fade-in">
+      <h3>🔵 <span class="level-number">第<span class="unit-num">1</span>級 <span class="unit-sub">(必修 ×4)</span></h3>
+      <div class="required-block"><div class="block-label required-label">📘 必修單元</div><ul class="unit-list required">
+        <li><a href="../Projects/8101_初試啼聲.html" role="button" aria-pressed="false">★ 初試啼聲 (本單元於路徑首先完成)</a></li>
+        <li><a href="../Projects/8103_撰寫具備目的性的演講稿.html" role="button" aria-pressed="false">★ 撰寫具備目的性的演講稿</a></li>
+        <li><a href="../Projects/8104_抑揚頓挫與肢體語言入門.html" role="button" aria-pressed="false">★ 抑揚頓挫與肢體語言入門</a></li>
+        <li><a href="../Projects/8100_講評與回饋.html" role="button" aria-pressed="false">★ 講評與回饋</a></li>
+      </ul></div>
+    </section>
+
+    <section class="unit-level fade-in">
+      <h3>🔵 <span class="level-number">第<span class="unit-num">2</span>級 <span class="unit-sub">(必修 ×3)</span></h3>
+      <div class="required-block"><div class="block-label required-label">📘 必修單元</div><ul class="unit-list required">
+        <li><a href="../Projects/8200_積極聆聽.html" role="button" aria-pressed="false">★ 積極聆聽</a></li>
+        <li><a href="../Projects/8207_瞭解你的領導風格.html" role="button" aria-pressed="false">★ 瞭解你的領導風格</a></li>
+        <li><a href="../Projects/8204_國際演講會指導計畫介紹.html" role="button" aria-pressed="false">★ 國際演講會指導計畫介紹</a></li>
+      </ul></div>
+    </section>
+
+    <section class="unit-level fade-in">
+      <h3>🟢 <span class="level-number">第<span class="unit-num">3</span>級 <span class="unit-sub">(必修 ×1｜選修 ×2：請任選兩項)</span></h3>
+      <div class="required-block"><div class="block-label required-label">📘 必修單元</div><ul class="unit-list required">
+        <li><a href="../Projects/8306_運用人際網絡建立關係.html" role="button" aria-pressed="false">★ 運用人際網絡建立關係</a></li>
+      </ul></div>
+<div class="optional-block"><div class="block-label optional-label">📙 選修單元</div><ul class="unit-list optional">
+        <li><a href="../Projects/8201_連結觀眾交流共鳴.html" role="button" aria-pressed="false">● 連結觀眾交流共鳴</a></li>
+        <li><a href="../Projects/8203_有效的肢體語言.html" role="button" aria-pressed="false">● 有效的肢體語言</a></li>
+        <li><a href="../Projects/8208_發掘幽默感.html" role="button" aria-pressed="false">● 發掘幽默感</a></li>
+        <li><a href="../Projects/8300_巧說故事拉近距離.html" role="button" aria-pressed="false">● 巧說故事拉近距離</a></li>
+        <li><a href="../Projects/8301_製作有效的視覺輔具.html" role="button" aria-pressed="false">● 製作有效的視覺輔具</a></li>
+        <li><a href="../Projects/8302_發表社交演講.html" role="button" aria-pressed="false">● 發表社交演講</a></li>
+        <li><a href="../Projects/8304_聚焦正面思考.html" role="button" aria-pressed="false">● 聚焦正面思考</a></li>
+        <li><a href="../Projects/8305_激勵啟發.html" role="button" aria-pressed="false">● 激勵啟發</a></li>
+	    <li><a href="../Projects/8310_準備面談.html" role="button" aria-pressed="false">● 準備面談</a></li>
+        <li><a href="../Projects/8317_了解抑揚頓挫.html" role="button" aria-pressed="false">● 了解抑揚頓挫</a></li>
+        <li><a href="../Projects/8318_運用描述性語彙.html" role="button" aria-pressed="false">● 運用描述性語彙</a></li>
+        <li><a href="../Projects/8319_使用簡報軟體.html" role="button" aria-pressed="false">● 使用簡報軟體</a></li>
+        <li><a href="../Projects/8102_研究和發表.html" role="button" aria-pressed="false">● 研究和發表</a></li>
+      </ul></div>
+    </section>
+
+    <section class="unit-level fade-in">
+      <h3>🟠 <span class="level-number">第<span class="unit-num">4</span>級 <span class="unit-sub">(必修 ×1｜選修 ×1：請任選一項)</span></h3>
+      <div class="required-block"><div class="block-label required-label">📘 必修單元</div><ul class="unit-list required">
+        <li><a href="../Projects/8412_公關策略.html" role="button" aria-pressed="false">★ 公關策略</a></li>
+      </ul></div>
+<div class="optional-block"><div class="block-label optional-label">📙 選修單元</div><ul class="unit-list optional">
+        <li><a href="../Projects/8408_成功管理專案.html" role="button" aria-pressed="false">● 成功管理專案</a></li>
+        <li><a href="../Projects/8409_應對棘手的觀眾.html" role="button" aria-pressed="false">● 應對棘手的觀眾</a></li>
+        <li><a href="../Projects/8400_提高社群媒體能見度.html" role="button" aria-pressed="false">● 提高社群媒體能見度</a></li>
+        <li><a href="../Projects/8402_製作播客.html" role="button" aria-pressed="false">● 製作播客</a></li>
+        <li><a href="../Projects/8407_組織線上會議.html" role="button" aria-pressed="false">● 組織線上會議</a></li>
+        <li><a href="../Projects/8413_問答時間.html" role="button" aria-pressed="false">● 問答時間</a></li>
+        <li><a href="../Projects/8414_撰寫吸引人的部落格.html" role="button" aria-pressed="false">● 撰寫吸引人的部落格</a></li>
+      </ul></div>
+    </section>
+
+    <section class="unit-level fade-in">
+      <h3>🟣 <span class="level-number">第<span class="unit-num">5</span>級 <span class="unit-sub">(必修 ×1｜選修 ×1：請任選一項)</span></h3>
+      <div class="required-block"><div class="block-label required-label">📘 必修單元</div><ul class="unit-list required">
+        <li><a href="../Projects/8505_於志工組織領導.html" role="button" aria-pressed="false">★ 於志工組織領導</a></li>
+        <li><a href="../Projects/8510_回顧您的學習路徑.html" role="button" aria-pressed="false">★ 回顧您的學習路徑 (本單元於路徑最末完成)</a></li>
+      </ul></div>
+<div class="optional-block"><div class="block-label optional-label">📙 選修單元</div><ul class="unit-list optional">
+        <li><a href="../Projects/8503_高成效領導.html" role="button" aria-pressed="false">● 高成效領導</a></li>
+        <li><a href="../Projects/8502_道德領導.html" role="button" aria-pressed="false">● 道德領導</a></li>
+        <li><a href="../Projects/8506_學習心得.html" role="button" aria-pressed="false">● 學習心得</a></li>
+        <li><a href="../Projects/8508_主持小組專題討論.html" role="button" aria-pressed="false">● 主持小組專題討論</a></li>
+        <li><a href="../Projects/8509_為專業演講做好準備.html" role="button" aria-pressed="false">● 為專業演講做好準備</a></li>
+      </ul></div>
+    </section>
+  </main>
+<footer>
+    ©2025 劉雨軒的Pathways動力中心｜版次:2025/6/6
+</footer>
+
+<!-- 浮動按鈕 -->
+<a aria-label="回首頁" class="fab-home" href="../index.html" role="button" title="回首頁">🏠</a>
+<a aria-label="回頂端" class="fab-top" href="#" role="button" title="回頂端">🔼</a>
+
+<!-- JS -->
+<script src="../js/fadein.js"></script>
+<script src="../js/parallax.js"></script>
+</body>
+</html>
