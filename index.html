@@ -7,22 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- 網站標題（SEO 核心） -->
-  <title>劉雨軒的 Pathways 動力中心｜Toastmasters 中文 Pathways 教學平台</title>
+  <title>劉雨軒的Pathways動力中心｜Toastmasters中文Pathways資源平台</title>
 
   <!-- SEO 描述（搜尋結果摘要） -->
   <meta
     name="description"
-    content="劉雨軒的 Pathways 動力中心，為 Toastmasters 中文會員設計的 Pathways 教學平台，提供學習路徑解析、專案資源、計時器與實務輔助工具。"
+    content="劉雨軒的Pathways動力中心，為Toastmasters中文會員設計的Pathways資源平台，提供學習路徑解析、專案資源、計時器與實務輔助工具。"
   />
 
   <!-- 關鍵字（輔助用，不過度堆疊） -->
   <meta
     name="keywords"
-    content="劉雨軒, Pathways, Toastmasters, DTM, 國際演講會, 演講訓練, 領導力, 中文 Pathways, 演講計畫"
+    content="劉雨軒, Pathways, Toastmasters, DTM, 國際演講會, 演講訓練, 領導力, 中文Pathways, 演講計畫"
   />
 
   <!-- 作者 -->
-  <meta name="author" content="劉雨軒 Liu Yu-Hsuan" />
+  <meta name="author" content="劉雨軒 Yu-Xian Liu" />
 
   <!-- 搜尋引擎索引策略 -->
   <meta name="robots" content="index, follow" />
@@ -40,10 +40,11 @@
 
   <!-- Open Graph（Facebook / LINE / 社群分享） -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="劉雨軒的 Pathways 動力中心" />
+  <meta property="og:site_name" content="劉雨軒的Pathways動力中心" />
+  <meta property="og:title" content="劉雨軒的Pathways動力中心" />
   <meta
     property="og:description"
-    content="為 Toastmasters 中文會員設計的 Pathways 教學與實務支援平台。"
+    content="為Toastmasters中文會員設計的Pathways資源與服務支援平台。"
   />
   <meta property="og:url" content="https://ckc300.github.io/" />
   <meta property="og:image" content="https://ckc300.github.io/images/Pathways_Power_Hub.png" />
@@ -51,127 +52,156 @@
 
   <!-- Twitter Card（即使不用，也不扣分） -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="劉雨軒的 Pathways 動力中心" />
+  <meta name="twitter:title" content="劉雨軒的Pathways動力中心" />
   <meta
     name="twitter:description"
-    content="Toastmasters 中文 Pathways 教學與學習輔助平台。"
+    content="Toastmasters中文Pathways服務與資源輔助平台。"
   />
+  <meta name="twitter:image" content="https://ckc300.github.io/images/Pathways_Power_Hub.png" />
 
   <!-- 樣式表 -->
   <link rel="stylesheet" href="/css/style.css" />
+
+  <!-- SEO 用：視覺隱藏但可被搜尋引擎讀取 -->
+  <style>
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-    <!-- LOGO + 主標題一行 -->
-    <div class="logo-title-wrapper">
-        <img class="logo" src="images/Pathways Power Hub.PNG" alt="Logo" />
-        <div class="site-title">劉雨軒的Pathways動力中心</div>
-    </div>
+  <!-- LOGO + 主標題一行 -->
+  <div class="logo-title-wrapper">
+    <img class="logo" src="/images/Pathways Power Hub.PNG" alt="Logo" />
+    <div class="site-title">劉雨軒的Pathways動力中心</div>
+  </div>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <a aria-current="page" class="active" href="/index.html">首頁</a>
-        <a aria-disabled="true" class="disabled">我的路徑</a>
-        <a href="../DTM/index.html">專案計畫</a>
-        <a href="../Timer/timer.html">雨軒計時器</a>
-    </nav>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a aria-current="page" class="active" href="/index.html">首頁</a>
+    <a aria-disabled="true" class="disabled">我的路徑</a>
+    <a href="/DTM/index.html">專案計畫</a>
+    <a href="/Timer/timer.html">雨軒計時器</a>
+  </nav>
 </header>
 
 <main>
-    <!-- 6 條現行路徑 -->
-    <div class="icon-section current">
-        <div class="icon-grid">
+  <!-- ======================================================
+       H1 SEO 定錨（唯一 H1，視覺隱藏但 SEO 可讀）
+       目的：強化「劉雨軒」的搜尋敘事、避免撞名
+  ======================================================= -->
+  <section class="seo-intro sr-only" aria-label="SEO 定錨：劉雨軒是誰">
+    <h1>劉雨軒是誰？</h1>
+    <p>
+      劉雨軒（Yu-Xian Liu）為國際演講會(Toastmasters International)中文社群之Pathways學習制度解析與資源服務推廣者。
+      本站「劉雨軒的Pathways動力中心」為其個人建置之中文Pathways資源平台，提供學習路徑解析、專案資源、計時器與實質輔助工具，
+      協助中文會員理解並完成Pathways各項學習目標。
+    </p>
+  </section>
 
-            <a aria-pressed="false" class="icon-link" href="Projects/DL_活力領導.html" role="button">
-                <div class="icon-wrapper">
-                    <div class="icon-label">DL_活力領導</div>
-                    <img alt="DL 路徑圖像" class="icon" src="images/DL.PNG" />
-                </div>
-            </a>
+  <!-- 6 條現行路徑 -->
+  <div class="icon-section current">
+    <div class="icon-grid">
 
-            <a aria-pressed="false" class="icon-link" href="Projects/EH_善用幽默.html" role="button">
-                <div class="icon-wrapper">
-                    <div class="icon-label">EH_善用幽默</div>
-                    <img alt="EH 路徑圖像" class="icon" src="images/EH.PNG" />
-                </div>
-            </a>
-
-            <a aria-pressed="false" class="icon-link" href="Projects/MS_激勵策略.html" role="button">
-                <div class="icon-wrapper">
-                    <div class="icon-label">MS_激勵策略</div>
-                    <img alt="MS 路徑圖像" class="icon" src="images/MS.PNG" />
-                </div>
-            </a>
-
-            <a aria-pressed="false" class="icon-link" href="Projects/PI_說服影響.html" role="button">
-                <div class="icon-wrapper">
-                    <div class="icon-label">PI_說服影響</div>
-                    <img alt="PI 路徑圖像" class="icon" src="images/PI.PNG" />
-                </div>
-            </a>
-
-            <a aria-pressed="false" class="icon-link" href="Projects/PM_精通演講.html" role="button">
-                <div class="icon-wrapper">
-                    <div class="icon-label">PM_精通演講</div>
-                    <img alt="PM 路徑圖像" class="icon" src="images/PM.PNG" />
-                </div>
-            </a>
-
-            <a aria-pressed="false" class="icon-link" href="Projects/VC_願景溝通.html" role="button">
-                <div class="icon-wrapper">
-                    <div class="icon-label">VC_願景溝通</div>
-                    <img alt="VC 路徑圖像" class="icon" src="images/VC.PNG" />
-                </div>
-            </a>
-
+      <a class="icon-link" href="/Projects/DL_活力領導.html">
+        <div class="icon-wrapper">
+          <div class="icon-label">DL_活力領導</div>
+          <img alt="DL 路徑圖像" class="icon" src="/images/DL.PNG" />
         </div>
-    </div>
+      </a>
 
-    <div class="section-divider"></div>
-
-    <!-- 5 條舊路徑 -->
-    <div class="icon-section legacy">
-        <div class="icon-grid">
-
-            <a aria-pressed="false" class="icon-link" href="Projects/EC_高效能教練.html" role="button">
-                <div class="icon-wrapper">
-                    <div class="icon-label">EC_高效能教練<br /><small>(舊路徑)</small></div>
-                    <img alt="EC 路徑圖像" class="icon" src="images/EC.PNG" />
-                </div>
-            </a>
-
-            <a aria-pressed="false" class="icon-link" href="Projects/IP_創新計劃.html" role="button">
-                <div class="icon-wrapper">
-                    <div class="icon-label">IP_創新計劃<br /><small>(舊路徑)</small></div>
-                    <img alt="IP 路徑圖像" class="icon" src="images/IP.PNG" />
-                </div>
-            </a>
-
-            <a aria-pressed="false" class="icon-link" href="Projects/LD_培育領導力.html" role="button">
-                <div class="icon-wrapper">
-                    <div class="icon-label">LD_培育領導力<br /><small>(舊路徑)</small></div>
-                    <img alt="LD 路徑圖像" class="icon" src="images/LD.PNG" />
-                </div>
-            </a>
-
-            <a aria-pressed="false" class="icon-link" href="Projects/SR_策略關係.html" role="button">
-                <div class="icon-wrapper">
-                    <div class="icon-label">SR_策略關係<br /><small>(舊路徑)</small></div>
-                    <img alt="SR 路徑圖像" class="icon" src="images/SR.PNG" />
-                </div>
-            </a>
-
-            <a aria-pressed="false" class="icon-link" href="Projects/TC_團隊合作.html" role="button">
-                <div class="icon-wrapper">
-                    <div class="icon-label">TC_團隊合作<br /><small>(舊路徑)</small></div>
-                    <img alt="TC 路徑圖像" class="icon" src="images/TC.PNG" />
-                </div>
-            </a>
-
+      <a class="icon-link" href="/Projects/EH_善用幽默.html">
+        <div class="icon-wrapper">
+          <div class="icon-label">EH_善用幽默</div>
+          <img alt="EH 路徑圖像" class="icon" src="/images/EH.PNG" />
         </div>
+      </a>
+
+      <a class="icon-link" href="/Projects/MS_激勵策略.html">
+        <div class="icon-wrapper">
+          <div class="icon-label">MS_激勵策略</div>
+          <img alt="MS 路徑圖像" class="icon" src="/images/MS.PNG" />
+        </div>
+      </a>
+
+      <a class="icon-link" href="/Projects/PI_說服影響.html">
+        <div class="icon-wrapper">
+          <div class="icon-label">PI_說服影響</div>
+          <img alt="PI 路徑圖像" class="icon" src="/images/PI.PNG" />
+        </div>
+      </a>
+
+      <a class="icon-link" href="/Projects/PM_精通演講.html">
+        <div class="icon-wrapper">
+          <div class="icon-label">PM_精通演講</div>
+          <img alt="PM 路徑圖像" class="icon" src="/images/PM.PNG" />
+        </div>
+      </a>
+
+      <a class="icon-link" href="/Projects/VC_願景溝通.html">
+        <div class="icon-wrapper">
+          <div class="icon-label">VC_願景溝通</div>
+          <img alt="VC 路徑圖像" class="icon" src="/images/VC.PNG" />
+        </div>
+      </a>
+
     </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 5 條舊路徑 -->
+  <div class="icon-section legacy">
+    <div class="icon-grid">
+
+      <a class="icon-link" href="/Projects/EC_高效能教練.html">
+        <div class="icon-wrapper">
+          <div class="icon-label">EC_高效能教練<br /><small>(舊路徑)</small></div>
+          <img alt="EC 路徑圖像" class="icon" src="/images/EC.PNG" />
+        </div>
+      </a>
+
+      <a class="icon-link" href="/Projects/IP_創新計劃.html">
+        <div class="icon-wrapper">
+          <div class="icon-label">IP_創新計劃<br /><small>(舊路徑)</small></div>
+          <img alt="IP 路徑圖像" class="icon" src="/images/IP.PNG" />
+        </div>
+      </a>
+
+      <a class="icon-link" href="/Projects/LD_培育領導力.html">
+        <div class="icon-wrapper">
+          <div class="icon-label">LD_培育領導力<br /><small>(舊路徑)</small></div>
+          <img alt="LD 路徑圖像" class="icon" src="/images/LD.PNG" />
+        </div>
+      </a>
+
+      <a class="icon-link" href="/Projects/SR_策略關係.html">
+        <div class="icon-wrapper">
+          <div class="icon-label">SR_策略關係<br /><small>(舊路徑)</small></div>
+          <img alt="SR 路徑圖像" class="icon" src="/images/SR.PNG" />
+        </div>
+      </a>
+
+      <a class="icon-link" href="/Projects/TC_團隊合作.html">
+        <div class="icon-wrapper">
+          <div class="icon-label">TC_團隊合作<br /><small>(舊路徑)</small></div>
+          <img alt="TC 路徑圖像" class="icon" src="/images/TC.PNG" />
+        </div>
+      </a>
+
+    </div>
+  </div>
 
 </main>
 
@@ -181,9 +211,10 @@
 
 <!-- Footer -->
 <footer>
-    ©2025 劉雨軒的Pathways動力中心｜版次:2025/6/6
+  ©2025 劉雨軒的Pathways動力中心｜版次:2026/1/8
 </footer>
-<script src="js/fadein.js"></script>
-<script src="js/parallax.js"></script>
+
+<script src="/js/fadein.js"></script>
+<script src="/js/parallax.js"></script>
 </body>
 </html>
