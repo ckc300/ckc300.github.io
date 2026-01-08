@@ -1,50 +1,78 @@
-
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>頁面迷航｜Pathways動力中心</title>
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ✅ 3 秒後導回新站首頁 -->
+  <meta http-equiv="refresh" content="3;url=/" />
+
+  <!-- ✅ SEO：宣告正規網址（避免 404 被收錄成重複頁） -->
+  <link rel="canonical" href="https://ckc300.github.io/" />
+  <meta name="robots" content="noindex,follow" />
+
+  <title>找不到頁面｜劉雨軒的 Pathways 動力中心</title>
+
   <style>
-    body {
-      font-family: 'TaipeiSans', sans-serif;
-      background-color: #f8f8f8;
-      color: #333;
-      text-align: center;
-      padding: 4rem 1rem;
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+      background:#f7f7f7;
+      color:#333;
     }
-    h1 {
-      font-size: 2.5rem;
-      color: #772432;
+    .wrap{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
     }
-    p {
-      font-size: 1.2rem;
-      margin-top: 1rem;
+    .card{
+      width:min(520px, 92vw);
+      background:#fff;
+      border-radius:16px;
+      box-shadow:0 12px 30px rgba(0,0,0,.08);
+      padding:28px 26px;
+      text-align:center;
     }
-    a.button {
-      display: inline-block;
-      margin-top: 2rem;
-      padding: 0.75rem 1.5rem;
-      background-color: #004165;
-      color: #fff;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 1rem;
+    h1{
+      margin:0 0 10px 0;
+      font-size:26px;
+      letter-spacing:.5px;
     }
-    .slogan {
-      margin-top: 3rem;
-      font-style: italic;
-      color: #999;
+    p{
+      margin:8px 0;
+      line-height:1.7;
+      font-size:15px;
+      color:#555;
+    }
+    a{
+      display:inline-block;
+      margin-top:14px;
+      color:#0b57d0;
+      font-weight:700;
+      text-decoration:none;
+      word-break:break-all;
+    }
+    .hint{
+      margin-top:16px;
+      font-size:13px;
+      color:#777;
     }
   </style>
 </head>
-<body>
-  <h1>Oops！這裡什麼都沒有...</h1>
-  <p>你是不是轉彎轉錯了？或者這個頁面正在趕工中。</p>
-  <a class="button" href="index.html">← 回首頁</a>
 
-  <p class="slogan">「路走錯了沒關係，反正我們本來就擅長迷路。」——雨軒魂</p>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>你走到一條不存在的路</h1>
+      <p>你要找的頁面目前不存在或已更換位置。</p>
+      <p>本頁將於 <strong>3 秒</strong>後自動帶你回首頁：</p>
+
+      <a href="https://ckc300.github.io/">https://ckc300.github.io/</a>
+
+      <div class="hint">若未自動跳轉，請點擊上方連結。</div>
+    </div>
+  </div>
 </body>
 </html>
