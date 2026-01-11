@@ -1,14 +1,13 @@
-# 劉雨軒的Pathways動力中心
+# 劉雨軒的Pathways動力中心授權說明 License
 
-本網站是由 **劉雨軒(Yu-Xian Liu)** 建立的Toastmasters中文Pathways學習與資源輔助平台，  
-提供清楚的學習路徑解析、專案資源整理，以及支援工具。
+本網站是由 **劉雨軒(Yu-Xian Liu)** 原創建立的Toastmasters中文Pathways學習與資源輔助平台，提供清楚的學習路徑解析、包含學習路徑整理、流程對照說明、非官方輔助文字與結構編排，以及支援工具。
 
 🌐 官方網站  
 https://ckc300.github.io/
 
 ---
 
-##這個網站提供什麼？
+## 這個網站提供什麼？
 
 - Toastmasters Pathways六大現行路徑說明
 - 已停用(Legacy)路徑的歷史與對照資料
@@ -35,16 +34,22 @@ https://ckc300.github.io/
 **Creative Commons Attribution–NonCommercial 4.0 International(CC BY-NC 4.0)** 授權。
 
 你可以：
-- 分享、引用、改作內容(需註明出處)
+- 分享、引用、非商業使用本站內容
+- 改作、整理、延伸應用(需標示來源)
 
 但不得：
-- 用於任何商業用途
-- 移除作者署名
-- 將內容包裝為付費教材或課程
+- 用於任何形式的商業用途
+- 移除作者或網站名稱之標示
+- 將內容包裝為付費教材、課程或商業產品
 
 完整授權條款：  
 https://creativecommons.org/licenses/by-nc/4.0/
 
 ---
 
-© 2025–2026 劉雨軒  
+本網站內容為非官方學習輔助整理，
+不代表Toastmasters International官方立場，
+亦不包含其原始教材之著作權。
+
+完整授權條款請參閱 LICENSE 檔案。
+Copyright © 2016–2026 劉雨軒的Pathways動力中心  
