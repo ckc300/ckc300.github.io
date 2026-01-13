@@ -1,156 +1,201 @@
 <!DOCTYPE html>
+<html lang="zh-Hant" oncontextmenu="return false;" onselectstart="return false;">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>發表社交演講｜單元簡介</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+  /* === 優化_final_v2版 CSS（與積極聆聽相同） === */
 
-<html lang="zh-Hant" oncontextmenu="return false;" onselectstart="return false;"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>研究和發表｜單元簡介</title>
-<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link href="images/favicon.ico" rel="icon" type="image/x-icon"/>
-<link href="../css/style.css" rel="stylesheet">
-<style>
-    main {
+  header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background-color: rgba(0, 65, 101, 0.95);
+      backdrop-filter: blur(4px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  main {
       max-width: 880px;
       margin: 2em auto;
       padding: 1.2em;
-    }
-    .unit-header {
+  }
+
+  .unit-header-wrapper {
       text-align: center;
+      margin-bottom: 1.5em;
+  }
+
+  .unit-header {
+      display: inline-block;
       font-size: 2.4em;
       font-weight: bold;
       color: #004165;
-      margin-bottom: 1.5em;
       padding: 0.4em 1em;
       background-color: rgba(255,255,255,0.3);
       border: 3px solid #004165;
       border-radius: 14px;
-      display: inline-block;
-    }
-    .unit-section {
+      opacity: 0;
+      animation: fadeInTitle 1.2s ease-in-out forwards;
+  }
+
+  @keyframes fadeInTitle {
+      from { opacity: 0; transform: translateY(-15px); }
+      to { opacity: 1; transform: translateY(0); }
+  }
+
+  .unit-section {
       background-color: rgba(255,255,255,0.75);
       margin: 1.8em 0;
       padding: 1em 1.4em;
       border-radius: 12px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    .unit-section h2 {
+  }
+
+  .unit-section h2 {
       font-size: 1.3em;
       font-weight: bold;
       color: #004165;
       margin-bottom: 0.4em;
       border-left: 6px solid #772432;
       padding-left: 0.6em;
-    }
-    .unit-section p {
+  }
+
+  .unit-section p {
       font-size: 1.1em;
-      line-height: 2;
+      line-height: 2.2;
       color: #222;
       margin: 0.3em 0;
-    }
-    .button-row {
+  }
+
+  .button-row {
       text-align: center;
       margin-top: 2.8em;
-    }
-    .button-row a {
+  }
+
+  .button-row a {
       display: inline-block;
-      margin: 0 1em;
+      margin: 0.5em 0.8em;
       background-color: #004165;
       color: white;
-      padding: 10px 18px;
+      padding: 0.6em 1.2em;
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-    .button-row a:hover {
-      background-color: #006699;
-    }
-  
-    .unit-header-wrapper {
-      text-align: center;
-      margin-bottom: 1.5em;
-    }
-    .unit-header {
-      display: inline-block;
-      font-size: 2.4em;
-      font-weight: bold;
-      color: #004165;
-      padding: 0.4em 1em;
-      background-color: rgba(255,255,255,0.3);
-      border: 3px solid #004165;
-      border-radius: 14px;
-    }
-
-/* === 主標題淡入動畫 === */
-.unit-header {
-  opacity: 0;
-  animation: fadeInTitle 1.2s ease-in-out forwards;
-}
-@keyframes fadeInTitle {
-  from { opacity: 0; transform: translateY(-15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* === 段落行高微調 === */
-.unit-section p {
-  line-height: 2.2;
-}
-
-/* === h2 前導圖示穩定呈現 === */
-.unit-section h2::before {
-  display: inline-block;
-  margin-right: 0.5em;
-}
-
-
-/* === 按鈕互動強化 === */
-.button-row a:hover {
-  background-color: #006699;
-  box-shadow: 0 4px 12px rgba(0, 65, 101, 0.3);
-}
-
-/* === 手機版主標題尺寸調整 === */
-@media (max-width: 600px) {
-  .unit-header {
-    font-size: 1.8em;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
-}
 
-</style>
-</link></head><header>
-<div class="logo-container">
-<img alt="Pathways Logo" class="logo" src="../images/Pathways Power Hub.PNG"/>
-</div>
-<nav class="navbar">
-<a href="../index.html">首頁</a>
-<a href="javascript:history.back()">我的路徑</a>
-<a href="../DTM/index.html">專案計畫</a>
-<a href="../Timer/timer.html">雨軒計時器</a>
-</nav>
-</header><main>
-<div class="unit-header-wrapper">
-<div class="unit-header">發表社交演講</div>
-</div>
-<div class="unit-section" style="background-color: rgba(119,36,50,0.75);padding-left: 1.6em; padding-right: 1.6em;">
-<h2 style="color: #F2DF74; border-left: 6px solid #F2DF74; padding-left: 0.6em;">🧭 單元簡介</h2>
-<p style="color: white; line-height: 1.6">發表社交演講<br/>本單元培養你在各種社交場合中撰寫與發表演講的能力，包括祝酒詞、悼念詞、致謝詞，或讚揚個人／團體的致詞等。</p>
-</div>
-<div class="unit-section" style="background-color: rgba(0,65,101,0.75);padding-left: 1.6em; padding-right: 1.6em;">
-<h2 style="color: #F2DF74; border-left: 6px solid #F2DF74; padding-left: 0.6em;">🎯 單元目的：</h2>
-<p style="color: white; line-height: 1.6">練習在分會會員面前發表各類社交場合的演講。</p>
-</div>
-<div class="unit-section" style="background-color: rgba(169,178,177,0.75);padding-left: 1.6em; padding-right: 1.6em;">
-<h2 style="color: #004165; border-left: 6px solid #004165; padding-left: 0.6em;">📜 內容概要：</h2>
-<p style="line-height: 1.6">撰寫並準備兩篇不同形式的社交場合演講，每篇長度為 3 到 4 分鐘，並『分別在兩場分會例會中』發表。你可以自由選擇兩種你有興趣、或想加強練習的社交演講類型。</p>
-</div>
-<div class="unit-section" style="background-color: rgba(255,255,255,0.75);padding-left: 1.6em; padding-right: 1.6em;">
-<h2 style="color: #772432; border-left: 6px solid #772432; padding-left: 0.6em;">📦 本單元包含：</h2>
-<p style="line-height: 1.6">▪ 《社交演講基本技巧》參考資料<br/>▪ 『2篇』， 3~4 分鐘的演講</p>
-</div>
-<div class="button-row">
-<a href="javascript:history.back()">← 回上一頁</a>
-<a href="../pdf/8302A_發表社交演講(第一篇演講).pdf" target="_blank">📄 下載講評單→ 第1篇演講</a>
-<a href="../pdf/8302B_發表社交演講(第二篇演講).pdf" target="_blank">📄 下載講評單→ 第2篇演講</a>
-</div>
-</main><footer>
-    © 2016–2026 劉雨軒的Pathways動力中心｜內容採 CC BY-NC 4.0 授權
-  </footer><a aria-label="回首頁" class="fab-home" href="../index.html" title="回首頁">🏠</a><a aria-label="回頂端" class="fab-top" href="javascript:history.back()" title="回頂端">🔼</a></html>
+  .button-row a:hover {
+      background-color: #006699;
+      box-shadow: 0 4px 12px rgba(0, 65, 101, 0.3);
+  }
+
+  .button-row a.btn-home {
+      display: inline-block !important;
+      background-color: #772432;
+      color: #F2DF74;
+      padding: 0.6em 1.2em;
+      margin: 0.5em auto;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .button-row a.btn-home:hover {
+      background-color: #A9445E;
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(119, 36, 50, 0.4);
+  }
+
+  @media (max-width: 600px) {
+      .button-row a.btn-home {
+          width: fit-content;
+          min-width: 0;
+          padding: 0.25em 0.5em;
+          font-size: 1.1em;
+          margin: 0.5em auto;
+      }
+      .unit-header {
+          font-size: 1.8em;
+      }
+  }
+  </style>
+</head>
+
+<body oncontextmenu="return false;" onselectstart="return false;">
+<header>
+  <div class="logo-title-wrapper">
+      <img class="logo" src="../images/Pathways Power Hub.PNG" alt="Logo" />
+      <div class="site-title">劉雨軒的Pathways動力中心</div>
+  </div>
+
+  <nav class="navbar">
+      <a href="../index.html">首頁</a>
+      <a href="javascript:history.back()">我的路徑</a>
+      <a href="../DTM/index.html">專案計畫</a>
+      <a href="../Timer/timer.html">雨軒計時器</a>
+  </nav>
+</header>
+
+<main>
+  <div class="unit-header-wrapper">
+      <div class="unit-header">發表社交演講</div>
+  </div>
+
+  <div class="unit-section" style="background-color: rgba(119,36,50,0.75); padding-left: 1.6em; padding-right: 1.6em;">
+      <h2 style="color: #F2DF74; border-left: 6px solid #F2DF74; padding-left: 0.6em;">🧭 單元簡介</h2>
+      <p style="color: white; line-height: 1.6">
+        發表社交演講<br/>
+        本單元協助你了解在非正式場合發表演講的技巧，讓你能在社交活動中自信發言、自然互動。
+      </p>
+  </div>
+
+  <div class="unit-section" style="background-color: rgba(0,65,101,0.75); padding-left: 1.6em; padding-right: 1.6em;">
+      <h2 style="color: #F2DF74; border-left: 6px solid #F2DF74; padding-left: 0.6em;">🎯 單元目的：</h2>
+      <p style="color: white; line-height: 1.6">
+        學習應用簡潔、自然且充滿親和力的表達方式，讓演講適用於社交場合與日常對話。
+      </p>
+  </div>
+
+  <div class="unit-section" style="background-color: rgba(169,178,177,0.75); padding-left: 1.6em; padding-right: 1.6em;">
+      <h2 style="color: #004165; border-left: 6px solid #004165; padding-left: 0.6em;">📜 內容概要：</h2>
+      <p style="line-height: 1.6">
+        在此單元中，你將學習如何在婚禮、慶典、聚會等社交場合中進行簡短演講。<br/>
+        你的目標是傳遞溫暖、真誠且有影響力的訊息。<br/>
+        你需發表一篇 3 至 4 分鐘的演講，並根據場合需求適度運用幽默與情感。
+      </p>
+  </div>
+
+  <div class="unit-section" style="background-color: rgba(255,255,255,0.75); padding-left: 1.6em; padding-right: 1.6em;">
+      <h2 style="color: #772432; border-left: 6px solid #772432; padding-left: 0.6em;">📦 本單元包含：</h2>
+      <p style="line-height: 1.6">
+        • 《社交場合演講指南》<br/>
+        • 一篇 3 至 4 分鐘的演講
+      </p>
+  </div>
+
+  <div class="button-row">
+      <a href="javascript:history.back()" class="btn-home">← 回上一頁</a>
+      <a href="../pdf/8302_發表社交演講.pdf" target="_blank">📄 下載講評單</a>
+  </div>
+</main>
+
+<footer>
+  © 2016–2026 劉雨軒的Pathways動力中心｜內容採 CC BY-NC 4.0 授權
+</footer>
+
+<!-- 浮動按鈕 -->
+<a aria-label="回首頁" class="fab-home" href="../index.html" role="button" title="回首頁">🏠</a>
+<a aria-label="回頂端" class="fab-top" href="#" role="button" title="回頂端">🔼</a>
+
+<!-- JS -->
+<script src="../js/fadein.js"></script>
+<script src="../js/parallax.js"></script>
+
+</body>
+</html>

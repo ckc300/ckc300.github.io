@@ -1,155 +1,184 @@
 <!DOCTYPE html>
-
-<html lang="zh-Hant" oncontextmenu="return false;" onselectstart="return false;"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>研究和發表｜單元簡介</title>
-<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link href="images/favicon.ico" rel="icon" type="image/x-icon"/>
-<link href="../css/style.css" rel="stylesheet">
-<style>
-    main {
+<html lang="zh-Hant" oncontextmenu="return false;" onselectstart="return false;">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>發表企畫案｜單元簡介</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+  /* === 優化_final_v2版 CSS（與積極聆聽相同） === */
+  header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background-color: rgba(0, 65, 101, 0.95);
+      backdrop-filter: blur(4px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  main {
       max-width: 880px;
       margin: 2em auto;
       padding: 1.2em;
-    }
-    .unit-header {
+  }
+  .unit-header-wrapper {
       text-align: center;
+      margin-bottom: 1.5em;
+  }
+  .unit-header {
+      display: inline-block;
       font-size: 2.4em;
       font-weight: bold;
       color: #004165;
-      margin-bottom: 1.5em;
       padding: 0.4em 1em;
       background-color: rgba(255,255,255,0.3);
       border: 3px solid #004165;
       border-radius: 14px;
-      display: inline-block;
-    }
-    .unit-section {
+      opacity: 0;
+      animation: fadeInTitle 1.2s ease-in-out forwards;
+  }
+  @keyframes fadeInTitle {
+      from { opacity: 0; transform: translateY(-15px); }
+      to { opacity: 1; transform: translateY(0); }
+  }
+  .unit-section {
       background-color: rgba(255,255,255,0.75);
       margin: 1.8em 0;
       padding: 1em 1.4em;
       border-radius: 12px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    .unit-section h2 {
+  }
+  .unit-section h2 {
       font-size: 1.3em;
       font-weight: bold;
       color: #004165;
       margin-bottom: 0.4em;
       border-left: 6px solid #772432;
       padding-left: 0.6em;
-    }
-    .unit-section p {
+  }
+  .unit-section p {
       font-size: 1.1em;
-      line-height: 2;
+      line-height: 2.2;
       color: #222;
       margin: 0.3em 0;
-    }
-    .button-row {
+  }
+  .button-row {
       text-align: center;
       margin-top: 2.8em;
-    }
-    .button-row a {
+  }
+  .button-row a {
       display: inline-block;
-      margin: 0 1em;
+      margin: 0.5em 0.8em;
       background-color: #004165;
       color: white;
-      padding: 10px 18px;
+      padding: 0.6em 1.2em;
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-    .button-row a:hover {
-      background-color: #006699;
-    }
-  
-    .unit-header-wrapper {
-      text-align: center;
-      margin-bottom: 1.5em;
-    }
-    .unit-header {
-      display: inline-block;
-      font-size: 2.4em;
-      font-weight: bold;
-      color: #004165;
-      padding: 0.4em 1em;
-      background-color: rgba(255,255,255,0.3);
-      border: 3px solid #004165;
-      border-radius: 14px;
-    }
-
-/* === 主標題淡入動畫 === */
-.unit-header {
-  opacity: 0;
-  animation: fadeInTitle 1.2s ease-in-out forwards;
-}
-@keyframes fadeInTitle {
-  from { opacity: 0; transform: translateY(-15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* === 段落行高微調 === */
-.unit-section p {
-  line-height: 2.2;
-}
-
-/* === h2 前導圖示穩定呈現 === */
-.unit-section h2::before {
-  display: inline-block;
-  margin-right: 0.5em;
-}
-
-
-/* === 按鈕互動強化 === */
-.button-row a:hover {
-  background-color: #006699;
-  box-shadow: 0 4px 12px rgba(0, 65, 101, 0.3);
-}
-
-/* === 手機版主標題尺寸調整 === */
-@media (max-width: 600px) {
-  .unit-header {
-    font-size: 1.8em;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
-}
+  .button-row a:hover {
+      background-color: #006699;
+      box-shadow: 0 4px 12px rgba(0, 65, 101, 0.3);
+  }
+  .button-row a.btn-home {
+      display: inline-block !important;
+      background-color: #772432;
+      color: #F2DF74;
+      padding: 0.6em 1.2em;
+      margin: 0.5em auto;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .button-row a.btn-home:hover {
+      background-color: #A9445E;
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(119, 36, 50, 0.4);
+  }
+  @media (max-width: 600px) {
+      .button-row a.btn-home {
+          width: fit-content;
+          min-width: 0;
+          padding: 0.25em 0.5em;
+          font-size: 1.1em;
+          margin: 0.5em auto;
+      }
+      .unit-header {
+          font-size: 1.8em;
+      }
+  }
+  </style>
+</head>
 
-</style>
-</link></head><header>
-<div class="logo-container">
-<img alt="Pathways Logo" class="logo" src="../images/Pathways Power Hub.PNG"/>
-</div>
-<nav class="navbar">
-<a href="../index.html">首頁</a>
-<a href="javascript:history.back()">我的路徑</a>
-<a href="../DTM/index.html">專案計畫</a>
-<a href="../Timer/timer.html">雨軒計時器</a>
-</nav>
-</header><main>
-<div class="unit-header-wrapper">
-<div class="unit-header">發表企畫案</div>
-</div>
-<div class="unit-section" style="background-color: rgba(119,36,50,0.75);padding-left: 1.6em; padding-right: 1.6em;">
-<h2 style="color: #F2DF74; border-left: 6px solid #F2DF74; padding-left: 0.6em;">🧭 單元簡介</h2>
-<p style="color: white; line-height: 1.6">發表企劃案<br/>本單元介紹如何在企劃案中選擇關鍵資訊呈現，以提出具說服力的證據與實際解決方案，突顯你的立場。</p>
-</div>
-<div class="unit-section" style="background-color: rgba(0,65,101,0.75);padding-left: 1.6em; padding-right: 1.6em;">
-<h2 style="color: #F2DF74; border-left: 6px solid #F2DF74; padding-left: 0.6em;">🎯 單元目的：</h2>
-<p style="color: white; line-height: 1.6">練習擬定並發表一項企劃案。</p>
-</div>
-<div class="unit-section" style="background-color: rgba(169,178,177,0.75);padding-left: 1.6em; padding-right: 1.6em;">
-<h2 style="color: #004165; border-left: 6px solid #004165; padding-left: 0.6em;">📜 內容概要：</h2>
-<p style="line-height: 1.6">擬定一項能改善你生活中某個層面的企劃案，內容可與你的個人生活、職場，或國際演講會分會有關。若企劃案與分會運作相關，請先與分會負責幹部討論、徵詢意見。例如，若你提出的是增進會員人數的企劃案，則應與分會會長或分會會員副會長事前溝通。<br/>在分會例會中發表一篇 5 到 7 分鐘的演講，完整或部分說明你的企劃構想。</p>
-</div>
-<div class="unit-section" style="background-color: rgba(255,255,255,0.75);padding-left: 1.6em; padding-right: 1.6em;">
-<h2 style="color: #772432; border-left: 6px solid #772432; padding-left: 0.6em;">📦 本單元包含：</h2>
-<p style="line-height: 1.6">▪ 擬定一項企劃案<br/>▪《撰寫企劃案》參考資源<br/>▪ 一篇 5 到 7 分鐘的演講</p>
-</div>
-<div class="button-row">
-<a href="javascript:history.back()">← 回上一頁</a>
-<a href="../pdf/8312_發表企畫案.pdf" target="_blank">📄 下載講評單</a>
-</div>
-</main><footer>
-    © 2016–2026 劉雨軒的Pathways動力中心｜內容採 CC BY-NC 4.0 授權
-  </footer><a aria-label="回首頁" class="fab-home" href="../index.html" title="回首頁">🏠</a><a aria-label="回頂端" class="fab-top" href="javascript:history.back()" title="回頂端">🔼</a></html>
+<body oncontextmenu="return false;" onselectstart="return false;">
+<header>
+  <div class="logo-title-wrapper">
+      <img class="logo" src="../images/Pathways Power Hub.PNG" alt="Logo" />
+      <div class="site-title">劉雨軒的Pathways動力中心</div>
+  </div>
+  <nav class="navbar">
+      <a href="../index.html">首頁</a>
+      <a href="javascript:history.back()">我的路徑</a>
+      <a href="../DTM/index.html">專案計畫</a>
+      <a href="../Timer/timer.html">雨軒計時器</a>
+  </nav>
+</header>
+
+<main>
+  <div class="unit-header-wrapper">
+      <div class="unit-header">發表企畫案</div>
+  </div>
+
+  <div class="unit-section" style="background-color: rgba(119,36,50,0.75); padding-left:1.6em; padding-right:1.6em;">
+      <h2 style="color:#F2DF74; border-left:6px solid #F2DF74; padding-left:0.6em;">🧭 單元簡介</h2>
+      <p style="color:white; line-height:1.6">
+        發表企畫案<br/>
+        本單元協助你學習如何設計、發表並推銷你的專案構想，讓聽眾理解並認同你的計畫。
+      </p>
+  </div>
+
+  <div class="unit-section" style="background-color: rgba(0,65,101,0.75); padding-left:1.6em; padding-right:1.6em;">
+      <h2 style="color:#F2DF74; border-left:6px solid #F2DF74; padding-left:0.6em;">🎯 單元目的：</h2>
+      <p style="color:white; line-height:1.6">
+        培養有效呈現企畫案的能力，能清楚說明目標、策略與價值，並說服聽眾支持執行。
+      </p>
+  </div>
+
+  <div class="unit-section" style="background-color: rgba(169,178,177,0.75); padding-left:1.6em; padding-right:1.6em;">
+      <h2 style="color:#004165; border-left:6px solid #004165; padding-left:0.6em;">📜 內容概要：</h2>
+      <p style="line-height:1.6">
+        本單元將教授你如何構思與展示企畫案，從問題分析、目標設定到行動方案。<br/>
+        你需發表一篇 5 至 7 分鐘的演講，展示完整企畫構想，<br/>
+        並以具說服力的方式推動觀眾認同並採納你的提案。
+      </p>
+  </div>
+
+  <div class="unit-section" style="background-color: rgba(255,255,255,0.75); padding-left:1.6em; padding-right:1.6em;">
+      <h2 style="color:#772432; border-left:6px solid #772432; padding-left:0.6em;">📦 本單元包含：</h2>
+      <p style="line-height:1.6">
+        • 《企畫案簡報設計指南》<br/>
+        • 一篇 5 至 7 分鐘的演講
+      </p>
+  </div>
+
+  <div class="button-row">
+      <a href="javascript:history.back()" class="btn-home">← 回上一頁</a>
+      <a href="../pdf/8312_發表企畫案.pdf" target="_blank">📄 下載講評單</a>
+  </div>
+</main>
+
+<footer>
+  © 2016–2026 劉雨軒的Pathways動力中心｜內容採 CC BY-NC 4.0 授權
+</footer>
+
+<a aria-label="回首頁" class="fab-home" href="../index.html" role="button" title="回首頁">🏠</a>
+<a aria-label="回頂端" class="fab-top" href="#" role="button" title="回頂端">🔼</a>
+
+<script src="../js/fadein.js"></script>
+<script src="../js/parallax.js"></script>
+
+</body>
+</html>
