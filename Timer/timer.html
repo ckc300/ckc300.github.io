@@ -21,21 +21,15 @@ h1 {
 }
 .presets {
     margin: 2em 0 1.3em 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
 }
 .preset-btn {
     background: #004165;
     color: #fff;
     border: none;
     border-radius: 50%;
-    width: 20vw;
-    height: 20vw;
-    max-width: 70px;
-    max-height: 70px;
+    width: 70px; height: 70px;
     font-size: 1.1em;
-    margin: 0.4em 0.5em;
+    margin: 0 10px;
     font-weight: bold;
     box-shadow: 0 2px 8px #0004;
     cursor: pointer;
@@ -50,7 +44,7 @@ h1 {
 }
 .timer-display {
     font-family: 'Roboto Mono', monospace;
-    font-size: clamp(3rem, 10vw, 6rem);
+    font-size: clamp(3.2rem, 12vw, 8rem);
     font-weight: bold;
     background: #000;
     border-radius: 16px;
@@ -60,8 +54,8 @@ h1 {
     letter-spacing: 0.06em;
     min-width: 200px;
     text-align: center;
-    transition: background-color 0.25s ease-in-out;
 }
+
 .controls-fab {
     display: flex;
     justify-content: center;
@@ -80,23 +74,18 @@ h1 {
     cursor: pointer;
     transition: filter 0.15s;
 }
-.controls-fab button:active { filter: brightness(0.95); }
+.controls-fab button:active {
+    filter: brightness(0.95);
+}
 .controls-fab button:disabled {
     background: #444;
     border-color: #888;
     color: #ccc;
     cursor: not-allowed;
 }
-/* ✅ 安全區修正（iPhone 底部） */
 .bottom-bar {
-    position: fixed;
-    left: 0; right: 0;
-    bottom: max(1vw, env(safe-area-inset-bottom, 8px));
-    display: flex;
-    justify-content: center;
-    gap: 22px;
-    z-index: 30;
-    padding-bottom: env(safe-area-inset-bottom, 0);
+    position: fixed; left: 0; right: 0; bottom: 1vw;
+    display: flex; justify-content: center; gap: 22px; z-index: 30;
 }
 .bottom-bar button {
     background: #232323;
@@ -112,20 +101,7 @@ h1 {
     gap: 8px;
     cursor: pointer;
 }
-.bottom-bar button:hover { border-color: #FFD700; color: #FFD700; }
-/* ✅ 底部版本資訊 */
-#footer-info {
-  position: fixed;
-  bottom: calc(env(safe-area-inset-bottom, 8px) + 4px);
-  width: 100%;
-  text-align: center;
-  font-size: 0.85em;
-  color: #aaa;
-  opacity: 0.6;
-  pointer-events: none;
-  font-family: 'Noto Sans TC', sans-serif;
-  z-index: 10;
-}
+.bottom-bar button:hover { border-color: #FFD700; color: #FFD700;}
 /* Modal */
 .modal {
     display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
@@ -142,32 +118,66 @@ h1 {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: center;        /* 水平居中 */
+    justify-content: center;    /* 垂直居中 */
 }
 .modal-content h3 { font-size: 1.32em; margin: 0 0 1em 0; }
 .modal-content p { font-size: 1em; color: #ccc; margin: 0 0 1.3em 0;}
 .custom-row {
-    display: flex; flex-direction: row; align-items: center; justify-content: center;
-    gap: 0.7em; margin: 1.1em 0; width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7em;
+    margin: 1.1em 0;
+    width: 100%;
 }
-.custom-label { font-size: 1.05em; font-weight: bold; min-width: 2.8em; text-align: right; letter-spacing: 0.07em; }
-.select-group { display: flex; align-items: center; gap: 0.1em; }
+.custom-label {
+    font-size: 1.05em;
+    font-weight: bold;
+    min-width: 2.8em;
+    text-align: right;
+    letter-spacing: 0.07em;
+}
+.select-group {
+    display: flex;
+    align-items: center;
+    gap: 0.1em;
+}
 .select-group select {
-    font-size: 1.16em; border-radius: 8px; border: 2px solid #FFD700; padding: 0.22em 0.75em;
-    color: #FFD700; background: #101010; font-family: 'Roboto Mono', monospace; margin: 0 0.08em;
-    min-width: 3.7em; appearance: none; outline: none; text-align: center;
+    font-size: 1.16em;
+    border-radius: 8px;
+    border: 2px solid #FFD700;
+    padding: 0.22em 0.75em;
+    color: #FFD700;
+    background: #101010;
+    font-family: 'Roboto Mono', monospace;
+    margin: 0 0.08em;
+    min-width: 3.7em;
+    appearance: none;
+    outline: none;
+    text-align: center;
 }
 .select-group select:focus { border-color: #FFB900; background: #222; color: #FFD700;}
-.unit { font-size: 1em; color: #bbb; margin: 0 0.2em; }
+.unit {
+    font-size: 1em; color: #bbb; margin: 0 0.2em;
+}
 .modal-content .btn-row {
-    display: flex; justify-content: center; align-items: center;
-    gap: 2vw; width: 100%; margin: 1.6em 0 0.7em 0;
+    display: flex; flex-direction: row; justify-content: center; align-items: center;
+    gap: 2vw; width: 100%;     margin: 1.6em 0 0.7em 0;
 }
 .modal-content .btn-row button {
-    font-size: 1.28em; font-weight: bold; border-radius: 12px; border: none;
-    min-width: 36vw; background: #FFD700; color: #222; padding: 0.7em 0;
-    margin: 0 8px; cursor: pointer; transition: background 0.15s;
+    font-size: 1.28em;
+    font-weight: bold;
+    border-radius: 12px;
+    border: none;
+    min-width: 36vw;
+    background: #FFD700;
+    color: #222;
+    padding: 0.7em 0;
+    margin: 0 8px;
+    cursor: pointer;
+    transition: background 0.15s;
 }
 .modal-content .btn-row button:active { background: #FFE066;}
 @media (max-width: 500px) {
@@ -186,31 +196,25 @@ h1 {
 <h1>雨軒計時器</h1>
 
 <div class="presets">
-  <button class="preset-btn" onclick='setPreset(5,6,7,7.5); highlightPreset(this); showLabel("speech");'>5~7分<br>±30秒</button>
-  <button class="preset-btn" onclick='setPreset(1,1.5,2,2.5); highlightPreset(this); showLabel("table");'>1~2分<br>+30秒</button>
-  <button class="preset-btn" onclick='setPreset(2,2.5,3,3.5); highlightPreset(this); showLabel("eval");'>2~3分<br>±30秒</button>
-  <button class="preset-btn" id="customBtn" onclick='openCustomModal(); highlightPreset(this); showLabel("none");'>自定義<br>時間</button>
+    <button class="preset-btn" onclick='setPreset(5,6,7,7.5); highlightPreset(this); showLabel("speech");'>5~7分<br>±30秒</button>
+    <button class="preset-btn" onclick='setPreset(1,1.5,2,2.5); highlightPreset(this); showLabel("table");'>1~2分<br>+30秒</button>
+    <button class="preset-btn" onclick='setPreset(2,2.5,3,3.5); highlightPreset(this); showLabel("eval");'>2~3分<br>±30秒</button>
+    <button class="preset-btn" id="customBtn" onclick='openCustomModal(); highlightPreset(this); showLabel("none");'>自定義<br>時間</button>
 </div>
-
-<div id="label-speech" style="font-size:0.95em;display:none;margin-bottom:0.7em;">■ 合格：4分30秒~7分30秒</div>
-<div id="label-table" style="font-size:0.95em;display:none;margin-bottom:0.7em;">■ 合格：1分~2分30秒</div>
-<div id="label-eval" style="font-size:0.95em;display:none;margin-bottom:0.7em;">■ 合格：1分30秒~3分30秒</div>
-
+<div id="label-speech" style="font-size: 0.95em; display:none; margin-bottom:0.7em;">■ 合格：4分30秒~7分30秒</div>
+<div id="label-table" style="font-size: 0.95em; display:none; margin-bottom:0.7em;">■ 合格：1分~2分30秒</div>
+<div id="label-eval" style="font-size: 0.95em; display:none; margin-bottom:0.7em;">■ 合格：1分30秒~3分30秒</div>
 <div class="timer-display" id="display">00:00</div>
-
 <div class="controls-fab">
-  <button id="resetBtn" onclick="resetTimer()" disabled>🔁 歸零</button>
-  <button id="mainControlBtn" onclick="mainControl()" disabled>▶️ 開始</button>
+    <button id="resetBtn" onclick="resetTimer()" disabled>🔁 歸零</button>
+    <button id="mainControlBtn" onclick="mainControl()" disabled>▶️ 開始</button>
 </div>
-
 <div class="bottom-bar">
-  <button onclick="location.href='/'">🏠 回首頁</button>
-  <button id="fullscreenBtn" onclick="toggleFullscreen()"><span id="fsIcon">🔲</span> <span id="fsText">全螢幕</span></button>
+    <button onclick="location.href='/'">🏠 回首頁</button>
+    <button id="fullscreenBtn" onclick="toggleFullscreen()"><span id="fsIcon">🔲</span> <span id="fsText">全螢幕</span></button>
 </div>
 
-<footer id="footer-info">© 雨軒 2026</footer>
-
-<!-- 自定義時間 Modal -->
+<!-- 滑動選取 Modal -->
 <div class="modal" id="customModal">
   <div class="modal-content">
     <h3>自定義時間設定</h3>
@@ -218,29 +222,37 @@ h1 {
     <div class="custom-row">
       <span class="custom-label">綠燈：</span>
       <div class="select-group">
-        <select id="greenMin"></select><span class="unit">分</span>
-        <select id="greenSec"></select><span class="unit">秒</span>
+        <select id="greenMin"></select>
+        <span class="unit">分</span>
+        <select id="greenSec"></select>
+        <span class="unit">秒</span>
       </div>
     </div>
     <div class="custom-row">
       <span class="custom-label">黃燈：</span>
       <div class="select-group">
-        <select id="yellowMin"></select><span class="unit">分</span>
-        <select id="yellowSec"></select><span class="unit">秒</span>
+        <select id="yellowMin"></select>
+        <span class="unit">分</span>
+        <select id="yellowSec"></select>
+        <span class="unit">秒</span>
       </div>
     </div>
     <div class="custom-row">
       <span class="custom-label">紅燈：</span>
       <div class="select-group">
-        <select id="redMin"></select><span class="unit">分</span>
-        <select id="redSec"></select><span class="unit">秒</span>
+        <select id="redMin"></select>
+        <span class="unit">分</span>
+        <select id="redSec"></select>
+        <span class="unit">秒</span>
       </div>
     </div>
     <div class="custom-row">
       <span class="custom-label">閃爍：</span>
       <div class="select-group">
-        <select id="blinkMin"></select><span class="unit">分</span>
-        <select id="blinkSec"></select><span class="unit">秒</span>
+        <select id="blinkMin"></select>
+        <span class="unit">分</span>
+        <select id="blinkSec"></select>
+        <span class="unit">秒</span>
       </div>
     </div>
     <div class="btn-row">
@@ -251,58 +263,223 @@ h1 {
 </div>
 
 <script>
+// 初始化 <select> 填入 0~59
 ["greenMin","greenSec","yellowMin","yellowSec","redMin","redSec","blinkMin","blinkSec"].forEach(id=>{
-  const sel=document.getElementById(id);
-  for(let i=0;i<=59;i++){let opt=document.createElement('option');opt.value=opt.text=i;sel.appendChild(opt);}
-});
-const spinnerState={greenMin:0,greenSec:0,yellowMin:0,yellowSec:0,redMin:0,redSec:0,blinkMin:0,blinkSec:0};
-["greenMin","greenSec","yellowMin","yellowSec","redMin","redSec","blinkMin","blinkSec"].forEach(id=>{
-  document.getElementById(id).addEventListener('change',function(){spinnerState[id]=parseInt(this.value);checkCustomInputs();});
-});
-function highlightPreset(btn){document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');}
-function openCustomModal(){if(currentState!=='init')return;document.getElementById("customModal").style.display="flex";Object.keys(spinnerState).forEach(id=>{document.getElementById(id).value=spinnerState[id];});checkCustomInputs();}
-function closeCustomModal(){document.getElementById("customModal").style.display="none";}
-function getTimeValue(minKey,secKey){return parseInt(document.getElementById(minKey).value)*60+parseInt(document.getElementById(secKey).value);}
-function applyCustomTimes(){const g=getTimeValue('greenMin','greenSec');const y=getTimeValue('yellowMin','yellowSec');const r=getTimeValue('redMin','redSec');const b=getTimeValue('blinkMin','blinkSec');if(!(g>=0&&g<y&&y<r&&r<b)){alert("請確認各階段時間為嚴格遞增（綠燈 < 黃燈 < 紅燈 < 閃爍）");return;}thresholds={green:g,yellow:y,red:r,blink:b};resetTimer();enableControls();highlightPreset(document.getElementById("customBtn"));showLabel("none");closeCustomModal();}
-function checkCustomInputs(){const keys=Object.keys(spinnerState);let hasValue=keys.some(k=>parseInt(document.getElementById(k).value)>0);document.getElementById("applyBtn").disabled=!hasValue;}
-let currentTime=0,startTime=0,timerInterval=null,blinkInterval=null,isBlinking=false;
-let thresholds={green:0,yellow:0,red:0,blink:0};
-let currentState='init';
-function enableControls(){document.getElementById("mainControlBtn").disabled=false;document.getElementById("resetBtn").disabled=false;}
-function unlockPresets(){document.querySelectorAll('.preset-btn').forEach(btn=>btn.classList.remove('disabled'));}
-function startTimer(){clearInterval(timerInterval);clearInterval(blinkInterval);startTime=Date.now()-currentTime*1000;timerInterval=setInterval(updateTimer,100);currentState='running';document.getElementById("mainControlBtn").textContent="⏸️ 暫停";}
-function pauseTimer(){clearInterval(timerInterval);currentState='paused';document.getElementById("mainControlBtn").textContent="▶️ 繼續";}
-function resumeTimer(){startTime=Date.now()-currentTime*1000;timerInterval=setInterval(updateTimer,100);currentState='running';document.getElementById("mainControlBtn").textContent="⏸️ 暫停";}
-function resetTimer(){clearInterval(timerInterval);clearInterval(blinkInterval);currentTime=0;updateDisplay();document.body.style.backgroundColor="#111";isBlinking=false;currentState='init';unlockPresets();document.getElementById("resetBtn").disabled=true;document.getElementById("mainControlBtn").disabled=false;document.getElementById("mainControlBtn").textContent="▶️ 開始";}
-function updateTimer(){currentTime=Math.floor((Date.now()-startTime)/1000);updateDisplay();updateBackground();}
-function updateDisplay(){const m=Math.floor(currentTime/60);const s=currentTime%60;document.getElementById("display").textContent=String(m).padStart(2,'0')+":"+String(s).padStart(2,'0');}
-function updateBackground(){if(currentTime>=thresholds.blink){if(!isBlinking){isBlinking=true;blinkInterval=setInterval(()=>{document.body.style.backgroundColor=document.body.style.backgroundColor==="rgb(255, 0, 0)"?"#111":"rgb(255, 0, 0)";},500);}}else if(currentTime>=thresholds.red){document.body.style.backgroundColor="#FF2D2D";}else if(currentTime>=thresholds.yellow){document.body.style.backgroundColor="#FFF300";}else if(currentTime>=thresholds.green){document.body.style.backgroundColor="#00E500";}else{document.body.style.backgroundColor="#111";}}
-function setPreset(g,y,r,b){if(currentState!=='init')return;thresholds.green=g*60;thresholds.yellow=y*60;thresholds.red=r*60;thresholds.blink=b*60;resetTimer();closeCustomModal();enableControls();}
-function showLabel(type){document.getElementById("label-speech").style.display=type==="speech"?"block":"none";document.getElementById("label-table").style.display=type==="table"?"block":"none";document.getElementById("label-eval").style.display=type==="eval"?"block":"none";}
-function mainControl(){if(currentState==='init'){startTimer();}else if(currentState==='running'){pauseTimer();}else if(currentState==='paused'){resumeTimer();}}
-function toggleFullscreen(){
-  let fsIcon=document.getElementById("fsIcon");
-  let fsText=document.getElementById("fsText");
-  if(!document.fullscreenElement){
-    document.documentElement.requestFullscreen();
-    fsIcon.textContent="❌";
-    fsText.textContent="結束全螢幕";
-  } else {
-    document.exitFullscreen();
-    fsIcon.textContent="🔲";
-    fsText.textContent="全螢幕";
+  const sel = document.getElementById(id);
+  for(let i=0;i<=59;i++){
+    let opt = document.createElement('option');
+    opt.value = opt.text = i;
+    sel.appendChild(opt);
   }
+});
+const spinnerState = {
+  greenMin: 0, greenSec: 0, yellowMin: 0, yellowSec: 0,
+  redMin: 0, redSec: 0, blinkMin: 0, blinkSec: 0
+};
+
+// 跟隨選擇即時更新
+["greenMin","greenSec","yellowMin","yellowSec","redMin","redSec","blinkMin","blinkSec"].forEach(id=>{
+  document.getElementById(id).addEventListener('change', function(){
+    spinnerState[id] = parseInt(this.value);
+    checkCustomInputs();
+  });
+});
+
+function highlightPreset(btn) {
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
 }
-document.addEventListener('fullscreenchange',()=>{
-  let fsIcon=document.getElementById("fsIcon");
-  let fsText=document.getElementById("fsText");
-  if(document.fullscreenElement){
-    fsIcon.textContent="❌";
-    fsText.textContent="結束全螢幕";
-  } else {
-    fsIcon.textContent="🔲";
-    fsText.textContent="全螢幕";
-  }
+function openCustomModal() {
+    if (currentState !== 'init') return;
+    document.getElementById("customModal").style.display = "flex";
+    // 預設都填回 0
+    Object.keys(spinnerState).forEach(id=>{
+      document.getElementById(id).value = spinnerState[id];
+    });
+    checkCustomInputs();
+}
+function closeCustomModal() {
+    document.getElementById("customModal").style.display = "none";
+}
+function getTimeValue(minKey, secKey) {
+    return parseInt(document.getElementById(minKey).value)*60 + parseInt(document.getElementById(secKey).value);
+}
+function applyCustomTimes() {
+    const g = getTimeValue('greenMin','greenSec');
+    const y = getTimeValue('yellowMin','yellowSec');
+    const r = getTimeValue('redMin','redSec');
+    const b = getTimeValue('blinkMin','blinkSec');
+    // 嚴格遞增檢查
+    if (!(g >= 0 && g < y && y < r && r < b)) {
+        alert("請確認各階段時間為嚴格遞增（綠燈 < 黃燈 < 紅燈 < 閃爍），且每格都需設定！");
+        return;
+    }
+    if (b === 0) {
+        alert("至少必須設定一個正確的時間！");
+        return;
+    }
+    thresholds = { green: g, yellow: y, red: r, blink: b };
+    resetTimer();
+    enableControls();
+    let customBtn = document.getElementById("customBtn");
+    highlightPreset(customBtn);
+    showLabel("none");
+    closeCustomModal();
+}
+function checkCustomInputs() {
+    const keys = Object.keys(spinnerState);
+    let hasValue = keys.some(k=>parseInt(document.getElementById(k).value)>0);
+    document.getElementById("applyBtn").disabled = !hasValue;
+}
+
+// timer 主要邏輯同上
+let currentTime = 0, startTime = 0, timerInterval = null, blinkInterval = null, isBlinking = false;
+let thresholds = { green: 0, yellow: 0, red: 0, blink: 0 };
+let currentState = 'init';
+
+function enableControls() {
+    document.getElementById("mainControlBtn").disabled = false;
+    document.getElementById("resetBtn").disabled = false;
+}
+function disableControls() {
+    document.getElementById("mainControlBtn").disabled = true;
+    document.getElementById("resetBtn").disabled = true;
+}
+function lockPresets() {
+    document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.add('disabled'));
+}
+function unlockPresets() {
+    document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('disabled'));
+}
+function startTimer() {
+    clearInterval(timerInterval);
+    clearInterval(blinkInterval);
+    startTime = Date.now() - currentTime * 1000;
+    timerInterval = setInterval(updateTimer, 100);
+    currentState = 'running';
+    let mainBtn = document.getElementById("mainControlBtn");
+    mainBtn.textContent = "⏸️ 暫停";
+    mainBtn.classList.add("active-start");
+    mainBtn.classList.remove("active-pause");
+    lockPresets();
+    document.getElementById("resetBtn").disabled = false;
+}
+function pauseTimer() {
+    clearInterval(timerInterval);
+    currentState = 'paused';
+    let mainBtn = document.getElementById("mainControlBtn");
+    mainBtn.textContent = "▶️ 繼續";
+    mainBtn.classList.add("active-pause");
+    document.getElementById("resetBtn").disabled = false;
+}
+function resumeTimer() {
+    startTime = Date.now() - currentTime * 1000;
+    timerInterval = setInterval(updateTimer, 100);
+    currentState = 'running';
+    let mainBtn = document.getElementById("mainControlBtn");
+    mainBtn.textContent = "⏸️ 暫停";
+    mainBtn.classList.add("active-start");
+    mainBtn.classList.remove("active-pause");
+    document.getElementById("resetBtn").disabled = false;
+}
+function resetTimer() {
+    clearInterval(timerInterval);
+    clearInterval(blinkInterval);
+    currentTime = 0;
+    updateDisplay();
+    document.body.style.backgroundColor = "#111";
+    isBlinking = false;
+    currentState = 'init';
+    unlockPresets();
+    document.getElementById("resetBtn").disabled = true;
+    document.getElementById("mainControlBtn").disabled = false;
+    let mainBtn = document.getElementById("mainControlBtn");
+    mainBtn.textContent = "▶️ 開始";
+    mainBtn.classList.remove("active-start");
+    mainBtn.classList.remove("active-pause");
+}
+function updateTimer() {
+    currentTime = Math.floor((Date.now() - startTime) / 1000);
+    updateDisplay();
+    updateBackground();
+}
+function updateDisplay() {
+    const m = Math.floor(currentTime / 60);
+    const s = currentTime % 60;
+    document.getElementById("display").textContent = String(m).padStart(2, '0') + ":" + String(s).padStart(2, '0');
+}
+function updateBackground() {
+    if (currentTime >= thresholds.blink) {
+        if (!isBlinking) {
+            isBlinking = true;
+            blinkInterval = setInterval(() => {
+                document.body.style.backgroundColor = document.body.style.backgroundColor === "rgb(255, 0, 0)" ? "#111" : "rgb(255, 0, 0)";
+            }, 500);
+        }
+    } else if (currentTime >= thresholds.red) {
+        document.body.style.backgroundColor = "rgb(255,0,0)";
+    } else if (currentTime >= thresholds.yellow) {
+        document.body.style.backgroundColor = "rgb(255,255,0)";
+    } else if (currentTime >= thresholds.green) {
+        document.body.style.backgroundColor = "rgb(0,255,0)";
+    } else {
+        document.body.style.backgroundColor = "#111";
+    }
+}
+function setPreset(g, y, r, b) {
+    if (currentState !== 'init') return;
+    thresholds.green = g * 60;
+    thresholds.yellow = y * 60;
+    thresholds.red = r * 60;
+    thresholds.blink = b * 60;
+    resetTimer();
+    closeCustomModal();
+    enableControls();
+}
+function showLabel(type) {
+    document.getElementById("label-speech").style.display = type === "speech" ? "block" : "none";
+    document.getElementById("label-table").style.display = type === "table" ? "block" : "none";
+    document.getElementById("label-eval").style.display = type === "eval" ? "block" : "none";
+}
+function mainControl() {
+    if (currentState === 'init') {
+        startTimer();
+    } else if (currentState === 'running') {
+        pauseTimer();
+    } else if (currentState === 'paused') {
+        resumeTimer();
+    }
+}
+// 全螢幕切換
+function toggleFullscreen() {
+    let fsBtn = document.getElementById("fullscreenBtn");
+    let fsIcon = document.getElementById("fsIcon");
+    let fsText = document.getElementById("fsText");
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+        fsIcon.textContent = "❌";
+        fsText.textContent = "結束全螢幕";
+        fsBtn.title = "結束全螢幕";
+    } else {
+        document.exitFullscreen();
+        fsIcon.textContent = "🔲";
+        fsText.textContent = "全螢幕";
+        fsBtn.title = "全螢幕";
+    }
+}
+document.addEventListener('fullscreenchange', function() {
+    let fsIcon = document.getElementById("fsIcon");
+    let fsBtn = document.getElementById("fullscreenBtn");
+    let fsText = document.getElementById("fsText");
+    if (document.fullscreenElement) {
+        fsIcon.textContent = "❌";
+        fsText.textContent = "結束全螢幕";
+        fsBtn.title = "結束全螢幕";
+    } else {
+        fsIcon.textContent = "🔲";
+        fsText.textContent = "全螢幕";
+        fsBtn.title = "全螢幕";
+    }
 });
 </script>
 </body>
