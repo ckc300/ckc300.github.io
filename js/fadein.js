@@ -1,77 +1,95 @@
-/* === fadein.js v12_2026.1 === */
-/* 功能總覽：
-   Scroll-triggered fade-in for sections and icons
-   Disconnect observer after all icons fade in
-   Smooth scroll-to-top action (cross-browser)
-   Auto-hide "Home" button on index page
-   Efficient memory handling and safe checks
-*/
+/* =========================================================
+   劉雨軒的 Pathways 動力中心 - fadein.js v13
+   ---------------------------------------------------------
+   改進內容：
+   Scroll 淡入動畫（批次啟動）
+   IntersectionObserver 效能最佳化（自動中止觀察）
+   平滑回頂端（含動態動畫）
+   自動隱藏首頁 按鈕（僅在首頁可見）
+   確保在行動裝置與桌機行為一致
+   ========================================================= */
 
-// 淡入整個 icon-section
-const sections = document.querySelectorAll('.icon-section');
-const sectionObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('fade-in');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.15 });
+// -----------------------------
+// Scroll fade-in for icons
+// -----------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const icons = document.querySelectorAll(".icon-wrapper");
 
-// 啟用 section 觀察
-sections.forEach(section => sectionObserver.observe(section));
+  // 淡入觀察器
+  const iconObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("fade-in");
+          observer.unobserve(entry.target);
+        }
+      });
 
-
-// --- 分批淡入每個 icon-wrapper ---
-const icons = document.querySelectorAll('.icon-wrapper');
-let fadedIconCount = 0;
-
-const iconObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('fade-in');
-      observer.unobserve(entry.target);
-      fadedIconCount++;
-
-      // 若所有圖標皆已淡入，則自動 disconnect
-      if (fadedIconCount === icons.length) {
+      // 所有 icon 都淡入後，自動停止觀察
+      if ([...icons].every(i => i.classList.contains("fade-in"))) {
         observer.disconnect();
-        console.log("[fadein.js] All icons have faded in — observer disconnected.");
       }
+    },
+    {
+      threshold: 0.2,
+      rootMargin: "0px 0px -50px 0px",
     }
-  });
-}, { threshold: 0.15 });
+  );
 
-// 啟用 icon 觀察
-icons.forEach(icon => iconObserver.observe(icon));
-
-
-// --- 平滑回頂端按鈕 ---
-const scrollTopBtn = document.querySelector('.fab-top');
-if (scrollTopBtn) {
-  scrollTopBtn.addEventListener('click', e => {
-    e.preventDefault();
-
-    // 同時對 body 與 html 執行，確保 Safari / iOS 有效
-    if ('scrollBehavior' in document.documentElement.style) {
-      document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
-      document.body.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    }
-  });
-}
-
-
-// --- 自動隱藏首頁的「回首頁」按鈕 ---
-if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
-  const homeBtn = document.querySelector('.fab-home');
-  if (homeBtn) homeBtn.style.display = "none";
-}
-
-
-// --- 可選：在頁面完全載入後再啟動動畫（避免閃爍） ---
-window.addEventListener('load', () => {
-  document.body.classList.add('page-loaded');
+  icons.forEach(icon => iconObserver.observe(icon));
 });
+
+// -----------------------------
+// Smooth scroll to top button
+// -----------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const topBtn = document.querySelector(".fab-top");
+
+  if (topBtn) {
+    topBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // 平滑回頂端動畫
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+
+    // 顯示/隱藏按鈕
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 150) {
+        topBtn.style.opacity = "1";
+        topBtn.style.pointerEvents = "auto";
+      } else {
+        topBtn.style.opacity = "0";
+        topBtn.style.pointerEvents = "none";
+      }
+    });
+  }
+});
+
+// -----------------------------
+// Hide home button on homepage itself
+// -----------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const homeBtn = document.querySelector(".fab-home");
+  const isHomePage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
+
+  if (homeBtn && isHomePage) {
+    homeBtn.style.display = "none";
+  }
+});
+
+// -----------------------------
+// Lazy loading fallback (for older browsers)
+// -----------------------------
+if ("loading" in HTMLImageElement.prototype === false) {
+  window.addEventListener("load", () => {
+    const imgs = document.querySelectorAll("img[loading='lazy']");
+    imgs.forEach(img => {
+      const src = img.getAttribute("data-src") || img.src;
+      img.src = src;
+    });
+  });
+}
