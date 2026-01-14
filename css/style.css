@@ -1,8 +1,10 @@
-/* === style_v9_final_v5_fixed.css === */
+/* === style_v9_final_v5_fixed_responsive.css === */
 
 /* Global Reset */
 html, body {
     height: 100%;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -12,7 +14,6 @@ body {
     font-family: TaipeiSansTCBeta, sans-serif;
     background: url('../images/Pathways_走路.jpg') no-repeat center center fixed;
     background-size: cover;
-    overflow-x: hidden;
 }
 
 /* Header */
@@ -34,10 +35,6 @@ header {
     font-weight: bold;
     line-height: 1.4;
     letter-spacing: 0.03em;
-}
-
-
-.navbar a {
     position: relative;
     overflow: hidden;
 }
@@ -60,8 +57,6 @@ header {
     transform: scaleX(1);
 }
 
-
-
 .navbar a:hover,
 .navbar a.active {
     background-color: #FFD700;
@@ -69,7 +64,7 @@ header {
     border-radius: 6px;
     font-weight: bold;
     padding: 0.3em 0.6em;
-    border-bottom: 3px solid #F2DF74; /* v5 下細線 */
+    border-bottom: 3px solid #F2DF74;
 }
 
 .navbar a.disabled {
@@ -86,6 +81,15 @@ main {
 
 .icon-section {
     padding: 4px 5%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+                transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.icon-section.fade-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .section-divider {
@@ -95,6 +99,7 @@ main {
     border-radius: 3px;
     background: linear-gradient(to right, #004165, #772432);
 }
+
 /* Icon Grid */
 .icon-grid {
     display: grid;
@@ -119,7 +124,8 @@ main {
     border-radius: 50%;
     display: block;
     margin: 0 auto;
-    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.3s ease; /* v5 動效 */
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+                box-shadow 0.3s ease;
 }
 
 .icon-wrapper:hover .icon {
@@ -127,28 +133,16 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-
 @keyframes iconBounce {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-    75% {
-        transform: scale(0.97);
-    }
-    100% {
-        transform: scale(1);
-    }
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    75% { transform: scale(0.97); }
+    100% { transform: scale(1); }
 }
 
 .icon-wrapper:hover .icon {
     animation: iconBounce 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
-
-
 
 .icon-label {
     position: absolute;
@@ -191,16 +185,12 @@ main {
     z-index: 2000;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+                box-shadow 0.3s ease;
 }
 
-.fab-top {
-    right: 20px;
-}
-
-.fab-home {
-    right: 80px;
-}
+.fab-top { right: 20px; }
+.fab-home { right: 80px; }
 
 .fab-top:hover,
 .fab-home:hover {
@@ -222,13 +212,26 @@ footer {
     padding: 16px 10px 10px 10px;
     font-size: clamp(0.8rem, 2.5vw, 1rem);
     line-height: 1.4;
-    white-space: nowrap;
     color: #222;
     font-weight: 400;
     letter-spacing: 0.05em;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+                transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+    white-space: normal;
+    word-break: break-word;
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
 }
-/* === LOGO + 主標題一行版樣式 === */
 
+footer.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* === LOGO + 主標題一行版樣式 === */
 .logo-title-wrapper {
     display: flex;
     align-items: center;
@@ -252,8 +255,9 @@ footer {
     height: auto;
     width: auto;
     object-fit: contain;
-    flex-shrink: 0; /* v5_fixed patch → 防止 desktop 放大 bug */
-    transition: opacity 1.2s cubic-bezier(0.25, 0.1, 0.25, 1), transform 1.2s ease-out;
+    flex-shrink: 0;
+    transition: opacity 1.2s cubic-bezier(0.25, 0.1, 0.25, 1),
+                transform 1.2s ease-out;
 }
 
 .site-title {
@@ -277,34 +281,7 @@ footer {
     }
 }
 
-/* === End of style_v9_final_v5_fixed.css === */
-
-
-/* === Step 4: icon-section + footer fade-in === */
-.icon-section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-.icon-section.fade-in {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-footer {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-footer.fade-in {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-/* === Step 5: 背景 parallax 模擬感 === */
+/* === 背景 Parallax 模擬感 === */
 body {
     background-attachment: fixed;
     background-position: center calc(50% + var(--scroll-offset, 0px));
@@ -312,6 +289,8 @@ body {
     will-change: background-position;
     transition: background-position 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
+
+/* === 區塊樣式 === */
 .unit-block {
     background: rgba(255, 255, 255, 0.65);
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
@@ -320,16 +299,11 @@ body {
     border-radius: 8px;
 }
 
-.required-block {
-    background: rgba(173,216,230,0.7);
-}
+.required-block { background: rgba(173,216,230,0.7); }
+.optional-block { background: rgba(255,239,184,0.7); }
 
-.optional-block {
-    background: rgba(255,239,184,0.7);
-}
-/* === v7_fixed unit-num + unit-sub patch === */
 .unit-num {
-    font-size: 2rem;  /* 加大凸顯 */
+    font-size: 2rem;
     font-weight: bold;
     color: #004165;
     margin: 0 4px;
@@ -340,4 +314,21 @@ body {
     font-weight: normal;
     color: #333;
     margin-left: 0.3em;
+}
+
+/* === 修正手機橫向滾動問題 v2026 === */
+@media (max-width: 600px) {
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    justify-items: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .fab-top { right: 12px; }
+  .fab-home { right: 60px; }
 }
