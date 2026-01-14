@@ -1,6 +1,10 @@
-/* === fadein.js v2026.5 Scroll èˆ‡äº’å‹•å¼·åŒ– === */
+/* === fadein.js v11_2026.5 === */
+/* ­×¥¿¡G
+   ¦^³»ºİ«ö¶s¦b©Ò¦³ÂsÄı¾¹«ì´_¥­·Æºu°Ê
+   «O¯d¤À§å²H¤J°Êµe»P­º­¶¦Û°ÊÁôÂÃ«ö¶s
+*/
 
-// icon-section æ•´é«”æ·¡å…¥
+// icon-section ¾ãÅé²H¤J
 const sections = document.querySelectorAll('.icon-section');
 const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
@@ -13,7 +17,7 @@ const sectionObserver = new IntersectionObserver((entries) => {
 
 sections.forEach((s) => sectionObserver.observe(s));
 
-// æ¯å€‹ icon-wrapper åˆ†æ‰¹æ·¡å…¥
+// ¨C­Ó icon-wrapper ¤À§å²H¤J
 const icons = document.querySelectorAll('.icon-wrapper');
 const iconObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
@@ -25,13 +29,17 @@ const iconObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 icons.forEach((icon) => iconObserver.observe(icon));
 
-// å¹³æ»‘å›åˆ°æœ€ä¸Šæ–¹
-document.querySelector('.fab-top')?.addEventListener('click', (e) => {
-  e.preventDefault();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+// ¥­·Æ¦^³»ºİ¡]­×¥¿ª©¡A¤ä´©©Ò¦³¥­¥x¡^
+const scrollTopBtn = document.querySelector('.fab-top');
+if (scrollTopBtn) {
+  scrollTopBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
+    document.body.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
 
-// é¦–é éš±è—ã€ŒğŸ  å›é¦–é ã€
+// ­º­¶ÁôÂÃ¡u¦^­º­¶¡v
 if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
   const homeBtn = document.querySelector('.fab-home');
   if (homeBtn) homeBtn.style.display = "none";
