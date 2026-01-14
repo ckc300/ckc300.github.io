@@ -332,3 +332,58 @@ body {
   .fab-top { right: 12px; }
   .fab-home { right: 60px; }
 }
+/* === 最終修正版：徹底防止手機橫向滾動 v2026.1 === */
+
+/* 強制整頁不允許橫向捲動 */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+/* 所有主要容器限制在螢幕寬度內 */
+header, main, footer, .icon-section, .icon-grid {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* 修正 icon-grid 在小螢幕的欄位與間距 */
+@media (max-width: 600px) {
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    justify-items: center;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+/* footer 允許自動換行並保持貼齊螢幕 */
+footer {
+  width: 100%;
+  max-width: 100%;
+  white-space: normal !important;
+  word-break: break-word;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* 浮動按鈕在手機版緊貼畫面右下角 */
+@media (max-width: 480px) {
+  .fab-top {
+    right: 12px !important;
+  }
+  .fab-home {
+    right: 60px !important;
+  }
+}
+
+/* 全域修正：防止任何子元素超出視窗 */
+* {
+  box-sizing: border-box;
+  max-width: 100vw;
+}
