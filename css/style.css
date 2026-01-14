@@ -1,12 +1,12 @@
-/* === style_v11_2026.5 === */
-/* 修正項目：
-   1️⃣ 固定每列三個圖標
-   2️⃣ 圖標標籤移到底部，避免遮蔽
-   3️⃣ 確保頁面可垂直滾動
-   4️⃣ 維持先前的動畫、hover、lazy loading、footer 修正等優化
+/* === style_v12_2026.1 === */
+/* 改版內容：
+   ✅ 修正右側圖標裁切問題
+   ✅ 三欄固定結構，支援所有螢幕寬度
+   ✅ 優化 icon spacing 與 bottom label 清晰度
+   ✅ 保留所有前版 hover / lazy / footer 修正
 */
 
-/* ---------------------- 基本重設 ---------------------- */
+/* ---------------------- Reset ---------------------- */
 html, body {
   height: auto;
   width: 100%;
@@ -14,6 +14,7 @@ html, body {
   overflow-y: auto;
   max-width: 100%;
   font-family: "TaipeiSansTCBeta", sans-serif;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -63,7 +64,7 @@ header {
   transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-/* Hover & Active 狀態 - 手機也可見 */
+/* Hover & Active 狀態（手機也有效） */
 .navbar a:hover,
 .navbar a:active {
   transform: scale(1.05);
@@ -85,12 +86,7 @@ header {
   border-bottom: 3px solid #F2DF74;
 }
 
-.navbar a.disabled {
-  color: #ccc;
-  pointer-events: none;
-}
-
-/* ---------------------- Main ---------------------- */
+/* ---------------------- Section ---------------------- */
 main {
   flex: 1;
 }
@@ -101,13 +97,13 @@ main {
   color: #004165;
   margin: 16px 0 8px 0;
   font-weight: bold;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 .legacy-title {
   color: #772432;
 }
 
-/* ---------------------- Icon 區 ---------------------- */
 .icon-section {
   padding: 4px 5%;
   opacity: 0;
@@ -129,24 +125,28 @@ main {
   background: linear-gradient(to right, #004165, #772432);
 }
 
-/* Icon grid：固定三欄 */
+/* ---------------------- Icon Grid ---------------------- */
 .icon-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   justify-items: center;
   align-items: center;
   gap: 16px 10px;
-  width: 100%;
+  width: calc(100% - 8px);
   margin: 0 auto;
+  padding: 0 4px;
+  box-sizing: border-box;
 }
 
-/* Icon wrapper 淡入動畫 */
 .icon-wrapper {
-  width: 120px;
+  width: 100%;
+  max-width: 110px;
   position: relative;
-  display: inline-block;
-  margin: 10px;
   text-align: center;
+  margin: 8px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
@@ -172,18 +172,18 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* --- 圖標標籤移到底部 --- */
+/* --- Label 下移，避免覆蓋圖標 --- */
 .icon-label {
   position: absolute;
-  bottom: 8px;
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
   font-size: clamp(0.8rem, 3vw, 1rem);
   line-height: 1.2;
-  padding: 4px 6px;
-  background-color: rgba(0, 0, 0, 0.55);
+  padding: 5px 8px;
+  background-color: rgba(0, 0, 0, 0.45);
   color: #fff;
-  border-radius: 4px;
+  border-radius: 6px;
   z-index: 2;
   max-width: 90%;
   white-space: nowrap;
@@ -191,7 +191,7 @@ main {
   overflow: hidden;
 }
 
-/* ---------------------- 浮動按鈕 ---------------------- */
+/* ---------------------- Floating Buttons ---------------------- */
 .fab-top, .fab-home {
   position: fixed;
   width: 44px;
@@ -206,7 +206,7 @@ main {
   z-index: 2000;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
   bottom: calc(20px + env(safe-area-inset-bottom));
 }
 
@@ -215,6 +215,7 @@ main {
 
 .fab-top:hover, .fab-home:hover {
   transform: scale(1.1);
+  background: linear-gradient(135deg, #004165, #007b9e);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
@@ -235,7 +236,7 @@ footer {
   box-sizing: border-box;
 }
 
-/* ---------------------- LOGO 與標題 ---------------------- */
+/* ---------------------- Logo Title ---------------------- */
 .logo-title-wrapper {
   display: flex;
   align-items: center;
@@ -268,29 +269,26 @@ footer {
   white-space: nowrap;
 }
 
-/* ---------------------- 響應式設定 ---------------------- */
+/* ---------------------- Responsive ---------------------- */
 @media (max-width: 600px) {
   body {
     padding-bottom: 30px;
   }
-
   .fab-top { right: 12px; }
   .fab-home { right: 60px; }
 }
 
-/* ---------------------- Android Chrome 底部白塊修正 ---------------------- */
+/* ---------------------- Android 底部白塊修正 ---------------------- */
 @media (max-width: 1024px) {
-  body {
-    background-attachment: scroll !important;
-  }
+  body { background-attachment: scroll !important; }
 }
 
-html {
-  background-color: #ffffff;
-}
+html { background-color: #ffffff; }
 
-/* 全域保護 */
-* {
-  box-sizing: border-box;
-  max-width: 100vw;
+/* ---------------------- Global Safe Defaults ---------------------- */
+* { box-sizing: border-box; }
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
