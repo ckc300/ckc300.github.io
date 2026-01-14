@@ -1,24 +1,25 @@
-/* === style_v9_final_v5_fixed_responsive_stable.css === */
+/* === style_v10_final_2026.5 === */
+/* 行動版完整優化版：支援淡入、平滑互動、lazy loading、footer 留白、背景修正 */
 
-/* 基本重設 */
+/* ---------------------- 基本重設 ---------------------- */
 html, body {
   height: 100%;
   width: 100%;
   overflow-x: hidden !important;
   max-width: 100%;
+  font-family: "TaipeiSansTCBeta", sans-serif;
 }
 
 body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  font-family: TaipeiSansTCBeta, sans-serif;
   background: url('../images/Pathways_走路.jpg') no-repeat center center fixed;
   background-size: cover;
   background-attachment: fixed;
 }
 
-/* Header */
+/* ---------------------- Header ---------------------- */
 header {
   background-color: rgba(0, 65, 101, 0.75);
   color: white;
@@ -39,6 +40,8 @@ header {
   letter-spacing: 0.03em;
   position: relative;
   overflow: hidden;
+  display: inline-block;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .navbar a::after {
@@ -52,6 +55,13 @@ header {
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Hover & Active 狀態 - 手機也可見 */
+.navbar a:hover,
+.navbar a:active {
+  transform: scale(1.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .navbar a:hover::after,
@@ -72,20 +82,31 @@ header {
 .navbar a.disabled {
   color: #ccc;
   pointer-events: none;
-  cursor: default;
 }
 
-/* Main */
+/* ---------------------- Main ---------------------- */
 main {
   flex: 1;
 }
 
+.section-title {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #004165;
+  margin: 16px 0 8px 0;
+  font-weight: bold;
+}
+
+.legacy-title {
+  color: #772432;
+}
+
+/* ---------------------- Icon 區 ---------------------- */
 .icon-section {
   padding: 4px 5%;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
-              transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .icon-section.fade-in {
@@ -93,6 +114,7 @@ main {
   transform: translateY(0);
 }
 
+/* 分隔線 */
 .section-divider {
   height: 6px;
   width: 80%;
@@ -101,21 +123,32 @@ main {
   background: linear-gradient(to right, #004165, #772432);
 }
 
-/* Icon Grid */
+/* Icon grid */
 .icon-grid {
   display: grid;
-  grid-template-columns: 30% 30% 30%;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   justify-items: center;
   align-items: center;
   gap: 16px 10px;
+  width: 100%;
+  margin: 0 auto;
 }
 
+/* Icon wrapper 淡入動畫 */
 .icon-wrapper {
   width: 120px;
   position: relative;
   display: inline-block;
   margin: 10px;
   text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.icon-wrapper.fade-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .icon {
@@ -125,8 +158,7 @@ main {
   border-radius: 50%;
   display: block;
   margin: 0 auto;
-  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
-              box-shadow 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.3s ease;
 }
 
 .icon-wrapper:hover .icon {
@@ -142,15 +174,13 @@ main {
   font-size: clamp(0.9rem, 3.2vw, 1.2rem);
   line-height: 1.3;
   padding: 4px 6px;
-  min-width: 100px;
-  max-width: 200px;
   background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
   border-radius: 6px;
   z-index: 2;
 }
 
-/* 浮動按鈕 */
+/* ---------------------- 浮動按鈕 ---------------------- */
 .fab-top, .fab-home {
   position: fixed;
   width: 44px;
@@ -177,11 +207,11 @@ main {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
-/* Footer */
+/* ---------------------- Footer ---------------------- */
 footer {
   background-color: rgba(255, 255, 255, 0.95);
   text-align: center;
-  padding: 16px 10px 10px 10px;
+  padding: 16px 10px 30px 10px;
   font-size: clamp(0.8rem, 2.5vw, 1rem);
   line-height: 1.4;
   color: #222;
@@ -192,10 +222,9 @@ footer {
   word-break: break-word;
   width: 100%;
   box-sizing: border-box;
-  transition: opacity 0.8s, transform 0.8s;
 }
 
-/* LOGO 樣式 */
+/* ---------------------- LOGO 與標題 ---------------------- */
 .logo-title-wrapper {
   display: flex;
   align-items: center;
@@ -228,25 +257,17 @@ footer {
   white-space: nowrap;
 }
 
-/* === 響應式修正 === */
+/* ---------------------- 響應式設定 ---------------------- */
 @media (max-width: 600px) {
-  .icon-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 12px;
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  footer {
-    padding-bottom: 60px; /* 為浮動按鈕留空間 */
+  body {
+    padding-bottom: 30px; /* 防止系統導航列遮住內容 */
   }
 
   .fab-top { right: 12px; }
   .fab-home { right: 60px; }
 }
 
-/* === Android Chrome 修正底部白塊 === */
+/* ---------------------- Android Chrome 底部白塊修正 ---------------------- */
 @media (max-width: 1024px) {
   body {
     background-attachment: scroll !important;
@@ -257,7 +278,7 @@ html {
   background-color: #ffffff;
 }
 
-/* 全域防止任何元素超出螢幕寬 */
+/* 全域保護：避免元素超出螢幕寬度 */
 * {
   box-sizing: border-box;
   max-width: 100vw;
