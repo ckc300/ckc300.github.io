@@ -168,9 +168,9 @@ header::after {
 
 /* 標題光澤律動（新版） */
 .site-title {
-  font-size: clamp(1.2rem, 4.5vw, 2rem); /* 放大字級 */
+  font-size: clamp(1.2rem, 4.5vw, 2rem);
   font-weight: 800;
-  letter-spacing: 0.06em; /* 增加字距 */
+  letter-spacing: 0.06em;
   line-height: 1.3;
   background: linear-gradient(180deg, #fff8c6 0%, #F2DF74 40%, #cdaa30 100%);
   -webkit-background-clip: text;
@@ -207,13 +207,24 @@ header::after {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* === 分隔線升級版 (Dynamic Hybrid) === */
 .section-divider {
   height: 6px;
   width: 80%;
   margin: 8px auto;
   border-radius: 3px;
-  background: linear-gradient(to right, #004165, #772432);
+  background: linear-gradient(90deg, #004165, #772432, #F2DF74, #004165, #772432);
+  background-size: 300% 100%;
+  box-shadow: 0 0 6px rgba(242, 223, 116, 0.3);
+  animation: dividerHybrid 10s linear infinite;
 }
+@keyframes dividerHybrid {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .icon-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -307,31 +318,6 @@ header::after {
   }
 }
 
-/* Floating button */
-.fab-home {
-  position: fixed;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #004165;
-  color: white;
-  font-size: 20px;
-  text-align: center;
-  line-height: 44px;
-  text-decoration: none;
-  z-index: 2000;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-  bottom: calc(20px + env(safe-area-inset-bottom));
-  right: 20px;
-}
-.fab-home:hover {
-  transform: scale(1.1);
-  background: linear-gradient(135deg, #004165, #007b9e);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-}
-
 /* Footer */
 footer {
   border-top: 3px solid #F2DF74;
@@ -353,7 +339,6 @@ body, header, footer, main, nav, div, section, article, p, span, h1, h2, h3, h4,
   user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
-
   -moz-user-select: none;
   -webkit-touch-callout: none;
 }
@@ -369,7 +354,6 @@ a, button, input, textarea, select, label {
 
 @media (max-width: 600px) {
   body { padding-bottom: 30px; }
-  .fab-home { right: 12px; }
 }
 @media (max-width: 1024px) {
   body { background-attachment: scroll !important; }
