@@ -19,9 +19,16 @@ body {
   background-size: cover;
   background-attachment: fixed;
   position: relative;
+  animation: bgMove 60s linear infinite; /* ✅ 背景緩慢漂移 */
 }
 
-/* ✅ 1. 背景半透明遮罩 */
+@keyframes bgMove {
+  0% { background-position: center 0; }
+  50% { background-position: center 10px; }
+  100% { background-position: center 0; }
+}
+
+/* ✅ 背景半透明遮罩 */
 main {
   position: relative;
   z-index: 1;
@@ -38,7 +45,7 @@ main::before {
   pointer-events: none;
 }
 
-/* Header 樣式 */
+/* Header */
 header {
   background-color: rgba(0, 65, 101, 0.75);
   color: white;
@@ -51,7 +58,7 @@ header {
   border-bottom: 3px solid #F2DF74;
 }
 
-/* ✅ 5. Header 底部流動金藍紅分隔線 */
+/* ✅ 4. Header 底部動態雙向流動線 */
 header::after {
   content: "";
   display: block;
@@ -59,11 +66,11 @@ header::after {
   width: 100%;
   background: linear-gradient(90deg, #004165, #F2DF74, #772432, #004165);
   background-size: 200% 100%;
-  animation: moveLine 6s linear infinite;
+  animation: moveLine 8s ease-in-out infinite;
 }
 @keyframes moveLine {
-  0% { background-position: 0 0; }
-  100% { background-position: 200% 0; }
+  0%, 100% { background-position: 0 0; }
+  50% { background-position: 200% 0; }
 }
 
 /* Navbar */
@@ -114,7 +121,7 @@ header::after {
   border-bottom: 3px solid #F2DF74;
 }
 
-/* ✅ 2~4. Logo + 標題動態與視覺提升 */
+/* ✅ LOGO 與標題區塊 */
 .logo-title-wrapper {
   display: flex;
   align-items: center;
@@ -123,8 +130,8 @@ header::after {
   gap: 14px;
   padding: 5px 10px;
   max-width: 100%;
+  position: relative;
   animation: fadeInLogo 1.4s ease forwards;
-  transition: all 0.3s ease;
 }
 @keyframes fadeInLogo {
   0% { opacity: 0; transform: translateY(-12px) scale(0.96); }
@@ -132,15 +139,34 @@ header::after {
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+/* ✅ 2. LOGO 金光掃描 */
 .logo {
   max-height: 50px;
   height: auto;
   width: auto;
   object-fit: contain;
   flex-shrink: 0;
+  position: relative;
   transition: all 0.3s ease;
 }
+.logo::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+  transform: skewX(-25deg);
+  animation: shine 6s ease-in-out infinite;
+}
+@keyframes shine {
+  0% { left: -75%; }
+  60% { left: 125%; }
+  100% { left: 125%; }
+}
 
+/* ✅ 3. 標題光澤律動 */
 .site-title {
   font-size: clamp(1rem, 4vw, 1.8rem);
   font-weight: 800;
@@ -149,21 +175,24 @@ header::after {
   -webkit-text-fill-color: transparent;
   text-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
   white-space: nowrap;
-  transition: all 0.3s ease;
+  animation: textGlow 4s ease-in-out infinite alternate;
+}
+@keyframes textGlow {
+  0% { text-shadow: 0 2px 3px rgba(0,0,0,0.25); }
+  100% { text-shadow: 0 0 12px rgba(255, 215, 0, 0.6); }
 }
 
-/* ✅ 滑過 Logo/標題的光暈反應 */
+/* Hover 互動 */
 .logo-title-wrapper:hover .logo {
   filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.7));
   transform: scale(1.05);
 }
-
 .logo-title-wrapper:hover .site-title {
   text-shadow: 0 0 8px rgba(242, 223, 116, 0.8);
   transform: scale(1.03);
 }
 
-/* Icon grid 區塊 */
+/* Icon grid */
 .icon-section {
   padding: 4px 5%;
   opacity: 0;
@@ -276,7 +305,7 @@ header::after {
   }
 }
 
-/* Floating button 保留 */
+/* Floating button */
 .fab-home {
   position: fixed;
   width: 44px;
@@ -301,7 +330,7 @@ header::after {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
-/* Footer 金線與漸層 */
+/* Footer */
 footer {
   border-top: 3px solid #F2DF74;
   background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(245,245,245,0.98));
@@ -313,8 +342,6 @@ footer {
   letter-spacing: 0.05em;
   position: relative;
   z-index: 5;
-  white-space: normal;
-  word-break: break-word;
   width: 100%;
   box-sizing: border-box;
 }
