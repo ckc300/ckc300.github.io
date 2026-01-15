@@ -1,8 +1,10 @@
-/* === style_v12_2026.4 (2026-01-15 Final Enhanced) === */
-/* æ›´æ–°é …ç›®ï¼š
-   âœ… å¼·èª¿ icon-label å‰2å€‹è‹±æ–‡å­—æ¯ï¼ˆè·¯å¾‘ç°¡ç¨±ï¼‰
-   âœ… èª¿æ•´ icon-label å¯¬åº¦ï¼Œä»å®Œæ•´é¡¯ç¤º4å€‹ä¸­æ–‡å­—
-   âœ… ç§»é™¤å›é ‚ç«¯æµ®å‹•æŒ‰éˆ•ï¼ˆfab-topï¼‰
+?/* === style_v12_2026.5 (2026-01-15 Final Responsive UTF-8 BOM) === */
+/* §ó·s¶µ¥Ø¡G
+   ? ÁY¤p icon-label ¥ª¥k padding¡A¼W¥[¤å¦r¥i¥ÎªÅ¶¡
+   ? ®à¾÷ (?768px) ±M¥Î©ñ¼e¼e«×¡A¨¾¤î¤å¦r³QºIÂ_
+   ? ¤â¾÷ª©«O«ù­ì§¹¬ü¶¡¶Z
+   ? ±j½Õ«e2­Ó­^¤å¦r¥À (shortcode)
+   ? ¤w²¾°£¦^³»ºİ¯B°Ê«ö¶s
 */
 
 /* ---------------------- Reset ---------------------- */
@@ -20,7 +22,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  background: url('../images/Pathways_èµ°è·¯.jpg') no-repeat center center fixed;
+  background: url('../images/Pathways_¨«¸ô.jpg') no-repeat center center fixed;
   background-size: cover;
   background-attachment: fixed;
 }
@@ -101,7 +103,7 @@ main {
   transform: translateY(0);
 }
 
-/* âœ… åˆ†éš”ç·šæ¨£å¼ */
+/* ? ¤À¹j½u¼Ë¦¡ */
 .section-divider {
   height: 6px;
   width: 80%;
@@ -157,7 +159,7 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* âœ… æ”¹é€² icon-labelï¼šåŠ ç²—å‰2å­—ã€ç¸®æ¸›å¯¬åº¦ä½†ä¿ç•™4ä¸­æ–‡å­—é¡¯ç¤º */
+/* ? §ï¶i icon-label¡GÁY¤p padding¡Bºû«ù¤â¾÷§¹¬ü¡B®à¾÷©ñ¼e */
 .icon-label {
   position: absolute;
   bottom: 12px;
@@ -165,7 +167,7 @@ main {
   transform: translateX(-50%);
   font-size: clamp(0.8rem, 3vw, 1rem);
   line-height: 1.2;
-  padding: 5px 8px;
+  padding: 5px 4px;               /* ? ´î¤Ö¥ª¥kÃä¶Z */
   background-color: rgba(0, 0, 0, 0.65);
   color: #fff;
   border-radius: 6px;
@@ -175,26 +177,30 @@ main {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 105%;            /* âœ… è¼ƒå‰ç‰ˆç•¥çª„ï¼Œä½†ä»èƒ½å®Œæ•´é¡¯ç¤º4å€‹ä¸­æ–‡å­— */
-  max-width: 115px;       /* âœ… æ§åˆ¶éŸ¿æ‡‰å¼å¯¬åº¦ */
+  width: 105%;
+  max-width: 115px;
   word-break: keep-all;
   text-align: center;
 }
 
-/* âœ… å°ˆç‚ºå‰2å€‹è‹±æ–‡å­—æ¯åŠ ç²—èˆ‡æ”¾å¤§ */
-.icon-label::first-letter {
-  font-weight: 700;
-  font-size: 1.05em;
-  letter-spacing: 0.02em;
-}
+/* ? ±j½Õ«e2­Ó­^¤å¦r¥À */
 .icon-label span.shortcode {
   font-weight: 700;
   font-size: 1.05em;
   letter-spacing: 0.02em;
 }
 
+/* ? ®à¾÷±M¥Î©ñ¼e³]©w¡G?768px */
+@media (min-width: 768px) {
+  .icon-label {
+    width: 110%;
+    max-width: 125px;
+    padding: 5px 4px;
+  }
+}
+
 /* ---------------------- Floating Buttons ---------------------- */
-/* âœ… å·²ç§»é™¤å›é ‚ç«¯æŒ‰éˆ• (fab-top)ï¼Œåƒ…ä¿ç•™é¦–é ğŸ  */
+/* ? ¤w²¾°£¦^³»ºİ«ö¶s (fab-top)¡A¶È«O¯d­º­¶?? */
 .fab-home {
   position: fixed;
   width: 44px;
@@ -276,7 +282,7 @@ footer {
   .fab-home { right: 12px; }
 }
 
-/* ---------------------- Android åº•éƒ¨ç™½å¡Šä¿®æ­£ ---------------------- */
+/* ---------------------- Android ©³³¡¥Õ¶ô­×¥¿ ---------------------- */
 @media (max-width: 1024px) {
   body { background-attachment: scroll !important; }
 }
