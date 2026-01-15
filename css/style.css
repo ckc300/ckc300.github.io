@@ -1,9 +1,8 @@
-/* === style_v12_2026.1 === */
-/* 改版內容：
-   ✅ 修正右側圖標裁切問題
-   ✅ 三欄固定結構，支援所有螢幕寬度
-   ✅ 優化 icon spacing 與 bottom label 清晰度
-   ✅ 保留所有前版 hover / lazy / footer 修正
+/* === style_v12_2026.2 (2026-01-15 更新版) === */
+/* 更新項目：
+   ✅ 限制 icon-label 中文顯示4字 + 省略號
+   ✅ 加深 icon-label 背景半透明區
+   ✅ 支援上、下區塊間分隔線
 */
 
 /* ---------------------- Reset ---------------------- */
@@ -64,7 +63,6 @@ header {
   transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-/* Hover & Active 狀態（手機也有效） */
 .navbar a:hover,
 .navbar a:active {
   transform: scale(1.05);
@@ -91,19 +89,6 @@ main {
   flex: 1;
 }
 
-.section-title {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #004165;
-  margin: 16px 0 8px 0;
-  font-weight: bold;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-}
-
-.legacy-title {
-  color: #772432;
-}
-
 .icon-section {
   padding: 4px 5%;
   opacity: 0;
@@ -116,7 +101,7 @@ main {
   transform: translateY(0);
 }
 
-/* 分隔線 */
+/* ✅ 分隔線樣式 */
 .section-divider {
   height: 6px;
   width: 80%;
@@ -172,7 +157,7 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* --- Label 下移，避免覆蓋圖標 --- */
+/* ✅ 改進 icon-label 可讀性與顯示字數 */
 .icon-label {
   position: absolute;
   bottom: 12px;
@@ -181,14 +166,17 @@ main {
   font-size: clamp(0.8rem, 3vw, 1rem);
   line-height: 1.2;
   padding: 5px 8px;
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: rgba(0, 0, 0, 0.65); /* 改深透明度 */
   color: #fff;
   border-radius: 6px;
   z-index: 2;
   max-width: 90%;
+  display: inline-block;
   white-space: nowrap;
-  text-overflow: ellipsis;
   overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 6em; /* 限制大約4中文字 + ... */
+  word-break: keep-all;
 }
 
 /* ---------------------- Floating Buttons ---------------------- */
@@ -271,9 +259,7 @@ footer {
 
 /* ---------------------- Responsive ---------------------- */
 @media (max-width: 600px) {
-  body {
-    padding-bottom: 30px;
-  }
+  body { padding-bottom: 30px; }
   .fab-top { right: 12px; }
   .fab-home { right: 60px; }
 }
