@@ -15,6 +15,24 @@ body {
   background: url('../images/Pathways_走路.jpg') no-repeat center center fixed;
   background-size: cover;
   background-attachment: fixed;
+  position: relative;
+}
+
+/* ✅ 1. 背景半透明遮罩 */
+main {
+  position: relative;
+  z-index: 1;
+}
+main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* header */
@@ -26,7 +44,8 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);  /* ✅ 2. 底部陰影 */
+  border-bottom: 3px solid #F2DF74;          /* ✅ 2. Toastmasters 金線 */
 }
 
 /* navbar */
@@ -87,6 +106,8 @@ main {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  position: relative;
+  z-index: 1;
 }
 
 .icon-section.fade-in {
@@ -143,9 +164,18 @@ main {
   transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.3s ease;
 }
 
+/* ✅ 3. Hover 光暈效果 */
 .icon-wrapper:hover .icon {
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.3));
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* ✅ 4. 標籤微浮效果 */
+.icon-wrapper:hover .icon-label {
+  transform: translateY(-2px);
+  transition: all 0.25s ease;
+  background-color: rgba(0,0,0,0.9);
 }
 
 .icon-label {
@@ -178,10 +208,10 @@ main {
   letter-spacing: 0.03em;
 }
 
-/* Desktop fine-tune for long English letters (e.g. M) */
+/* 桌機字體修正（含 M） */
 @media (min-width: 1024px) {
   .icon-label {
-    max-width: 130px;   /* Prevent text cutoff */
+    max-width: 130px;
     width: 120%;
   }
 
@@ -199,7 +229,7 @@ main {
   }
 }
 
-/* keep only fab-home */
+/* 保留 fab-home */
 .fab-home {
   position: fixed;
   width: 44px;
@@ -225,8 +255,10 @@ main {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
+/* ✅ 7. Footer 金線＋漸層 */
 footer {
-  background-color: rgba(255, 255, 255, 0.95);
+  border-top: 3px solid #F2DF74;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(245,245,245,0.98));
   text-align: center;
   padding: 16px 10px 30px 10px;
   font-size: clamp(0.8rem, 2.5vw, 1rem);
@@ -241,6 +273,7 @@ footer {
   box-sizing: border-box;
 }
 
+/* logo + title */
 .logo-title-wrapper {
   display: flex;
   align-items: center;
