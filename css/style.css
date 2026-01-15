@@ -17,6 +17,7 @@ body {
   background-attachment: fixed;
 }
 
+/* header */
 header {
   background-color: rgba(0, 65, 101, 0.75);
   color: white;
@@ -28,6 +29,7 @@ header {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
+/* navbar */
 .navbar a {
   margin: 0 10px;
   color: white;
@@ -79,6 +81,7 @@ main {
   flex: 1;
 }
 
+/* icon grid */
 .icon-section {
   padding: 4px 5%;
   opacity: 0;
@@ -183,6 +186,7 @@ main {
   }
 }
 
+/* only keep fab-home */
 .fab-home {
   position: fixed;
   width: 44px;

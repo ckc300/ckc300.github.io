@@ -29,20 +29,6 @@ const iconObserver = new IntersectionObserver((entries, observer) => {
 
 icons.forEach(icon => iconObserver.observe(icon));
 
-const scrollTopBtn = document.querySelector('.fab-top');
-if (scrollTopBtn) {
-  scrollTopBtn.addEventListener('click', e => {
-    e.preventDefault();
-    if ('scrollBehavior' in document.documentElement.style) {
-      document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
-      document.body.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    }
-  });
-}
-
 if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
   const homeBtn = document.querySelector('.fab-home');
   if (homeBtn) homeBtn.style.display = "none";
