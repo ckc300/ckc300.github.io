@@ -12,7 +12,10 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  background: url('../images/Pathways_走路.jpg') no-repeat center center fixed;
+  background: image-set(
+    url('../images/Pathways_走路.webp') type("image/webp"),
+    url('../images/Pathways_走路.jpg') type("image/jpeg")
+  ) no-repeat center center fixed;
   background-size: cover;
   background-attachment: fixed;
   position: relative;
@@ -44,8 +47,8 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);  /* ✅ 2. 底部陰影 */
-  border-bottom: 3px solid #F2DF74;          /* ✅ 2. Toastmasters 金線 */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  border-bottom: 3px solid #F2DF74;
 }
 
 /* navbar */
