@@ -38,7 +38,7 @@ main::before {
   pointer-events: none;
 }
 
-/* header */
+/* Header 樣式 */
 header {
   background-color: rgba(0, 65, 101, 0.75);
   color: white;
@@ -51,7 +51,22 @@ header {
   border-bottom: 3px solid #F2DF74;
 }
 
-/* navbar */
+/* ✅ 5. Header 底部流動金藍紅分隔線 */
+header::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(90deg, #004165, #F2DF74, #772432, #004165);
+  background-size: 200% 100%;
+  animation: moveLine 6s linear infinite;
+}
+@keyframes moveLine {
+  0% { background-position: 0 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Navbar */
 .navbar a {
   margin: 0 10px;
   color: white;
@@ -99,11 +114,56 @@ header {
   border-bottom: 3px solid #F2DF74;
 }
 
-main {
-  flex: 1;
+/* ✅ 2~4. Logo + 標題動態與視覺提升 */
+.logo-title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 5px 10px;
+  max-width: 100%;
+  animation: fadeInLogo 1.4s ease forwards;
+  transition: all 0.3s ease;
+}
+@keyframes fadeInLogo {
+  0% { opacity: 0; transform: translateY(-12px) scale(0.96); }
+  70% { opacity: 1; transform: translateY(3px) scale(1.02); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* icon grid */
+.logo {
+  max-height: 50px;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.site-title {
+  font-size: clamp(1rem, 4vw, 1.8rem);
+  font-weight: 800;
+  background: linear-gradient(180deg, #fff8c6 0%, #F2DF74 40%, #cdaa30 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+/* ✅ 滑過 Logo/標題的光暈反應 */
+.logo-title-wrapper:hover .logo {
+  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.7));
+  transform: scale(1.05);
+}
+
+.logo-title-wrapper:hover .site-title {
+  text-shadow: 0 0 8px rgba(242, 223, 116, 0.8);
+  transform: scale(1.03);
+}
+
+/* Icon grid 區塊 */
 .icon-section {
   padding: 4px 5%;
   opacity: 0;
@@ -112,12 +172,10 @@ main {
   position: relative;
   z-index: 1;
 }
-
 .icon-section.fade-in {
   opacity: 1;
   transform: translateY(0);
 }
-
 .section-divider {
   height: 6px;
   width: 80%;
@@ -125,7 +183,6 @@ main {
   border-radius: 3px;
   background: linear-gradient(to right, #004165, #772432);
 }
-
 .icon-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -137,7 +194,6 @@ main {
   padding: 0 4px;
   box-sizing: border-box;
 }
-
 .icon-wrapper {
   width: 100%;
   max-width: 110px;
@@ -151,12 +207,10 @@ main {
   transform: translateY(20px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
-
 .icon-wrapper.fade-in {
   opacity: 1;
   transform: translateY(0);
 }
-
 .icon {
   width: 100%;
   max-width: 100px;
@@ -166,21 +220,16 @@ main {
   margin: 0 auto;
   transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.3s ease;
 }
-
-/* ✅ 3. Hover 光暈效果 */
 .icon-wrapper:hover .icon {
   transform: scale(1.08);
   filter: drop-shadow(0 0 6px rgba(255,255,255,0.3));
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
-
-/* ✅ 4. 標籤微浮效果 */
 .icon-wrapper:hover .icon-label {
   transform: translateY(-2px);
   transition: all 0.25s ease;
   background-color: rgba(0,0,0,0.9);
 }
-
 .icon-label {
   position: absolute;
   bottom: 12px;
@@ -204,26 +253,21 @@ main {
   word-break: keep-all;
   text-align: center;
 }
-
 .icon-label span.shortcode {
   font-weight: 800;
   font-size: 1.1em;
   letter-spacing: 0.03em;
 }
-
-/* 桌機字體修正（含 M） */
 @media (min-width: 1024px) {
   .icon-label {
     max-width: 130px;
     width: 120%;
   }
-
   .icon-label:has(.shortcode) {
     font-size: 0.95em;
     letter-spacing: 0.02em;
   }
 }
-
 @media (min-width: 768px) {
   .icon-label {
     width: 110%;
@@ -232,7 +276,7 @@ main {
   }
 }
 
-/* 保留 fab-home */
+/* Floating button 保留 */
 .fab-home {
   position: fixed;
   width: 44px;
@@ -251,14 +295,13 @@ main {
   bottom: calc(20px + env(safe-area-inset-bottom));
   right: 20px;
 }
-
 .fab-home:hover {
   transform: scale(1.1);
   background: linear-gradient(135deg, #004165, #007b9e);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
-/* ✅ 7. Footer 金線＋漸層 */
+/* Footer 金線與漸層 */
 footer {
   border-top: 3px solid #F2DF74;
   background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(245,245,245,0.98));
@@ -276,52 +319,15 @@ footer {
   box-sizing: border-box;
 }
 
-/* logo + title */
-.logo-title-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 5px 10px;
-  max-width: 100%;
-  animation: fadeInLogo 1.2s ease forwards;
-}
-
-@keyframes fadeInLogo {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.logo {
-  max-height: 50px;
-  height: auto;
-  width: auto;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.site-title {
-  font-size: clamp(1rem, 4vw, 1.8rem);
-  color: #F2DF74;
-  font-weight: bold;
-  text-align: center;
-  white-space: nowrap;
-}
-
 @media (max-width: 600px) {
   body { padding-bottom: 30px; }
   .fab-home { right: 12px; }
 }
-
 @media (max-width: 1024px) {
   body { background-attachment: scroll !important; }
 }
-
 html { background-color: #ffffff; }
-
 * { box-sizing: border-box; }
-
 img, video, iframe {
   max-width: 100%;
   height: auto;
