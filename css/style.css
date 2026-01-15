@@ -1,9 +1,8 @@
-/* === style_v12_2026.3 (2026-01-15 Final) === */
+/* === style_v12_2026.4 (2026-01-15 Final Enhanced) === */
 /* 更新項目：
-   ✅ 限制 icon-label 中文顯示4字 + 省略號
-   ✅ 加深 icon-label 背景半透明區
-   ✅ 支援上、下區塊間分隔線
-   ✅ 放寬 icon-label 寬度以容納完整4個中文字
+   ✅ 強調 icon-label 前2個英文字母（路徑簡稱）
+   ✅ 調整 icon-label 寬度，仍完整顯示4個中文字
+   ✅ 移除回頂端浮動按鈕（fab-top）
 */
 
 /* ---------------------- Reset ---------------------- */
@@ -158,7 +157,7 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* ✅ 改進 icon-label 可讀性與寬度設定 */
+/* ✅ 改進 icon-label：加粗前2字、縮減寬度但保留4中文字顯示 */
 .icon-label {
   position: absolute;
   bottom: 12px;
@@ -167,24 +166,36 @@ main {
   font-size: clamp(0.8rem, 3vw, 1rem);
   line-height: 1.2;
   padding: 5px 8px;
-  background-color: rgba(0, 0, 0, 0.65); /* 深化背景透明度 */
+  background-color: rgba(0, 0, 0, 0.65);
   color: #fff;
   border-radius: 6px;
   z-index: 2;
 
-  /* ✅ 新寬度設定：略大於圖標直徑，可容納4個中文字 */
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 115%;            /* 比圖標略寬 */
-  max-width: 130px;       /* 保持響應式一致 */
+  width: 105%;            /* ✅ 較前版略窄，但仍能完整顯示4個中文字 */
+  max-width: 115px;       /* ✅ 控制響應式寬度 */
   word-break: keep-all;
   text-align: center;
 }
 
+/* ✅ 專為前2個英文字母加粗與放大 */
+.icon-label::first-letter {
+  font-weight: 700;
+  font-size: 1.05em;
+  letter-spacing: 0.02em;
+}
+.icon-label span.shortcode {
+  font-weight: 700;
+  font-size: 1.05em;
+  letter-spacing: 0.02em;
+}
+
 /* ---------------------- Floating Buttons ---------------------- */
-.fab-top, .fab-home {
+/* ✅ 已移除回頂端按鈕 (fab-top)，僅保留首頁🏠 */
+.fab-home {
   position: fixed;
   width: 44px;
   height: 44px;
@@ -200,12 +211,10 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
   bottom: calc(20px + env(safe-area-inset-bottom));
+  right: 20px;
 }
 
-.fab-top { right: 20px; }
-.fab-home { right: 80px; }
-
-.fab-top:hover, .fab-home:hover {
+.fab-home:hover {
   transform: scale(1.1);
   background: linear-gradient(135deg, #004165, #007b9e);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
@@ -264,8 +273,7 @@ footer {
 /* ---------------------- Responsive ---------------------- */
 @media (max-width: 600px) {
   body { padding-bottom: 30px; }
-  .fab-top { right: 12px; }
-  .fab-home { right: 60px; }
+  .fab-home { right: 12px; }
 }
 
 /* ---------------------- Android 底部白塊修正 ---------------------- */
