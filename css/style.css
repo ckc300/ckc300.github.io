@@ -178,6 +178,19 @@ main {
   letter-spacing: 0.03em;
 }
 
+/* Desktop fine-tune for long English letters (e.g. M) */
+@media (min-width: 1024px) {
+  .icon-label {
+    max-width: 130px;   /* Prevent text cutoff */
+    width: 120%;
+  }
+
+  .icon-label:has(.shortcode) {
+    font-size: 0.95em;
+    letter-spacing: 0.02em;
+  }
+}
+
 @media (min-width: 768px) {
   .icon-label {
     width: 110%;
@@ -186,7 +199,7 @@ main {
   }
 }
 
-/* only keep fab-home */
+/* keep only fab-home */
 .fab-home {
   position: fixed;
   width: 44px;
@@ -272,6 +285,7 @@ footer {
 html { background-color: #ffffff; }
 
 * { box-sizing: border-box; }
+
 img, video, iframe {
   max-width: 100%;
   height: auto;
