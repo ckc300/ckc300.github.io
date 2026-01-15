@@ -19,7 +19,7 @@ body {
   background-size: cover;
   background-attachment: fixed;
   position: relative;
-  animation: bgMove 60s linear infinite; /* ✅ 背景緩慢漂移 */
+  animation: bgMove 60s linear infinite; /* 背景緩慢漂移 */
 }
 
 @keyframes bgMove {
@@ -28,7 +28,7 @@ body {
   100% { background-position: center 0; }
 }
 
-/* ✅ 背景半透明遮罩 */
+/* 背景半透明遮罩 */
 main {
   position: relative;
   z-index: 1;
@@ -58,7 +58,7 @@ header {
   border-bottom: 3px solid #F2DF74;
 }
 
-/* ✅ 4. Header 底部動態雙向流動線 */
+/* Header 底部動態雙向流動線 */
 header::after {
   content: "";
   display: block;
@@ -121,7 +121,7 @@ header::after {
   border-bottom: 3px solid #F2DF74;
 }
 
-/* ✅ LOGO 與標題區塊 */
+/* LOGO 與標題區塊 */
 .logo-title-wrapper {
   display: flex;
   align-items: center;
@@ -139,7 +139,7 @@ header::after {
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* ✅ 2. LOGO 金光掃描 */
+/* LOGO 金光掃描 */
 .logo {
   max-height: 50px;
   height: auto;
@@ -166,7 +166,7 @@ header::after {
   100% { left: 125%; }
 }
 
-/* ✅ 3. 標題光澤律動 */
+/* 標題光澤律動 */
 .site-title {
   font-size: clamp(1rem, 4vw, 1.8rem);
   font-weight: 800;
@@ -182,7 +182,7 @@ header::after {
   100% { text-shadow: 0 0 12px rgba(255, 215, 0, 0.6); }
 }
 
-/* Hover 互動 */
+/* Hover 效果 */
 .logo-title-wrapper:hover .logo {
   filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.7));
   transform: scale(1.05);
@@ -344,6 +344,24 @@ footer {
   z-index: 5;
   width: 100%;
   box-sizing: border-box;
+}
+
+/* 禁止選取靜態文字但保留互動 */
+body, header, footer, main, nav, div, section, article, p, span, h1, h2, h3, h4, h5, h6, img {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* 保留互動元件 */
+a, button, input, textarea, select, label {
+  user-select: auto !important;
+  -webkit-user-select: auto !important;
+  -moz-user-select: auto !important;
+  -ms-user-select: auto !important;
+  -webkit-touch-callout: default !important;
 }
 
 @media (max-width: 600px) {
