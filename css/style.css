@@ -1,4 +1,4 @@
-/* === style_v12_2026.6 (2026-01-15 Final Responsive UTF-8 no BOM) === */
+/* === style_v12_2026.5 (2026-01-15 Final Responsive) === */
 /* 更新項目：
    ✅ 縮小 icon-label 左右 padding，增加文字可用空間
    ✅ 桌機 (≥768px) 專用放寬寬度，防止文字被截斷
@@ -167,7 +167,7 @@ main {
   transform: translateX(-50%);
   font-size: clamp(0.8rem, 3vw, 1rem);
   line-height: 1.2;
-  padding: 5px 4px;               /* ✅ 減少左右邊距 */
+  padding: 5px 4px;               /* ✅ 減少左右邊距，增加文字空間 */
   background-color: rgba(0, 0, 0, 0.65);
   color: #fff;
   border-radius: 6px;
@@ -177,7 +177,7 @@ main {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 105%;
+  width: 105%;                    /* ✅ 手機版寬度 */
   max-width: 115px;
   word-break: keep-all;
   text-align: center;
@@ -193,9 +193,9 @@ main {
 /* ✅ 桌機專用放寬設定：≥768px */
 @media (min-width: 768px) {
   .icon-label {
-    width: 110%;
-    max-width: 125px;
-    padding: 5px 4px;
+    width: 110%;          /* 放寬文字空間 */
+    max-width: 125px;     /* 桌機專用 */
+    padding: 5px 4px;     /* 保持窄邊距 */
   }
 }
 
