@@ -1,10 +1,8 @@
-?/* === style_v12_2026.5 (2026-01-15 Final Responsive UTF-8 BOM) === */
+/* === style_v12_2026.4 (2026-01-15 Final Enhanced) === */
 /* 更新項目：
-   ? 縮小 icon-label 左右 padding，增加文字可用空間
-   ? 桌機 (?768px) 專用放寬寬度，防止文字被截斷
-   ? 手機版保持原完美間距
-   ? 強調前2個英文字母 (shortcode)
-   ? 已移除回頂端浮動按鈕
+   ? 強調 icon-label 前2個英文字母（路徑簡稱）
+   ? 調整 icon-label 寬度，仍完整顯示4個中文字
+   ? 移除回頂端浮動按鈕（fab-top）
 */
 
 /* ---------------------- Reset ---------------------- */
@@ -159,7 +157,7 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* ? 改進 icon-label：縮小 padding、維持手機完美、桌機放寬 */
+/* ? 改進 icon-label：加粗前2字、縮減寬度但保留4中文字顯示 */
 .icon-label {
   position: absolute;
   bottom: 12px;
@@ -167,7 +165,7 @@ main {
   transform: translateX(-50%);
   font-size: clamp(0.8rem, 3vw, 1rem);
   line-height: 1.2;
-  padding: 5px 4px;               /* ? 減少左右邊距 */
+  padding: 5px 8px;
   background-color: rgba(0, 0, 0, 0.65);
   color: #fff;
   border-radius: 6px;
@@ -177,26 +175,22 @@ main {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 105%;
-  max-width: 115px;
+  width: 105%;            /* ? 較前版略窄，但仍能完整顯示4個中文字 */
+  max-width: 115px;       /* ? 控制響應式寬度 */
   word-break: keep-all;
   text-align: center;
 }
 
-/* ? 強調前2個英文字母 */
-.icon-label span.shortcode {
+/* ? 專為前2個英文字母加粗與放大 */
+.icon-label::first-letter {
   font-weight: 700;
   font-size: 1.05em;
   letter-spacing: 0.02em;
 }
-
-/* ? 桌機專用放寬設定：?768px */
-@media (min-width: 768px) {
-  .icon-label {
-    width: 110%;
-    max-width: 125px;
-    padding: 5px 4px;
-  }
+.icon-label span.shortcode {
+  font-weight: 700;
+  font-size: 1.05em;
+  letter-spacing: 0.02em;
 }
 
 /* ---------------------- Floating Buttons ---------------------- */
