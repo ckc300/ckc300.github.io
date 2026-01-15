@@ -166,14 +166,16 @@ header::after {
   100% { left: 125%; }
 }
 
-/* 標題光澤律動 */
+/* 標題光澤律動（新版） */
 .site-title {
-  font-size: clamp(1rem, 4vw, 1.8rem);
+  font-size: clamp(1.2rem, 4.5vw, 2rem); /* 放大字級 */
   font-weight: 800;
+  letter-spacing: 0.06em; /* 增加字距 */
+  line-height: 1.3;
   background: linear-gradient(180deg, #fff8c6 0%, #F2DF74 40%, #cdaa30 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
   white-space: nowrap;
   animation: textGlow 4s ease-in-out infinite alternate;
 }
@@ -351,6 +353,7 @@ body, header, footer, main, nav, div, section, article, p, span, h1, h2, h3, h4,
   user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+
   -moz-user-select: none;
   -webkit-touch-callout: none;
 }
