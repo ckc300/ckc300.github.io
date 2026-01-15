@@ -1,9 +1,10 @@
-/* === style_v12_2026.3 (2026-01-15 Final) === */
-/* §ó·s¶µ¥Ø¡G
-   ? ­­¨î icon-label ¤¤¤åÅã¥Ü4¦r + ¬Ù²¤¸¹
-   ? ¥[²` icon-label ­I´º¥b³z©ú°Ï
-   ? ¤ä´©¤W¡B¤U°Ï¶ô¶¡¤À¹j½u
-   ? ©ñ¼e icon-label ¼e«×¥H®e¯Ç§¹¾ã4­Ó¤¤¤å¦r
+/* === style_v12_2026.6 (2026-01-15 Final Responsive UTF-8 no BOM) === */
+/* æ›´æ–°é …ç›®ï¼š
+   âœ… ç¸®å° icon-label å·¦å³ paddingï¼Œå¢åŠ æ–‡å­—å¯ç”¨ç©ºé–“
+   âœ… æ¡Œæ©Ÿ (â‰¥768px) å°ˆç”¨æ”¾å¯¬å¯¬åº¦ï¼Œé˜²æ­¢æ–‡å­—è¢«æˆªæ–·
+   âœ… æ‰‹æ©Ÿç‰ˆä¿æŒåŸå®Œç¾é–“è·
+   âœ… å¼·èª¿å‰2å€‹è‹±æ–‡å­—æ¯ (shortcode)
+   âœ… å·²ç§»é™¤å›é ‚ç«¯æµ®å‹•æŒ‰éˆ•
 */
 
 /* ---------------------- Reset ---------------------- */
@@ -21,7 +22,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  background: url('../images/Pathways_¨«¸ô.jpg') no-repeat center center fixed;
+  background: url('../images/Pathways_èµ°è·¯.jpg') no-repeat center center fixed;
   background-size: cover;
   background-attachment: fixed;
 }
@@ -102,7 +103,7 @@ main {
   transform: translateY(0);
 }
 
-/* ? ¤À¹j½u¼Ë¦¡ */
+/* âœ… åˆ†éš”ç·šæ¨£å¼ */
 .section-divider {
   height: 6px;
   width: 80%;
@@ -158,7 +159,7 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* ? §ï¶i icon-label ¥iÅª©Ê»P¼e«×³]©w */
+/* âœ… æ”¹é€² icon-labelï¼šç¸®å° paddingã€ç¶­æŒæ‰‹æ©Ÿå®Œç¾ã€æ¡Œæ©Ÿæ”¾å¯¬ */
 .icon-label {
   position: absolute;
   bottom: 12px;
@@ -166,25 +167,41 @@ main {
   transform: translateX(-50%);
   font-size: clamp(0.8rem, 3vw, 1rem);
   line-height: 1.2;
-  padding: 5px 8px;
-  background-color: rgba(0, 0, 0, 0.65); /* ²`¤Æ­I´º³z©ú«× */
+  padding: 5px 4px;               /* âœ… æ¸›å°‘å·¦å³é‚Šè· */
+  background-color: rgba(0, 0, 0, 0.65);
   color: #fff;
   border-radius: 6px;
   z-index: 2;
 
-  /* ? ·s¼e«×³]©w¡G²¤¤j©ó¹Ï¼Ğª½®|¡A¥i®e¯Ç4­Ó¤¤¤å¦r */
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 115%;            /* ¤ñ¹Ï¼Ğ²¤¼e */
-  max-width: 130px;       /* «O«ùÅTÀ³¦¡¤@­P */
+  width: 105%;
+  max-width: 115px;
   word-break: keep-all;
   text-align: center;
 }
 
+/* âœ… å¼·èª¿å‰2å€‹è‹±æ–‡å­—æ¯ */
+.icon-label span.shortcode {
+  font-weight: 700;
+  font-size: 1.05em;
+  letter-spacing: 0.02em;
+}
+
+/* âœ… æ¡Œæ©Ÿå°ˆç”¨æ”¾å¯¬è¨­å®šï¼šâ‰¥768px */
+@media (min-width: 768px) {
+  .icon-label {
+    width: 110%;
+    max-width: 125px;
+    padding: 5px 4px;
+  }
+}
+
 /* ---------------------- Floating Buttons ---------------------- */
-.fab-top, .fab-home {
+/* âœ… å·²ç§»é™¤å›é ‚ç«¯æŒ‰éˆ• (fab-top)ï¼Œåƒ…ä¿ç•™é¦–é ğŸ  */
+.fab-home {
   position: fixed;
   width: 44px;
   height: 44px;
@@ -200,12 +217,10 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
   bottom: calc(20px + env(safe-area-inset-bottom));
+  right: 20px;
 }
 
-.fab-top { right: 20px; }
-.fab-home { right: 80px; }
-
-.fab-top:hover, .fab-home:hover {
+.fab-home:hover {
   transform: scale(1.1);
   background: linear-gradient(135deg, #004165, #007b9e);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
@@ -264,11 +279,10 @@ footer {
 /* ---------------------- Responsive ---------------------- */
 @media (max-width: 600px) {
   body { padding-bottom: 30px; }
-  .fab-top { right: 12px; }
-  .fab-home { right: 60px; }
+  .fab-home { right: 12px; }
 }
 
-/* ---------------------- Android ©³³¡¥Õ¶ô­×¥¿ ---------------------- */
+/* ---------------------- Android åº•éƒ¨ç™½å¡Šä¿®æ­£ ---------------------- */
 @media (max-width: 1024px) {
   body { background-attachment: scroll !important; }
 }
