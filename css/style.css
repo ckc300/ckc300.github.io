@@ -1,8 +1,9 @@
-/* === style_v12_2026.2 (2026-01-15 更新版) === */
+/* === style_v12_2026.3 (2026-01-15 Final) === */
 /* 更新項目：
    ✅ 限制 icon-label 中文顯示4字 + 省略號
    ✅ 加深 icon-label 背景半透明區
    ✅ 支援上、下區塊間分隔線
+   ✅ 放寬 icon-label 寬度以容納完整4個中文字
 */
 
 /* ---------------------- Reset ---------------------- */
@@ -157,7 +158,7 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* ✅ 改進 icon-label 可讀性與顯示字數 */
+/* ✅ 改進 icon-label 可讀性與寬度設定 */
 .icon-label {
   position: absolute;
   bottom: 12px;
@@ -166,17 +167,20 @@ main {
   font-size: clamp(0.8rem, 3vw, 1rem);
   line-height: 1.2;
   padding: 5px 8px;
-  background-color: rgba(0, 0, 0, 0.65); /* 改深透明度 */
+  background-color: rgba(0, 0, 0, 0.65); /* 深化背景透明度 */
   color: #fff;
   border-radius: 6px;
   z-index: 2;
-  max-width: 90%;
+
+  /* ✅ 新寬度設定：略大於圖標直徑，可容納4個中文字 */
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 6em; /* 限制大約4中文字 + ... */
+  width: 115%;            /* 比圖標略寬 */
+  max-width: 130px;       /* 保持響應式一致 */
   word-break: keep-all;
+  text-align: center;
 }
 
 /* ---------------------- Floating Buttons ---------------------- */
