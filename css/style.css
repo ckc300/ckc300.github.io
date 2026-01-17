@@ -19,7 +19,7 @@ body {
   background-size: cover;
   background-attachment: fixed;
   position: relative;
-  animation: bgMove 60s linear infinite; /* 背景緩慢漂移 */
+  animation: bgMove 60s linear infinite;
 }
 
 @keyframes bgMove {
@@ -352,8 +352,6 @@ a, button, input, textarea, select, label {
   -webkit-touch-callout: default !important;
 }
 
-
-/* === 原始 RWD === */
 @media (max-width: 600px) {
   body { padding-bottom: 30px; }
 }
@@ -369,23 +367,30 @@ img, video, iframe {
   display: block;
 }
 
-/* 🔧 修正段落開始：安全移除手機多餘底部空白，無影響桌機 */
-@media (max-width: 600px) {
-  body {
-    padding-bottom: 0 !important; /* 移除多餘空白 */
-    background-attachment: scroll !important; /* Android 背景修正 */
-  }
+/* === 🔧 Static-page full-screen layout (only for index & DTM) === */
+.static-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
 }
 
-/* 保持背景位置一致 */
-body {
-  background-position: center bottom;
+.static-page main {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
-/* 桌機保留固定背景 */
-@media (min-width: 1025px) {
-  body {
-    background-attachment: fixed !important;
+.static-page footer {
+  flex-shrink: 0;
+}
+
+/* 手機端背景 scroll，避免 Chrome 鎖滾動 */
+@media (max-width: 1024px) {
+  .static-page {
+    background-attachment: scroll !important;
   }
 }
-/* 🔧 修正段落結束 */
