@@ -19,7 +19,7 @@ body {
   background-size: cover;
   background-attachment: fixed;
   position: relative;
-  animation: bgMove 60s linear infinite;
+  animation: bgMove 60s linear infinite; /* 背景緩慢漂移 */
 }
 
 @keyframes bgMove {
@@ -28,22 +28,21 @@ body {
   100% { background-position: center 0; }
 }
 
-/* 🔹 背景半透明遮罩（安全修正版） */
+/* 背景半透明遮罩 */
 main {
   position: relative;
   z-index: 1;
 }
-
 main::before {
   content: "";
-  position: fixed; /* ✅ 固定定位，與畫面貼合 */
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  right: 0;
+  bottom: 0;
   background: rgba(0, 0, 0, 0.25);
-  z-index: -1; /* ✅ 放在所有內容底層 */
-  pointer-events: none; /* ✅ 不影響點擊互動 */
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* Header */
@@ -167,11 +166,11 @@ header::after {
   100% { left: 125%; }
 }
 
-/* 標題光澤律動 */
+/* 標題光澤律動（新版） */
 .site-title {
   font-size: clamp(1.2rem, 4.5vw, 2rem);
   font-weight: 800;
-  letter-spacing: 0.08em; /* 字距稍增強 */
+  letter-spacing: 0.06em;
   line-height: 1.3;
   background: linear-gradient(180deg, #fff8c6 0%, #F2DF74 40%, #cdaa30 100%);
   -webkit-background-clip: text;
@@ -209,7 +208,7 @@ header::after {
   transform: translateY(0);
 }
 
-/* 分隔線動態 Hybrid 效果 */
+/* === 分隔線升級版 (Dynamic Hybrid) === */
 .section-divider {
   height: 6px;
   width: 80%;
@@ -226,12 +225,105 @@ header::after {
   100% { background-position: 0% 50%; }
 }
 
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-items: center;
+  align-items: center;
+  gap: 16px 10px;
+  width: calc(100% - 8px);
+  margin: 0 auto;
+  padding: 0 4px;
+  box-sizing: border-box;
+}
+.icon-wrapper {
+  width: 100%;
+  max-width: 110px;
+  position: relative;
+  text-align: center;
+  margin: 8px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.icon-wrapper.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.icon {
+  width: 100%;
+  max-width: 100px;
+  height: auto;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.3s ease;
+}
+.icon-wrapper:hover .icon {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.3));
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+.icon-wrapper:hover .icon-label {
+  transform: translateY(-2px);
+  transition: all 0.25s ease;
+  background-color: rgba(0,0,0,0.9);
+}
+.icon-label {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(0.8rem, 3vw, 1rem);
+  line-height: 1.2;
+  padding: 5px 4px;
+  background-color: rgba(0,0,0,0.8);
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+  backdrop-filter: blur(2px);
+  border-radius: 6px;
+  z-index: 2;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 105%;
+  max-width: 115px;
+  word-break: keep-all;
+  text-align: center;
+}
+.icon-label span.shortcode {
+  font-weight: 800;
+  font-size: 1.1em;
+  letter-spacing: 0.03em;
+}
+@media (min-width: 1024px) {
+  .icon-label {
+    max-width: 130px;
+    width: 120%;
+  }
+  .icon-label:has(.shortcode) {
+    font-size: 0.95em;
+    letter-spacing: 0.02em;
+  }
+}
+@media (min-width: 768px) {
+  .icon-label {
+    width: 110%;
+    max-width: 125px;
+    padding: 5px 4px;
+  }
+}
+
 /* Footer */
 footer {
   border-top: 3px solid #F2DF74;
   background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(245,245,245,0.98));
   text-align: center;
-  padding: 16px 10px 10px 10px; /* 已修正 */
+  padding: 16px 10px 30px 10px;
   font-size: clamp(0.8rem, 2.5vw, 1rem);
   line-height: 1.4;
   color: #222;
@@ -250,6 +342,8 @@ body, header, footer, main, nav, div, section, article, p, span, h1, h2, h3, h4,
   -moz-user-select: none;
   -webkit-touch-callout: none;
 }
+
+/* 保留互動元件 */
 a, button, input, textarea, select, label {
   user-select: auto !important;
   -webkit-user-select: auto !important;
@@ -258,14 +352,12 @@ a, button, input, textarea, select, label {
   -webkit-touch-callout: default !important;
 }
 
-/* 手機端修正：移除多餘底部空白 */
 @media (max-width: 600px) {
-  body { padding-bottom: 0 !important; }
+  body { padding-bottom: 30px; }
 }
 @media (max-width: 1024px) {
   body { background-attachment: scroll !important; }
 }
-
 html { background-color: #ffffff; }
 * { box-sizing: border-box; }
 img, video, iframe {
