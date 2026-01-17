@@ -365,3 +365,13 @@ img, video, iframe {
   height: auto;
   display: block;
 }
+/* 移除所有頁面底部浮動按鈕與空間 */
+.bottom-buttons,
+.prev-button,
+.download-button {
+  display: none !important;
+  visibility: hidden !important;
+}
+@media (max-width: 600px) {
+  body { padding-bottom: 0 !important; }
+}
