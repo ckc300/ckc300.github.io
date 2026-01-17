@@ -166,7 +166,7 @@ header::after {
   100% { left: 125%; }
 }
 
-/* 標題光澤律動（新版） */
+/* 標題光澤律動 */
 .site-title {
   font-size: clamp(1.2rem, 4.5vw, 2rem);
   font-weight: 800;
@@ -208,7 +208,7 @@ header::after {
   transform: translateY(0);
 }
 
-/* === 分隔線升級版 (Dynamic Hybrid) === */
+/* 分隔線 */
 .section-divider {
   height: 6px;
   width: 80%;
@@ -352,12 +352,15 @@ a, button, input, textarea, select, label {
   -webkit-touch-callout: default !important;
 }
 
+
+/* === 原始 RWD === */
 @media (max-width: 600px) {
   body { padding-bottom: 30px; }
 }
 @media (max-width: 1024px) {
   body { background-attachment: scroll !important; }
 }
+
 html { background-color: #ffffff; }
 * { box-sizing: border-box; }
 img, video, iframe {
@@ -365,3 +368,24 @@ img, video, iframe {
   height: auto;
   display: block;
 }
+
+/* 🔧 修正段落開始：安全移除手機多餘底部空白，無影響桌機 */
+@media (max-width: 600px) {
+  body {
+    padding-bottom: 0 !important; /* 移除多餘空白 */
+    background-attachment: scroll !important; /* Android 背景修正 */
+  }
+}
+
+/* 保持背景位置一致 */
+body {
+  background-position: center bottom;
+}
+
+/* 桌機保留固定背景 */
+@media (min-width: 1025px) {
+  body {
+    background-attachment: fixed !important;
+  }
+}
+/* 🔧 修正段落結束 */
