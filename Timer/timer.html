@@ -12,70 +12,77 @@ html, body {
   background: #111;
   color: #fff;
   font-family: 'Noto Sans TC', sans-serif;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  transition: background-color 0.8s ease;
+  transition: background-color 0.4s ease;
 }
 
-/* 🌀 全螢幕開場動畫 */
-#introScreen {
+/* === 開場動畫：頭像 + 雨軒計時器 === */
+#intro {
   position: fixed;
   inset: 0;
   background: #000;
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  z-index: 99999;
-  opacity: 1;
-  animation: introFadeOut 2.6s ease forwards;
-  animation-delay: 1.6s;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: introFade 2.4s ease forwards;
 }
-#introScreen img {
-  width: clamp(120px, 30vw, 240px);
+#intro img {
+  width: 120px;
   height: auto;
-  opacity: 0;
-  transform: scale(0.8);
-  animation: logoFadeIn 1.6s ease forwards;
+  margin-bottom: 0.6em;
+  filter: drop-shadow(0 0 10px #FFD700);
 }
-#introScreen h2 {
-  margin-top: 20px;
+#intro h1 {
+  font-size: 2.2em;
   color: #FFD700;
-  font-size: clamp(1.5rem, 6vw, 2.4rem);
-  opacity: 0;
-  animation: logoTextFadeIn 1.6s ease forwards;
-  animation-delay: 0.4s;
+  letter-spacing: 0.1em;
+  animation: textGlow 2s infinite alternate;
 }
-
-@keyframes logoFadeIn {
-  to { opacity: 1; transform: scale(1); }
-}
-@keyframes logoTextFadeIn {
-  to { opacity: 1; }
-}
-@keyframes introFadeOut {
-  0%, 85% { opacity: 1; }
+@keyframes introFade {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  85% { opacity: 1; }
   100% { opacity: 0; visibility: hidden; }
 }
-
-/* 🔸通用「不可點」按鈕樣式 */
-button:disabled {
-  opacity: 0.5;
-  filter: grayscale(60%);
-  pointer-events: none;
+@keyframes textGlow {
+  from { text-shadow: 0 0 4px #FFD700, 0 0 10px #FFD700; }
+  to   { text-shadow: 0 0 15px #FFD700, 0 0 30px #FFDD55; }
 }
 
-/* 🔒 底部按鈕禁用樣式（手機上清楚區分） */
-.bottom-bar button:disabled {
-  background: #555 !important;
-  color: #aaa !important;
-  border-color: #777 !important;
-  cursor: not-allowed !important;
-  opacity: 0.6;
-  filter: grayscale(80%);
+/* === 頭像＋文字呼吸燈動畫 === */
+@keyframes breathe {
+  0%   { filter: brightness(0.9); }
+  50%  { filter: brightness(1.3); }
+  100% { filter: brightness(0.9); }
+}
+@keyframes titleGlow {
+  0%   { text-shadow: 0 0 4px #FFD700; }
+  50%  { text-shadow: 0 0 18px #FFE766, 0 0 30px #FFD700; }
+  100% { text-shadow: 0 0 4px #FFD700; }
 }
 
-/* 橫式提示 */
+/* 框架容器 */
+#appContainer {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: inherit;
+}
+#appContent {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform-origin: center center;
+  transform: translate(-50%, -50%) scale(1);
+  width: 360px;
+  height: 640px;
+}
+
+/* 橫式顯示提示 */
 #rotateTip {
   display: none;
   position: fixed; inset: 0;
@@ -87,21 +94,24 @@ button:disabled {
   z-index: 999;
 }
 
-/* 標題 */
+/* 標題區塊置中＋呼吸動畫 */
 .header {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1.2em;
   margin-top: 0.8em;
-  margin-bottom: 0.8em;
-  width: 90%;
-  max-width: 95vw;
+  margin-bottom: 0.5em;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 .header img {
   height: clamp(60px, 10vw, 100px);
   width: auto;
   transition: filter 0.3s ease;
+  animation: breathe 3s ease-in-out infinite;
 }
 .header h1 {
   font-size: clamp(2.2rem, 8vw, 3rem);
@@ -110,38 +120,55 @@ button:disabled {
   margin: 0;
   white-space: nowrap;
   transition: color 0.4s ease;
+  animation: titleGlow 3.5s ease-in-out infinite;
 }
 
 /* 分隔線 */
 .divider {
-  width: 80%;
+  width: 90%;
+  max-width: 500px;
   height: 1px;
+  margin: 0.6em auto 1.2em auto;
   background: rgba(102, 102, 102, 0.4);
-  margin-top: 10px;
-  margin-bottom: 10px;
+  display: block;
 }
 
-/* 預設按鈕 */
+/* 預設時間按鈕 */
 .presets {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1.2em;
-  margin-bottom: 1.2em;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0.8em;
+  margin: 1.2em auto;
+  width: 90%;
+  max-width: 420px;
+  overflow: hidden;
 }
 .preset-btn {
-  width: 80px; height: 80px;
+  flex: 1 1 0;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   background: #444;
-  border: none; color: #ccc;
-  font-weight: bold; font-size: 1em;
+  border: none;
+  color: #ccc;
+  font-weight: bold;
+  font-size: clamp(0.9em, 2vw, 1em);
   cursor: pointer;
   transition: transform .15s, background .2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 1.2;
 }
+
+/* ✅ 改良：預設按鈕選取對比 */
 .preset-btn.selected {
-  background: #FFD700;
-  color: #222;
-  transform: scale(1.1);
+  background: #222;
+  color: #FFD700;
+  transform: scale(1.08);
+  border: 2px solid #FFD700;
 }
 
 /* 計時顯示 */
@@ -167,21 +194,14 @@ button:disabled {
   line-height: 1;
 }
 
-/* 狀態符號 */
+/* ✅ 改良：符號陰影 */
 #symbol {
   position: absolute;
-  top: 12px; right: 16px;
-  font-size: 3.8rem;
-  font-weight: bold;
-  text-shadow:
-    2px 2px 6px rgba(0,0,0,0.8),
-    -2px -2px 6px rgba(255,255,255,0.3);
+  top: 8px; right: 14px;
+  font-size: 2rem;
   user-select: none;
-  z-index: 9999;
-  transition: color 0.3s ease, opacity 0.5s ease;
-  opacity: 1;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
 }
-
 /* 控制按鈕 */
 .controls {
   display: flex;
@@ -191,42 +211,29 @@ button:disabled {
   margin-bottom: 3em;
 }
 .controls button {
-  min-height: 60px;
-  padding: 0.8em 2.4em;
-  border-radius: 14px;
-  font-size: 1.4em;
+  min-height: unset;
+  padding: 0.4em 1.6em;
+  border-radius: 10px;
+  font-size: 1.2em;
   font-weight: bold;
   border: none;
-  transition: all .2s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: filter .15s, background .2s, color .2s;
 }
-
-/* ▶️ 開始 / 暫停 / 繼續 */
 #mainControl {
-  background: linear-gradient(135deg, #444, #333);
-  color: #888;
+  background: #444; color: #ccc;
 }
-#mainControl.active {
-  background: linear-gradient(135deg, #FFD700, #FFB400);
-  color: #222;
-}
-#mainControl.active:hover {
-  filter: brightness(1.1);
-  transform: scale(1.05);
+#reset {
+  background: #444; color: #777;
 }
 
-/* 🔁 歸零 */
-#reset {
-  background: linear-gradient(135deg, #444, #333);
-  color: #bbb;
-}
-#reset.active {
-  background: linear-gradient(135deg, #FFD700, #FFB400);
-  color: #222;
-}
-#reset:hover {
-  filter: brightness(1.1);
-  transform: scale(1.05);
+/* ✅ 改良：主要控制按鈕高亮 */
+#mainControl.active, #reset.active {
+  background: #FFD700;
+  color: #000;
+  border: 2px solid #000;
+  box-shadow: 0 0 6px rgba(0,0,0,0.5);
 }
 
 /* 底部欄 */
@@ -314,100 +321,68 @@ select {
 #cancelBtn {
   background: #FFD700; color: #000;
 }
-
-/* 直式警告 */
-@media (orientation: landscape) {
-  #rotateTip { display: flex; }
-}
 </style>
 </head>
 <body>
-
-<!-- 🌀 開場動畫 -->
-<div id="introScreen">
-  <img src="Pathways_Power_Hub.webp" alt="Logo">
-  <h2>雨軒計時器</h2>
+<div id="intro">
+  <img src="Pathways_Power_Hub.webp" alt="頭像">
+  <h1>雨軒計時器</h1>
 </div>
 
 <div id="rotateTip">請旋轉手機以直式螢幕操作 📱</div>
-<div id="symbol"></div>
 
-<div class="header" id="header">
-  <img id="avatar" src="Pathways_Power_Hub.webp" alt="頭像">
-  <h1 id="title">雨軒計時器</h1>
-</div>
-<div class="divider"></div>
+<div id="appContainer">
+  <div id="appContent">
+    <div id="symbol"></div>
+    <div class="header" id="header">
+      <img id="avatar" src="Pathways_Power_Hub.webp" alt="頭像">
+      <h1 id="title">雨軒計時器</h1>
+    </div>
+    <div class="divider"></div>
 
-<!-- 預設按鈕 -->
-<div class="presets">
-  <button class="preset-btn" onclick="setPreset(5,6,7,7.5,this)">5–7分<br>±30秒</button>
-  <button class="preset-btn" onclick="setPreset(1,1.5,2,2.5,this)">1–2分<br>+30秒</button>
-  <button class="preset-btn" onclick="setPreset(2,2.5,3,3.5,this)">2–3分<br>±30秒</button>
-  <button class="preset-btn" onclick="openCustomModal(this)">自定義</button>
-</div>
+    <div class="presets">
+      <button class="preset-btn" onclick="setPreset(5,6,7,7.5,this)">5–7分<br>±30秒</button>
+      <button class="preset-btn" onclick="setPreset(1,1.5,2,2.5,this)">1–2分<br>+30秒</button>
+      <button class="preset-btn" onclick="setPreset(2,2.5,3,3.5,this)">2–3分<br>±30秒</button>
+      <button class="preset-btn" onclick="openCustomModal(this)">自定義</button>
+    </div>
 
-<div class="timer-display" id="display"><span>00:00</span></div>
+    <div class="timer-display" id="display"><span>00:00</span></div>
 
-<div class="controls">
-  <button id="mainControl" onclick="mainControl()" disabled>▶️ 開始</button>
-  <button id="reset" onclick="resetTimer()" disabled>🔁 歸零</button>
-</div>
+    <div class="controls">
+      <button id="mainControl" onclick="mainControl()" disabled>▶️ 開始</button>
+      <button id="reset" onclick="resetTimer()" disabled>🔁 歸零</button>
+    </div>
 
-<div class="bottom-bar" id="bottomBar">
-  <button id="homeBtn" onclick="location.href='https://ckc300.github.io/'">🏠 回首頁</button>
-  <button id="fsBtn" onclick="toggleFullscreen()">🔲 全螢幕</button>
-</div>
+    <div class="bottom-bar" id="bottomBar">
+      <button id="homeBtn" onclick="location.href='https://ckc300.github.io/'">🏠 回首頁</button>
+      <button id="fsBtn" onclick="toggleFullscreen()">🔲 全螢幕</button>
+    </div>
 
-<div id="toast"></div>
+    <div id="toast"></div>
 
-<!-- 自定義面板 -->
-<div class="modal" id="customModal">
-  <div class="modal-content">
-    <h3>自定義時間設定</h3>
-    <div class="custom-row">綠燈：<select id="gMin"><option value="">--</option></select>分<select id="gSec"><option value="">--</option></select>秒</div>
-    <div class="custom-row">黃燈：<select id="yMin"><option value="">--</option></select>分<select id="ySec"><option value="">--</option></select>秒</div>
-    <div class="custom-row">紅燈：<select id="rMin"><option value="">--</option></select>分<select id="rSec"><option value="">--</option></select>秒</div>
-    <div class="custom-row">閃紅：<select id="bMin"><option value="">--</option></select>分<select id="bSec"><option value="">--</option></select>秒</div>
-    <div class="modal-btns">
-      <button id="applyBtn" onclick="applyCustom()" disabled>套用</button>
-      <button id="cancelBtn" onclick="closeModal()">取消</button>
+    <div class="modal" id="customModal">
+      <div class="modal-content">
+        <h3>自定義時間設定</h3>
+        <div class="custom-row">綠燈：<select id="gMin"><option value="">--</option></select>分<select id="gSec"><option value="">--</option></select>秒</div>
+        <div class="custom-row">黃燈：<select id="yMin"><option value="">--</option></select>分<select id="ySec"><option value="">--</option></select>秒</div>
+        <div class="custom-row">紅燈：<select id="rMin"><option value="">--</option></select>分<select id="rSec"><option value="">--</option></select>秒</div>
+        <div class="custom-row">閃紅：<select id="bMin"><option value="">--</option></select>分<select id="bSec"><option value="">--</option></select>秒</div>
+        <div class="modal-btns">
+          <button id="applyBtn" onclick="applyCustom()" disabled>套用</button>
+          <button id="cancelBtn" onclick="closeModal()">取消</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- 第3段開始 -->
 <script>
-/* 🌀 首次載入播放開場動畫 */
-window.addEventListener('DOMContentLoaded', () => {
-  const intro = document.getElementById('introScreen');
-  if (sessionStorage.getItem('introPlayed')) {
-    intro.style.display = 'none';
-  } else {
-    sessionStorage.setItem('introPlayed', 'true');
-    setTimeout(() => {
-      intro.remove();
-    }, 3000);
-  }
-});
-
 let thresholds={}, currentState='init', timer=null, blink=null, time=0, startAt=0;
 let blinkState=false, selectedPreset=null;
 
-/* 🔘 底部按鈕啟用 / 禁用 */
-function toggleFooter(disabled) {
-  document.getElementById('homeBtn').disabled = disabled;
-  document.getElementById('fsBtn').disabled = disabled;
-}
-
-/* 停止閃紅 */
-function stopBlink(){
-  if(blink){
-    clearInterval(blink);
-    blink=null;
-    blinkState=false;
-  }
-}
-
-/* 初始化選單 */
+/* === 初始化自定義選單 === */
 function initSelects(){
   const config={g:[3,40],y:[4,40],r:[5,40],b:[6,40]};
   const secs=[0,30];
@@ -428,14 +403,18 @@ function initSelects(){
 }
 initSelects();
 
-/* 提示訊息 */
+/* === 提示訊息 === */
 function toast(msg,color='#FF6666'){
   const t=document.getElementById('toast');
   t.style.background=color; t.innerText=msg; t.style.display='block';
   setTimeout(()=>t.style.display='none',3000);
 }
 
-/* 自定義設定 */
+/* === 頁面互動 === */
+function toggleBottomBar(show){
+  const bar=document.getElementById('bottomBar');
+  if(show) bar.classList.remove('hidden'); else bar.classList.add('hidden');
+}
 function openCustomModal(btn){
   if(currentState!=='init')return;
   selectedPreset=btn;
@@ -443,6 +422,8 @@ function openCustomModal(btn){
   checkCustomInputs();
 }
 function closeModal(){document.getElementById('customModal').style.display='none';}
+
+/* === 取得輸入值 === */
 function getVal(id){
   const m=document.getElementById(id).value;
   const s=document.getElementById(id.replace('Min','Sec')).value;
@@ -466,7 +447,7 @@ function applyCustom(){
   enableControls();highlight(selectedPreset);
 }
 
-/* 預設組合 */
+/* === 預設時間設定 === */
 function setPreset(g,y,r,b,btn){
   if(currentState!=='init')return;
   thresholds={green:g*60,yellow:y*60,red:r*60,blink:b*60};
@@ -475,10 +456,11 @@ function setPreset(g,y,r,b,btn){
 function highlight(btn){
   document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');selectedPreset=btn;
-  document.getElementById('mainControl').classList.add('active');
+  const start=document.getElementById('mainControl');
+  start.classList.add('active');
 }
 
-/* 控制流程 */
+/* === 主控制 === */
 function mainControl(){
   if(currentState==='init')startTimer();
   else if(currentState==='running')pauseTimer();
@@ -491,29 +473,33 @@ function startTimer(){
   document.getElementById('reset').classList.remove('active');
   document.getElementById('reset').disabled=true;
   document.querySelectorAll('.preset-btn').forEach(b=>b.disabled=true);
-  toggleFooter(true);
+  toggleBottomBar(false);
 }
 function pauseTimer(){
   clearInterval(timer);
-  stopBlink();
   currentState='paused';
   document.getElementById('mainControl').textContent='▶️ 繼續';
   document.getElementById('reset').disabled=false;
   document.getElementById('reset').classList.add('active');
-  toggleFooter(false);
+  toggleBottomBar(true);
+  if(blink){clearInterval(blink);blink=null;document.body.style.background='#FF2400';}
 }
 function resumeTimer(){
-  startAt=Date.now()-time*1000;
-  timer=setInterval(update,100);
+  startAt=Date.now()-time*1000;timer=setInterval(update,100);
   currentState='running';
   document.getElementById('mainControl').textContent='⏸️ 暫停';
   document.getElementById('reset').disabled=true;
   document.getElementById('reset').classList.remove('active');
-  toggleFooter(true);
+  toggleBottomBar(false);
+  if(time>=thresholds.blink && !blink){
+    blink=setInterval(()=>{blinkState=!blinkState;
+      document.body.style.background=blinkState?'#FF2400':'#000000';
+    },300);
+  }
 }
 function resetTimer(){
   clearInterval(timer);
-  stopBlink();
+  if(blink){clearInterval(blink);blink=null;}
   document.body.style.background='#111';
   document.getElementById('symbol').textContent='';
   const avatar=document.getElementById('avatar');
@@ -526,77 +512,90 @@ function resetTimer(){
   document.getElementById('reset').disabled=true;
   document.getElementById('reset').classList.remove('active');
   document.querySelectorAll('.preset-btn').forEach(b=>{b.disabled=false;b.classList.remove('selected');});
-  toggleFooter(false);
+  toggleBottomBar(true);
+  blinkState=false;
 }
-
-/* 顯示時間 */
 function enableControls(){
-  const btn=document.getElementById('mainControl');
-  btn.disabled=false;
-  btn.classList.add('active');
+  document.getElementById('mainControl').disabled=false;
+  toggleBottomBar(true);
 }
-function update(){time=Math.floor((Date.now()-startAt)/1000);updateDisplay();updateBg();}
-function updateDisplay(){const m=Math.floor(time/60),s=time%60;document.querySelector('#display span').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;}
 
-/* 背景與符號變化 */
+/* === 更新畫面 === */
+function update(){
+  time=Math.floor((Date.now()-startAt)/1000);
+  updateDisplay();updateBg();
+}
+function updateDisplay(){
+  const m=Math.floor(time/60),s=time%60;
+  document.querySelector('#display span').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
 function updateBg(){
   const sym=document.getElementById('symbol');
   const avatar=document.getElementById('avatar');
   const title=document.getElementById('title');
-
   if(time>=thresholds.blink){
-    if(!blink){
-      blink=setInterval(()=>{
-        blinkState=!blinkState;
+    if(!blink && currentState==='running'){
+      blink=setInterval(()=>{blinkState=!blinkState;
         document.body.style.background=blinkState?'#FF2400':'#000000';
         avatar.style.filter=blinkState?'invert(0)':'invert(1)';
       },300);
     }
     sym.textContent='🔴';
-    sym.style.color='#fff';
-    sym.style.opacity=1;
+    title.style.color='#fff';
   }else{
-    stopBlink();
+    if(blink){clearInterval(blink);blink=null;document.body.style.background='#FF2400';}
     if(time>=thresholds.red){
-      document.body.style.background='#FF2400';
-      sym.textContent='⛔';
-      sym.style.color='#fff';
-      sym.style.opacity=1;
-      title.style.color='#fff';
-      avatar.style.filter='invert(1)';
+      document.body.style.background='#FF2400';sym.textContent='⛔';
+      title.style.color='#fff';avatar.style.filter='invert(1)';
     }
     else if(time>=thresholds.yellow){
-      document.body.style.background='#FFD55A';
-      sym.textContent='⚠️';
-      sym.style.color='#000';
-      sym.style.opacity=1;
-      title.style.color='#000';
-      avatar.style.filter='invert(1)';
+      document.body.style.background='#FFD55A';sym.textContent='⚠️';
+      title.style.color='#000';avatar.style.filter='invert(1)';
     }
     else if(time>=thresholds.green){
-      document.body.style.background='#4B5320';
-      sym.textContent='✅';
-      sym.style.color='#fff';
-      sym.style.opacity=1;
-      title.style.color='#fff';
-      avatar.style.filter='invert(1)';
+      document.body.style.background='#4B5320';sym.textContent='✅';
+      title.style.color='#fff';avatar.style.filter='invert(1)';
     }
     else{
-      document.body.style.background='#111';
-      sym.textContent='';
-      sym.style.opacity=0;
-      title.style.color='#fff';
-      avatar.style.filter='invert(0)';
+      document.body.style.background='#111';sym.textContent='';
+      title.style.color='#fff';avatar.style.filter='invert(0)';
     }
   }
 }
 
-/* 全螢幕 */
+/* === 其他功能 === */
 function toggleFullscreen(){
   const b=document.getElementById('fsBtn');
   if(!document.fullscreenElement){document.documentElement.requestFullscreen();b.textContent='❌ 結束全螢幕';}
   else{document.exitFullscreen();b.textContent='🔲 全螢幕';}
 }
+
+/* === 手機橫式限制與桌機縮放 === */
+function handleOrientation(){
+  const isMobile=/Mobi|Android|iPhone/i.test(navigator.userAgent);
+  const isLandscape=window.matchMedia("(orientation: landscape)").matches;
+  const tip=document.getElementById('rotateTip');
+  const content=document.getElementById('appContent');
+  if(isMobile && isLandscape){
+    tip.style.display='flex';
+    content.style.display='none';
+  }else{
+    tip.style.display='none';
+    content.style.display='block';
+    scaleApp();
+  }
+}
+function scaleApp(){
+  const app=document.getElementById('appContent');
+  const baseWidth=360, baseHeight=640;
+  const scale=Math.min(window.innerWidth/baseWidth, window.innerHeight/baseHeight);
+  app.style.transform=`translate(-50%, -50%) scale(${scale})`;
+}
+
+/* === 載入事件 === */
+window.addEventListener('resize',handleOrientation);
+window.addEventListener('orientationchange',handleOrientation);
+window.addEventListener('load',handleOrientation);
 </script>
 </body>
 </html>
