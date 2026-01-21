@@ -207,14 +207,23 @@ html, body {
 @media (max-width: 480px) {
   .timer-display {
     width: 95%;
-    height: 25vh;                /* 高度降低 */
+    height: 25vh;
     margin: 1em auto 2em auto;
     display: flex;
     align-items: center;
-    justify-content: center;     /* 水平置中 */
+    justify-content: center;
   }
   .timer-display span {
-    font-size: clamp(4rem, 18vw, 10rem);  /* 適度縮小字體 */
+    font-size: clamp(5rem, 26vw, 13rem); /* ⬆️ 放大字體接近邊緣 */
+  }
+  .bottom-bar button {
+    font-size: 0.95em;
+    padding: 0.3em 0.8em;    /* 縮小按鈕尺寸 */
+    min-height: 42px;
+  }
+  .bottom-bar {
+    bottom: 25px;           /* 按鈕往上移 */
+    padding: 0 0.8em;
   }
 }
 /* 控制按鈕 */
