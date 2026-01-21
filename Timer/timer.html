@@ -15,7 +15,7 @@ html, body {
   transition: background-color 0.4s ease;
 }
 
-/* === 開場動畫：頭像 + 雨軒計時器 === */
+/* === 開場動畫 === */
 #intro {
   position: fixed;
   inset: 0;
@@ -50,182 +50,104 @@ html, body {
   to   { text-shadow: 0 0 15px #FFD700, 0 0 30px #FFDD55; }
 }
 
-/* === 頭像呼吸亮度 === */
-@keyframes breathe {
-  0%   { filter: brightness(0.9); }
-  50%  { filter: brightness(1.3); }
-  100% { filter: brightness(0.9); }
-}
-
-/* === 五段柔光黑白呼吸（標題） === */
+/* 標題呼吸動畫 */
+@keyframes breathe {0%{filter:brightness(0.9);}50%{filter:brightness(1.3);}100%{filter:brightness(0.9);}}
 @keyframes titleBreatheBW {
-  0%   { color: rgb(128,128,128); }
-  25%  { color: rgb(191,191,191); }
-  50%  { color: rgb(255,255,255); }
-  75%  { color: rgb(191,191,191); }
-  100% { color: rgb(128,128,128); }
+  0%{color:rgb(128,128,128);}25%{color:rgb(191,191,191);}50%{color:rgb(255,255,255);}
+  75%{color:rgb(191,191,191);}100%{color:rgb(128,128,128);}
 }
 
 /* 框架容器 */
 #appContainer {
   position: relative;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  background: inherit;
+  width: 100vw; height: 100vh;
+  display: flex; justify-content: center; align-items: center;
+  overflow: hidden; background: inherit;
 }
 #appContent {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform-origin: center center;
+  position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%) scale(1);
-  width: 360px;
-  height: 640px;
+  width: 360px; height: 640px; transform-origin: center;
 }
 
-/* 橫式顯示提示 */
+/* 橫式提示 */
 #rotateTip {
-  display: none;
-  position: fixed; inset: 0;
-  background: #000;
-  color: #FFD700;
-  font-size: 1.8em;
-  font-weight: bold;
+  display: none; position: fixed; inset: 0;
+  background: #000; color: #FFD700;
+  font-size: 1.8em; font-weight: bold;
   justify-content: center; align-items: center;
   z-index: 999;
 }
 
-/* 標題區塊置中＋呼吸動畫 */
+/* 標題列 */
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.2em;
-  margin-top: 0.8em;
-  margin-bottom: 0.5em;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+  display: flex; justify-content: center; align-items: center; gap: 1.2em;
+  margin: 0.8em auto 0.5em; width: fit-content; text-align: center;
 }
 .header img {
   height: clamp(60px, 10vw, 100px);
-  width: auto;
-  transition: filter 0.3s ease;
-  animation: breathe 3s ease-in-out infinite;
+  width: auto; animation: breathe 3s ease-in-out infinite;
 }
 .header h1 {
-  font-size: clamp(2.2rem, 8vw, 3rem);
-  font-weight: normal;
-  letter-spacing: 0.1em;
+  font-size: clamp(2rem, 6vw, 2.6rem); /* ✅ 調整字級範圍 */
+  font-weight: normal;                 /* ✅ 移除加粗 */
+  letter-spacing: 0.05em;              /* ✅ 微縮字距 */
   margin: 0;
-  white-space: nowrap;
+  white-space: nowrap;                 /* ✅ 強制單行顯示 */
   transition: color 0.4s ease;
   animation: titleBreatheBW 3.5s ease-in-out infinite;
 }
 
 /* 分隔線 */
-.divider {
-  width: 90%;
-  max-width: 500px;
-  height: 1px;
-  margin: 0.6em auto 1.2em auto;
-  background: rgba(102, 102, 102, 0.4);
-  display: block;
-}
+.divider {width:90%;max-width:500px;height:1px;margin:0.6em auto 1.2em;background:rgba(102,102,102,0.4);}
 
-/* 預設時間按鈕 */
+/* 預設按鈕列 */
 .presets {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: nowrap;
-  gap: 0.8em;
-  margin: 1.2em auto;
-  width: 90%;
-  max-width: 420px;
-  overflow: hidden;
+  display:flex;justify-content:space-between;align-items:center;gap:0.8em;
+  width:90%;max-width:420px;margin:1.2em auto;
 }
 .preset-btn {
-  flex: 1 1 0;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  background: #444;
-  border: none;
-  color: #ccc;
-  font-weight: bold;
-  font-size: clamp(0.9em, 2vw, 1em);
-  cursor: pointer;
-  transition: transform .15s, background .2s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  line-height: 1.2;
+  flex:1 1 0;aspect-ratio:1/1;border-radius:50%;
+  background:#444;border:none;color:#ccc;font-weight:bold;
+  font-size:clamp(0.9em,2vw,1em);
+  cursor:pointer;transition:transform .15s,background .2s;
 }
-.preset-btn.selected {
-  background: #222;
-  color: #FFD700;
-  transform: scale(1.08);
-  border: 2px solid #FFD700;
-}
-
+.preset-btn.selected {background:#222;color:#FFD700;transform:scale(1.08);border:2px solid #FFD700;}
 /* 計時顯示 */
 .timer-display {
-  font-family: 'Roboto Mono', monospace;
-  font-weight: bold;
-  background: #000;
-  color: #fff;
-  border-radius: 20px;
-  text-align: center;
-  letter-spacing: 0.05em;
-  width: 90%;
-  max-width: 90vw;
-  height: 35vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1em 0 2em 0;
-  box-shadow: 0 2px 10px #0006;
+  font-family:'Roboto Mono',monospace;font-weight:bold;
+  background:#000;color:#fff;border-radius:20px;text-align:center;
+  width:90%;max-width:90vw;height:35vh;display:flex;align-items:center;justify-content:center;
+  margin:1em 0 2em;box-shadow:0 2px 10px #0006;
 }
-.timer-display span {
-  font-size: clamp(6rem, 25vw, 14rem);
-  line-height: 1;
-}
+.timer-display span {font-size:clamp(6rem,25vw,14rem);}
 #symbol {
-  position: absolute;
-  top: 8px; right: 14px;
-  font-size: 2rem;
-  user-select: none;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+  position:absolute;top:8px;right:14px;font-size:2rem;user-select:none;
+  text-shadow:2px 2px 4px rgba(0,0,0,0.6);
 }
 
-/* === 手機版計時顯示優化（修改版） === */
-@media (max-width: 480px) {
-  .timer-display {
-    width: 95%;
-    height: 20vh;                /* ⬇️ 再縮短黑底框高度 */
-    margin: 0.6em auto 1.4em auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .timer-display span {
-    font-size: clamp(5rem, 27vw, 13rem); /* 字體接近邊緣 */
-  }
-  .bottom-bar {
-    bottom: 40px;               /* ⬆️ 上移底部按鈕群 */
-    padding: 0 0.8em;
-  }
-  .bottom-bar button {
-    font-size: 0.9em;           /* ⬇️ 縮小按鈕字體 */
-    padding: 0.25em 0.8em;
-    min-height: 38px;
-  }
+/* === 手機顯示 === */
+@media (max-width:480px){
+  .timer-display{width:95%;height:20vh;margin:0.6em auto 1.4em;}
+  .timer-display span{font-size:clamp(5rem,27vw,13rem);}
+  .bottom-bar button{font-size:0.9em;padding:0.25em 0.8em;min-height:38px;}
+  .bottom-bar{bottom:40px;padding:0 0.8em;}
 }
+
+/* === 平板優化 === */
+@media (min-width:768px) and (max-width:1024px){
+  .timer-display{height:25vh;}
+  .controls{gap:2em;}
+  .preset-btn{font-size:1.1em;}
+}
+
+/* === 按鈕閃爍效果 === */
+button.flash {animation:flashBorder 0.3s ease;}
+@keyframes flashBorder {
+  0% {box-shadow:0 0 8px 3px #FFD700;}
+  100% {box-shadow:none;}
+}
+
 /* 控制按鈕 */
 .controls {
   display: flex;
@@ -266,6 +188,7 @@ html, body {
   transition: opacity 0.3s ease;
 }
 .bottom-bar.hidden { opacity: 0; pointer-events: none; }
+
 .bottom-bar button {
   background: #222; color: #fff;
   border: 2px solid #fff;
@@ -275,24 +198,6 @@ html, body {
   min-height: 48px;
   padding: 0.4em 1.3em;
   cursor: pointer;
-}
-
-/* 提示訊息 */
-#toast {
-  position: fixed;
-  bottom: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #FF6666;
-  color: #fff;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-weight: bold;
-  display: none;
-  animation: fadeOut 3s forwards;
-}
-@keyframes fadeOut {
-  0%{opacity:1;} 70%{opacity:1;} 100%{opacity:0;}
 }
 
 /* Modal */
@@ -312,6 +217,7 @@ html, body {
   animation: fadeIn 0.3s ease;
 }
 @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+
 .custom-row { margin: 0.8em 0; }
 select {
   font-size: 1.1em;
@@ -371,16 +277,14 @@ select {
     <div class="timer-display" id="display"><span>00:00</span></div>
 
     <div class="controls">
-      <button id="mainControl" onclick="mainControl()" disabled>▶️ 開始</button>
-      <button id="reset" onclick="resetTimer()" disabled>🔁 歸零</button>
+      <button id="mainControl" onclick="buttonFlash(this); mainControl();" disabled>▶️ 開始</button>
+      <button id="reset" onclick="buttonFlash(this); resetTimer();" disabled>🔁 歸零</button>
     </div>
 
     <div class="bottom-bar" id="bottomBar">
       <button id="homeBtn" onclick="location.href='https://ckc300.github.io/'">🏠 回首頁</button>
-      <button id="fsBtn" onclick="toggleFullscreen()">🔲 全螢幕</button>
+      <button id="fsBtn" onclick="buttonFlash(this); toggleFullscreen()">🔲 全螢幕</button>
     </div>
-
-    <div id="toast"></div>
 
     <div class="modal" id="customModal">
       <div class="modal-content">
@@ -390,8 +294,8 @@ select {
         <div class="custom-row">紅燈：<select id="rMin"></select>分<select id="rSec"></select>秒</div>
         <div class="custom-row">閃紅：<select id="bMin"></select>分<select id="bSec"></select>秒</div>
         <div class="modal-btns">
-          <button id="applyBtn" onclick="applyCustom()" disabled>套用</button>
-          <button id="cancelBtn" onclick="closeModal()">取消</button>
+          <button id="applyBtn" onclick="buttonFlash(this); applyCustom();" disabled>套用</button>
+          <button id="cancelBtn" onclick="buttonFlash(this); closeModal()">取消</button>
         </div>
       </div>
     </div>
@@ -399,8 +303,62 @@ select {
 </div>
 <!-- 第3段開始 -->
 <script>
-let thresholds={}, currentState='init', timer=null, blink=null, time=0, startAt=0;
-let blinkState=false, selectedPreset=null;
+/* === 防鎖屏功能（含 Safari 保險方案） === */
+let wakeLock = null;
+let videoLock = null;
+
+async function requestWakeLock() {
+  try {
+    if ('wakeLock' in navigator) {
+      wakeLock = await navigator.wakeLock.request('screen');
+      wakeLock.addEventListener('release', () => console.log('🔓 防鎖屏已釋放'));
+      console.log('✅ 已啟用防鎖屏');
+    } else {
+      console.warn('⚠️ 不支援 Wake Lock API，啟用保險方案');
+      enableVideoLock();
+    }
+  } catch (err) {
+    console.error('⚠️ 防鎖屏錯誤:', err);
+    enableVideoLock();
+  }
+}
+
+// iOS Safari 保險方案 — 隱藏靜音影片保持亮屏
+function enableVideoLock() {
+  if (videoLock) return;
+  const v = document.createElement('video');
+  v.src = 'data:video/mp4;base64,AAAAHGZ0eXBtcDQyAAAAAG1wNDFtcDQyaXNvbQAAABxnZHJtaW5mAAAAE21kaW5mAAAAA2libWlhbmltAAAAAW1vb3YAAAABbWRhdGEAAAAA';
+  v.loop = true; v.muted = true; v.playsInline = true; v.style.display = 'none';
+  document.body.appendChild(v);
+  v.play().then(()=>console.log('🎥 啟用隱藏影片防鎖屏')).catch(()=>{});
+  videoLock = v;
+}
+
+async function releaseWakeLock() {
+  if (wakeLock) {
+    try { await wakeLock.release(); wakeLock = null; console.log('🔓 已釋放防鎖屏'); } catch (err) {}
+  }
+  if (videoLock) { videoLock.pause(); videoLock.remove(); videoLock = null; console.log('🛑 關閉隱藏影片防鎖屏'); }
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') requestWakeLock();
+  else releaseWakeLock();
+});
+window.addEventListener('beforeunload', releaseWakeLock);
+window.addEventListener('load', requestWakeLock);
+
+/* === 狀態物件 === */
+const TimerState = {
+  status: 'init',
+  thresholds: {green:0,yellow:0,red:0,blink:0},
+  time: 0,
+  startAt: 0,
+  timer: null,
+  blink: null,
+  blinkState: false,
+  selectedPreset: null
+};
 
 /* === 初始化自定義選單 === */
 function initSelects(){
@@ -409,41 +367,42 @@ function initSelects(){
   for(let p of ['g','y','r','b']){
     const minSel=document.getElementById(p+'Min');
     const secSel=document.getElementById(p+'Sec');
+
+    let pm=document.createElement('option'); pm.value=""; pm.text="--"; pm.selected=true; pm.disabled=true; minSel.appendChild(pm);
+    let ps=document.createElement('option'); ps.value=""; ps.text="--"; ps.selected=true; ps.disabled=true; secSel.appendChild(ps);
+
     for(let i=config[p][0];i<=config[p][1];i++){
-      let o=document.createElement('option');
-      o.value=i;o.text=i;minSel.appendChild(o);
+      let o=document.createElement('option'); o.value=i;o.text=i;minSel.appendChild(o);
     }
     for(let s of secs){
-      let o=document.createElement('option');
-      o.value=s;o.text=s.toString().padStart(2,'0');secSel.appendChild(o);
+      let o=document.createElement('option'); o.value=s;o.text=s.toString().padStart(2,'0');secSel.appendChild(o);
     }
+
     minSel.addEventListener('change',checkCustomInputs);
     secSel.addEventListener('change',checkCustomInputs);
   }
 }
 initSelects();
 
-/* === 提示訊息 === */
-function toast(msg,color='#FF6666'){
-  const t=document.getElementById('toast');
-  t.style.background=color; t.innerText=msg; t.style.display='block';
-  setTimeout(()=>t.style.display='none',3000);
+/* === 按鈕閃光回饋 === */
+function buttonFlash(btn){
+  btn.classList.add('flash');
+  setTimeout(()=>btn.classList.remove('flash'),300);
 }
 
-/* === 頁面互動 === */
+/* === UI控制 === */
 function toggleBottomBar(show){
   const bar=document.getElementById('bottomBar');
   if(show) bar.classList.remove('hidden'); else bar.classList.add('hidden');
 }
 function openCustomModal(btn){
-  if(currentState!=='init')return;
-  selectedPreset=btn;
+  if(TimerState.status!=='init')return;
+  TimerState.selectedPreset=btn;
   document.getElementById('customModal').style.display='flex';
   checkCustomInputs();
 }
 function closeModal(){document.getElementById('customModal').style.display='none';}
 
-/* === 取得輸入值 === */
 function getVal(id){
   const m=document.getElementById(id).value;
   const s=document.getElementById(id.replace('Min','Sec')).value;
@@ -460,72 +419,65 @@ function checkCustomInputs(){
 }
 function applyCustom(){
   const g=getVal('gMin'),y=getVal('yMin'),r=getVal('rMin'),b=getVal('bMin');
-  if([g,y,r,b].some(isNaN)){toast('欄位未填完！');return;}
-  if(!(g<y && y<r && r<b)){toast('數值錯誤！');return;}
-  thresholds={green:g,yellow:y,red:r,blink:b};
-  closeModal();toast('設定成功！','#00B050');
-  enableControls();highlight(selectedPreset);
+  if([g,y,r,b].some(isNaN))return;
+  if(!(g<y && y<r && r<b))return;
+  TimerState.thresholds={green:g,yellow:y,red:r,blink:b};
+  closeModal();enableControls();highlight(TimerState.selectedPreset);
 }
-
-/* === 預設時間設定 === */
 function setPreset(g,y,r,b,btn){
-  if(currentState!=='init')return;
-  thresholds={green:g*60,yellow:y*60,red:r*60,blink:b*60};
+  if(TimerState.status!=='init')return;
+  TimerState.thresholds={green:g*60,yellow:y*60,red:r*60,blink:b*60};
   enableControls();highlight(btn);
 }
 function highlight(btn){
   document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('selected'));
-  btn.classList.add('selected');selectedPreset=btn;
-  const start=document.getElementById('mainControl');
-  start.classList.add('active');
+  btn.classList.add('selected');
+  TimerState.selectedPreset=btn;
+  document.getElementById('mainControl').classList.add('active');
 }
 
-/* === 主控制 === */
+/* === 控制 === */
 function mainControl(){
-  if(currentState==='init')startTimer();
-  else if(currentState==='running')pauseTimer();
-  else if(currentState==='paused')resumeTimer();
+  if(TimerState.status==='init') startTimer();
+  else if(TimerState.status==='running') pauseTimer();
+  else if(TimerState.status==='paused') resumeTimer();
 }
 function startTimer(){
-  currentState='running';startAt=Date.now()-time*1000;
-  timer=setInterval(update,100);
+  TimerState.status='running';
+  TimerState.startAt=Date.now()-TimerState.time*1000;
+  TimerState.timer=setInterval(update,100);
   document.getElementById('mainControl').textContent='⏸️ 暫停';
-  document.getElementById('reset').classList.remove('active');
   document.getElementById('reset').disabled=true;
   document.querySelectorAll('.preset-btn').forEach(b=>b.disabled=true);
   toggleBottomBar(false);
 }
 function pauseTimer(){
-  clearInterval(timer);
-  currentState='paused';
+  clearInterval(TimerState.timer);
+  TimerState.status='paused';
   document.getElementById('mainControl').textContent='▶️ 繼續';
   document.getElementById('reset').disabled=false;
   document.getElementById('reset').classList.add('active');
   toggleBottomBar(true);
-  if(blink){clearInterval(blink);blink=null;document.body.style.background='#FF2400';}
+  if(TimerState.blink){clearInterval(TimerState.blink);TimerState.blink=null;}
 }
 function resumeTimer(){
-  startAt=Date.now()-time*1000;timer=setInterval(update,100);
-  currentState='running';
+  TimerState.startAt=Date.now()-TimerState.time*1000;
+  TimerState.timer=setInterval(update,100);
+  TimerState.status='running';
   document.getElementById('mainControl').textContent='⏸️ 暫停';
   document.getElementById('reset').disabled=true;
   document.getElementById('reset').classList.remove('active');
   toggleBottomBar(false);
-  if(time>=thresholds.blink && !blink){
-    blink=setInterval(()=>{blinkState=!blinkState;
-      document.body.style.background=blinkState?'#FF2400':'#000000';
-    },300);
-  }
 }
 function resetTimer(){
-  clearInterval(timer);
-  if(blink){clearInterval(blink);blink=null;}
+  clearInterval(TimerState.timer);
+  if(TimerState.blink){clearInterval(TimerState.blink);TimerState.blink=null;}
   document.body.style.background='#111';
   document.getElementById('symbol').textContent='';
-  const avatar=document.getElementById('avatar');
-  avatar.style.filter='invert(0)';
+  document.getElementById('avatar').style.filter='invert(0)';
   document.getElementById('title').style.color='#fff';
-  currentState='init';time=0;updateDisplay();
+  TimerState.status='init';TimerState.time=0;
+  updateDisplay();
   document.getElementById('mainControl').textContent='▶️ 開始';
   document.getElementById('mainControl').classList.remove('active');
   document.getElementById('mainControl').disabled=true;
@@ -533,77 +485,60 @@ function resetTimer(){
   document.getElementById('reset').classList.remove('active');
   document.querySelectorAll('.preset-btn').forEach(b=>{b.disabled=false;b.classList.remove('selected');});
   toggleBottomBar(true);
-  blinkState=false;
+  TimerState.blinkState=false;
 }
 function enableControls(){
   document.getElementById('mainControl').disabled=false;
   toggleBottomBar(true);
 }
 
-/* === 更新畫面 === */
+/* === 更新 === */
 function update(){
-  time=Math.floor((Date.now()-startAt)/1000);
+  TimerState.time=Math.floor((Date.now()-TimerState.startAt)/1000);
   updateDisplay();updateBg();
 }
 function updateDisplay(){
-  const m=Math.floor(time/60),s=time%60;
+  const m=Math.floor(TimerState.time/60),s=TimerState.time%60;
   document.querySelector('#display span').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
 }
+
+/* === 背景與符號 === */
 function updateBg(){
   const sym=document.getElementById('symbol');
   const avatar=document.getElementById('avatar');
   const title=document.getElementById('title');
-  if(time>=thresholds.blink){
-    if(!blink && currentState==='running'){
-      blink=setInterval(()=>{blinkState=!blinkState;
-        document.body.style.background=blinkState?'#FF2400':'#000000';
-        avatar.style.filter=blinkState?'invert(0)':'invert(1)';
+  const t=TimerState.time, th=TimerState.thresholds;
+  if(t>=th.blink){
+    if(!TimerState.blink && TimerState.status==='running'){
+      TimerState.blink=setInterval(()=>{
+        TimerState.blinkState=!TimerState.blinkState;
+        document.body.style.background=TimerState.blinkState?'#FF2400':'#000000';
+        avatar.style.filter=TimerState.blinkState?'invert(0)':'invert(1)';
       },300);
     }
-    sym.textContent='🔴';
-    title.style.color='#fff';
-  }else{
-    if(blink){clearInterval(blink);blink=null;document.body.style.background='#FF2400';}
-    if(time>=thresholds.red){
-      document.body.style.background='#FF2400';sym.textContent='⛔';
-      title.style.color='#fff';avatar.style.filter='invert(1)';
-    }
-    else if(time>=thresholds.yellow){
-      document.body.style.background='#FFD55A';sym.textContent='⚠️';
-      title.style.color='#000';avatar.style.filter='invert(1)';
-    }
-    else if(time>=thresholds.green){
-      document.body.style.background='#4B5320';sym.textContent='✅';
-      title.style.color='#fff';avatar.style.filter='invert(1)';
-    }
-    else{
-      document.body.style.background='#111';sym.textContent='';
-      title.style.color='#fff';avatar.style.filter='invert(0)';
-    }
+    sym.textContent='❌';title.style.color='#fff';
+  } else {
+    if(TimerState.blink){clearInterval(TimerState.blink);TimerState.blink=null;document.body.style.background='#FF2400';}
+    if(t>=th.red){document.body.style.background='#FF2400';sym.textContent='⛔';title.style.color='#fff';avatar.style.filter='invert(1)';}
+    else if(t>=th.yellow){document.body.style.background='#FFD55A';sym.textContent='⚠️';title.style.color='#000';avatar.style.filter='invert(1)';}
+    else if(t>=th.green){document.body.style.background='#4B5320';sym.textContent='☑️';title.style.color='#fff';avatar.style.filter='invert(1)';}
+    else{document.body.style.background='#111';sym.textContent='';title.style.color='#fff';avatar.style.filter='invert(0)';}
   }
 }
 
-/* === 其他功能 === */
+/* === 其他 === */
 function toggleFullscreen(){
   const b=document.getElementById('fsBtn');
   if(!document.fullscreenElement){document.documentElement.requestFullscreen();b.textContent='❌ 結束全螢幕';}
   else{document.exitFullscreen();b.textContent='🔲 全螢幕';}
 }
-
-/* === 手機橫式限制與桌機縮放 === */
 function handleOrientation(){
-  const isMobile=/Mobi|Android|iPhone/i.test(navigator.userAgent);
+  const isMobile=/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
   const isLandscape=window.matchMedia("(orientation: landscape)").matches;
   const tip=document.getElementById('rotateTip');
   const content=document.getElementById('appContent');
-  if(isMobile && isLandscape){
-    tip.style.display='flex';
-    content.style.display='none';
-  }else{
-    tip.style.display='none';
-    content.style.display='block';
-    scaleApp();
-  }
+  if(isMobile && isLandscape){tip.style.display='flex';content.style.display='none';}
+  else{tip.style.display='none';content.style.display='block';scaleApp();}
 }
 function scaleApp(){
   const app=document.getElementById('appContent');
@@ -611,8 +546,6 @@ function scaleApp(){
   const scale=Math.min(window.innerWidth/baseWidth, window.innerHeight/baseHeight);
   app.style.transform=`translate(-50%, -50%) scale(${scale})`;
 }
-
-/* === 載入事件 === */
 window.addEventListener('resize',handleOrientation);
 window.addEventListener('orientationchange',handleOrientation);
 window.addEventListener('load',handleOrientation);
