@@ -1,72 +1,73 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>雨軒計時器</title>
 <style>
 html, body {
-  margin: 0; padding: 0;
-  width: 100%; height: 100%;
-  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans TC", sans-serif;
   background: #111;
   color: #fff;
-  font-family: 'Noto Sans TC', sans-serif;
-  transition: background-color 0.4s ease;
+  overflow: hidden;
+  height: 100%;
 }
 
-/* === 開場動畫：頭像 + 雨軒計時器 === */
+/* === 五段柔光黑白呼吸動畫 === */
+@keyframes titleBreatheBW {
+  0%   { color: rgba(255,255,255,0.5); }
+  25%  { color: rgba(255,255,255,0.75); }
+  50%  { color: rgba(255,255,255,1); }
+  75%  { color: rgba(255,255,255,0.75); }
+  100% { color: rgba(255,255,255,0.5); }
+}
+
+/* === 開場動畫 === */
 #intro {
   position: fixed;
   inset: 0;
   background: #000;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 9999;
-  animation: introFade 2.4s ease forwards;
+  color: #fff;
+  animation: fadeOut 1.6s ease 2.4s forwards;
 }
 #intro img {
-  width: 120px;
-  height: auto;
-  margin-bottom: 0.6em;
-  filter: drop-shadow(0 0 10px #FFD700);
+  width: 100px;
+  animation: fadeIn 1.2s ease;
 }
 #intro h1 {
-  font-size: 2.2em;
+  font-size: 2em;
+  margin-top: 0.5em;
+  animation: fadeIn 1.5s ease;
+}
+@keyframes fadeOut {
+  from { opacity: 1; } to { opacity: 0; visibility: hidden; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+
+/* === 手機橫式提示 === */
+#rotateTip {
+  position: fixed;
+  inset: 0;
+  background: #000;
   color: #FFD700;
-  letter-spacing: 0.1em;
-  animation: textGlow 2s infinite alternate;
-}
-@keyframes introFade {
-  0% { opacity: 0; }
-  10% { opacity: 1; }
-  85% { opacity: 1; }
-  100% { opacity: 0; visibility: hidden; }
-}
-@keyframes textGlow {
-  from { text-shadow: 0 0 4px #FFD700, 0 0 10px #FFD700; }
-  to   { text-shadow: 0 0 15px #FFD700, 0 0 30px #FFDD55; }
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4em;
+  font-weight: bold;
+  z-index: 20000;
 }
 
-/* === 頭像呼吸亮度 === */
-@keyframes breathe {
-  0%   { filter: brightness(0.9); }
-  50%  { filter: brightness(1.3); }
-  100% { filter: brightness(0.9); }
-}
-
-/* === 五段柔光黑白呼吸（標題） === */
-@keyframes titleBreatheBW {
-  0%   { color: rgb(128,128,128); }
-  25%  { color: rgb(191,191,191); }
-  50%  { color: rgb(255,255,255); }
-  75%  { color: rgb(191,191,191); }
-  100% { color: rgb(128,128,128); }
-}
-
-/* 框架容器 */
+/* === 主容器 === */
 #appContainer {
   position: relative;
   width: 100vw;
@@ -79,154 +80,102 @@ html, body {
 }
 #appContent {
   position: absolute;
-  top: 50%; left: 50%;
+  top: 50%;
+  left: 50%;
   transform-origin: center center;
   transform: translate(-50%, -50%) scale(1);
   width: 360px;
   height: 640px;
 }
 
-/* 橫式顯示提示 */
-#rotateTip {
-  display: none;
-  position: fixed; inset: 0;
-  background: #000;
-  color: #FFD700;
-  font-size: 1.8em;
-  font-weight: bold;
-  justify-content: center; align-items: center;
-  z-index: 999;
-}
-
-/* 標題區塊置中＋呼吸動畫 */
+/* === Header === */
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.2em;
-  margin-top: 0.8em;
-  margin-bottom: 0.5em;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
   text-align: center;
+  animation: titleBreatheBW 4s ease-in-out infinite;
 }
 .header img {
-  height: clamp(60px, 10vw, 100px);
-  width: auto;
-  transition: filter 0.3s ease;
-  animation: breathe 3s ease-in-out infinite;
+  width: 80px;
+  display: block;
+  margin: 0 auto 0.5em auto;
 }
 .header h1 {
-  font-size: clamp(2.2rem, 8vw, 3rem);
-  font-weight: normal;
-  letter-spacing: 0.1em;
+  font-size: 2em;
   margin: 0;
-  white-space: nowrap;
-  transition: color 0.4s ease;
-  animation: titleBreatheBW 3.5s ease-in-out infinite;
 }
-
-/* 分隔線 */
 .divider {
-  width: 90%;
-  max-width: 500px;
-  height: 1px;
-  margin: 0.6em auto 1.2em auto;
-  background: rgba(102, 102, 102, 0.4);
-  display: block;
+  width: 80%;
+  height: 2px;
+  background: #444;
+  margin: 0.8em auto 1em auto;
 }
 
-/* 預設時間按鈕 */
+/* === 預設按鈕列 === */
 .presets {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: nowrap;
-  gap: 0.8em;
-  margin: 1.2em auto;
-  width: 90%;
-  max-width: 420px;
-  overflow: hidden;
+  justify-content: center;
+  gap: 1em;
+  margin-bottom: 1.6em;
 }
 .preset-btn {
-  flex: 1 1 0;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
   background: #444;
+  color: #fff;
   border: none;
-  color: #ccc;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  font-size: 0.9em;
   font-weight: bold;
-  font-size: clamp(0.9em, 2vw, 1em);
   cursor: pointer;
-  transition: transform .15s, background .2s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  line-height: 1.2;
+  transition: 0.3s;
 }
 .preset-btn.selected {
-  background: #222;
-  color: #FFD700;
-  transform: scale(1.08);
-  border: 2px solid #FFD700;
+  background: #FFD700;
+  color: #000;
+  border: 3px solid #000;
 }
 
-/* 計時顯示 */
+/* === 計時顯示區 === */
 .timer-display {
-  font-family: 'Roboto Mono', monospace;
-  font-weight: bold;
   background: #000;
-  color: #fff;
-  border-radius: 20px;
-  text-align: center;
-  letter-spacing: 0.05em;
   width: 90%;
-  max-width: 90vw;
-  height: 35vh;
+  height: 25vh;
+  margin: 0 auto 2em auto;
+  border-radius: 20px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin: 1em 0 2em 0;
-  box-shadow: 0 2px 10px #0006;
+  align-items: center;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.5);
 }
 .timer-display span {
-  font-size: clamp(6rem, 25vw, 14rem);
-  line-height: 1;
-}
-#symbol {
-  position: absolute;
-  top: 8px; right: 14px;
-  font-size: 2rem;
-  user-select: none;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+  font-size: clamp(6rem, 18vw, 10rem);
+  font-weight: bold;
+  letter-spacing: 0.05em;
 }
 
-/* === 手機版計時顯示優化 === */
+/* === 手機版微調（縮短黑框＋底部上移縮小） === */
 @media (max-width: 480px) {
   .timer-display {
-    width: 95%;
-    height: 25vh;
-    margin: 1em auto 2em auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 94%;
+    height: 20vh;
+    margin: 0.5em auto 1.5em auto;
   }
   .timer-display span {
-    font-size: clamp(5rem, 26vw, 13rem); /* ⬆️ 放大字體接近邊緣 */
-  }
-  .bottom-bar button {
-    font-size: 0.95em;
-    padding: 0.3em 0.8em;    /* 縮小按鈕尺寸 */
-    min-height: 42px;
+    font-size: clamp(5.2rem, 27vw, 14rem);
   }
   .bottom-bar {
-    bottom: 25px;           /* 按鈕往上移 */
-    padding: 0 0.8em;
+    bottom: 40px;
+    padding: 0 0.6em;
+    gap: 0.6em;
+  }
+  .bottom-bar button {
+    font-size: 0.85em;
+    padding: 0.25em 0.8em;
+    min-height: 38px;
+    border-radius: 8px;
   }
 }
-/* 控制按鈕 */
+
+/* === 控制按鈕區 === */
 .controls {
   display: flex;
   justify-content: center;
@@ -251,8 +200,6 @@ html, body {
 #reset {
   background: #444; color: #777;
 }
-
-/* ✅ 改良：主要控制按鈕高亮 */
 #mainControl.active, #reset.active {
   background: #FFD700;
   color: #000;
@@ -260,10 +207,13 @@ html, body {
   box-shadow: 0 0 6px rgba(0,0,0,0.5);
 }
 
-/* 底部欄 */
+/* === 底部功能列 === */
 .bottom-bar {
-  position: fixed; bottom: 10px; left: 0; right: 0;
-  display: flex; justify-content: space-between;
+  position: fixed;
+  bottom: 10px;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
   padding: 0 1em;
   transition: opacity 0.3s ease;
 }
@@ -280,7 +230,7 @@ html, body {
   cursor: pointer;
 }
 
-/* 提示訊息 */
+/* === 提示訊息 === */
 #toast {
   position: fixed;
   bottom: 20%;
@@ -298,12 +248,14 @@ html, body {
   0%{opacity:1;} 70%{opacity:1;} 100%{opacity:0;}
 }
 
-/* Modal */
+/* === Modal === */
 .modal {
   display: none;
-  position: fixed; inset: 0;
+  position: fixed;
+  inset: 0;
   background: rgba(0,0,0,0.7);
-  justify-content: center; align-items: center;
+  justify-content: center;
+  align-items: center;
   z-index: 100;
 }
 .modal-content {
@@ -315,7 +267,6 @@ html, body {
   animation: fadeIn 0.3s ease;
 }
 @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
-
 .custom-row { margin: 0.8em 0; }
 select {
   font-size: 1.1em;
@@ -336,25 +287,22 @@ select {
   cursor: pointer;
   border: none;
 }
-#applyBtn {
-  background: #444; color: #999;
-}
-#applyBtn.active {
-  background: #FFD700; color: #000;
-}
-#cancelBtn {
-  background: #FFD700; color: #000;
-}
+#applyBtn { background: #444; color: #999; }
+#applyBtn.active { background: #FFD700; color: #000; }
+#cancelBtn { background: #FFD700; color: #000; }
 </style>
 </head>
 <body>
+<!-- 開場動畫 -->
 <div id="intro">
   <img src="Pathways_Power_Hub.webp" alt="頭像">
   <h1>雨軒計時器</h1>
 </div>
 
+<!-- 手機橫式提示 -->
 <div id="rotateTip">請旋轉手機以直式螢幕操作 📱</div>
 
+<!-- 主應用容器 -->
 <div id="appContainer">
   <div id="appContent">
     <div id="symbol"></div>
@@ -364,6 +312,7 @@ select {
     </div>
     <div class="divider"></div>
 
+    <!-- 預設時間按鈕 -->
     <div class="presets">
       <button class="preset-btn" onclick="setPreset(5,6,7,7.5,this)">5–7分<br>±30秒</button>
       <button class="preset-btn" onclick="setPreset(1,1.5,2,2.5,this)">1–2分<br>+30秒</button>
@@ -371,20 +320,25 @@ select {
       <button class="preset-btn" onclick="openCustomModal(this)">自定義</button>
     </div>
 
+    <!-- 計時顯示 -->
     <div class="timer-display" id="display"><span>00:00</span></div>
 
+    <!-- 控制按鈕 -->
     <div class="controls">
       <button id="mainControl" onclick="mainControl()" disabled>▶️ 開始</button>
       <button id="reset" onclick="resetTimer()" disabled>🔁 歸零</button>
     </div>
 
+    <!-- 底部功能列 -->
     <div class="bottom-bar" id="bottomBar">
       <button id="homeBtn" onclick="location.href='https://ckc300.github.io/'">🏠 回首頁</button>
       <button id="fsBtn" onclick="toggleFullscreen()">🔲 全螢幕</button>
     </div>
 
+    <!-- 提示訊息 -->
     <div id="toast"></div>
 
+    <!-- 自訂時間設定 Modal -->
     <div class="modal" id="customModal">
       <div class="modal-content">
         <h3>自定義時間設定</h3>
@@ -398,31 +352,36 @@ select {
         </div>
       </div>
     </div>
+
+    <!-- 音效 -->
+    <audio id="beepStart" src="start.mp3" preload="auto"></audio>
+    <audio id="beepWarning" src="warning.mp3" preload="auto"></audio>
+    <audio id="beepEnd" src="end.mp3" preload="auto"></audio>
   </div>
 </div>
 
 <!-- 第3段開始 -->
 <script>
-let thresholds={}, currentState='init', timer=null, blink=null, time=0, startAt=0;
-let blinkState=false, selectedPreset=null;
+let thresholds = {}, currentState = 'init', timer = null, blink = null, time = 0, startAt = 0;
+let blinkState = false, selectedPreset = null;
 
 /* === 初始化自定義選單 === */
 function initSelects(){
-  const config={g:[3,40],y:[4,40],r:[5,40],b:[6,40]};
-  const secs=[0,30];
+  const config = {g:[3,40], y:[4,40], r:[5,40], b:[6,40]};
+  const secs = [0,30];
   for(let p of ['g','y','r','b']){
-    const minSel=document.getElementById(p+'Min');
-    const secSel=document.getElementById(p+'Sec');
-    for(let i=config[p][0];i<=config[p][1];i++){
+    const minSel = document.getElementById(p+'Min');
+    const secSel = document.getElementById(p+'Sec');
+    for(let i=config[p][0]; i<=config[p][1]; i++){
       let o=document.createElement('option');
-      o.value=i;o.text=i;minSel.appendChild(o);
+      o.value=i; o.text=i; minSel.appendChild(o);
     }
     for(let s of secs){
       let o=document.createElement('option');
-      o.value=s;o.text=s.toString().padStart(2,'0');secSel.appendChild(o);
+      o.value=s; o.text=s.toString().padStart(2,'0'); secSel.appendChild(o);
     }
-    minSel.addEventListener('change',checkCustomInputs);
-    secSel.addEventListener('change',checkCustomInputs);
+    minSel.addEventListener('change', checkCustomInputs);
+    secSel.addEventListener('change', checkCustomInputs);
   }
 }
 initSelects();
@@ -434,20 +393,22 @@ function toast(msg,color='#FF6666'){
   setTimeout(()=>t.style.display='none',3000);
 }
 
-/* === 頁面互動 === */
+/* === 開關底部欄 === */
 function toggleBottomBar(show){
   const bar=document.getElementById('bottomBar');
   if(show) bar.classList.remove('hidden'); else bar.classList.add('hidden');
 }
+
+/* === 開啟/關閉自訂時間 Modal === */
 function openCustomModal(btn){
-  if(currentState!=='init')return;
+  if(currentState!=='init') return;
   selectedPreset=btn;
   document.getElementById('customModal').style.display='flex';
   checkCustomInputs();
 }
 function closeModal(){document.getElementById('customModal').style.display='none';}
 
-/* === 取得輸入值 === */
+/* === 驗證自訂時間輸入 === */
 function getVal(id){
   const m=document.getElementById(id).value;
   const s=document.getElementById(id.replace('Min','Sec')).value;
@@ -479,26 +440,31 @@ function setPreset(g,y,r,b,btn){
 }
 function highlight(btn){
   document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('selected'));
-  btn.classList.add('selected');selectedPreset=btn;
-  const start=document.getElementById('mainControl');
-  start.classList.add('active');
+  btn.classList.add('selected'); selectedPreset=btn;
+  document.getElementById('mainControl').classList.add('active');
 }
 
-/* === 主控制 === */
+/* === 控制邏輯 === */
 function mainControl(){
-  if(currentState==='init')startTimer();
-  else if(currentState==='running')pauseTimer();
-  else if(currentState==='paused')resumeTimer();
+  if(currentState==='init') startTimer();
+  else if(currentState==='running') pauseTimer();
+  else if(currentState==='paused') resumeTimer();
 }
+
+/* === 開始計時 === */
 function startTimer(){
-  currentState='running';startAt=Date.now()-time*1000;
+  currentState='running';
+  startAt=Date.now()-time*1000;
   timer=setInterval(update,100);
   document.getElementById('mainControl').textContent='⏸️ 暫停';
   document.getElementById('reset').classList.remove('active');
   document.getElementById('reset').disabled=true;
   document.querySelectorAll('.preset-btn').forEach(b=>b.disabled=true);
   toggleBottomBar(false);
+  playSound('beepStart');
 }
+
+/* === 暫停計時 === */
 function pauseTimer(){
   clearInterval(timer);
   currentState='paused';
@@ -508,8 +474,11 @@ function pauseTimer(){
   toggleBottomBar(true);
   if(blink){clearInterval(blink);blink=null;document.body.style.background='#FF2400';}
 }
+
+/* === 繼續計時 === */
 function resumeTimer(){
-  startAt=Date.now()-time*1000;timer=setInterval(update,100);
+  startAt=Date.now()-time*1000;
+  timer=setInterval(update,100);
   currentState='running';
   document.getElementById('mainControl').textContent='⏸️ 暫停';
   document.getElementById('reset').disabled=true;
@@ -521,14 +490,15 @@ function resumeTimer(){
     },300);
   }
 }
+
+/* === 歸零 === */
 function resetTimer(){
   clearInterval(timer);
   if(blink){clearInterval(blink);blink=null;}
   document.body.style.background='#111';
   document.getElementById('symbol').textContent='';
-  const avatar=document.getElementById('avatar');
-  avatar.style.filter='invert(0)';
   document.getElementById('title').style.color='#fff';
+  document.getElementById('avatar').style.filter='invert(0)';
   currentState='init';time=0;updateDisplay();
   document.getElementById('mainControl').textContent='▶️ 開始';
   document.getElementById('mainControl').classList.remove('active');
@@ -539,62 +509,83 @@ function resetTimer(){
   toggleBottomBar(true);
   blinkState=false;
 }
+
+/* === 啟用控制按鈕 === */
 function enableControls(){
   document.getElementById('mainControl').disabled=false;
   toggleBottomBar(true);
 }
 
-/* === 更新畫面 === */
+/* === 更新計時 === */
 function update(){
   time=Math.floor((Date.now()-startAt)/1000);
-  updateDisplay();updateBg();
+  updateDisplay();
+  updateBg();
 }
+
+/* === 顯示時間 === */
 function updateDisplay(){
-  const m=Math.floor(time/60),s=time%60;
+  const m=Math.floor(time/60), s=time%60;
   document.querySelector('#display span').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
 }
+
+/* === 背景與狀態顯示 === */
 function updateBg(){
   const sym=document.getElementById('symbol');
   const avatar=document.getElementById('avatar');
   const title=document.getElementById('title');
+
   if(time>=thresholds.blink){
     if(!blink && currentState==='running'){
       blink=setInterval(()=>{blinkState=!blinkState;
         document.body.style.background=blinkState?'#FF2400':'#000000';
         avatar.style.filter=blinkState?'invert(0)':'invert(1)';
       },300);
+      playSound('beepEnd');
     }
     sym.textContent='🔴';
     title.style.color='#fff';
-  }else{
+  } else {
     if(blink){clearInterval(blink);blink=null;document.body.style.background='#FF2400';}
     if(time>=thresholds.red){
-      document.body.style.background='#FF2400';sym.textContent='⛔';
-      title.style.color='#fff';avatar.style.filter='invert(1)';
+      document.body.style.background='#FF2400'; sym.textContent='⛔';
+      avatar.style.filter='invert(1)'; title.style.color='#fff';
     }
     else if(time>=thresholds.yellow){
-      document.body.style.background='#FFD55A';sym.textContent='⚠️';
-      title.style.color='#000';avatar.style.filter='invert(1)';
+      document.body.style.background='#FFD55A'; sym.textContent='⚠️';
+      avatar.style.filter='invert(1)'; title.style.color='#000';
+      playSound('beepWarning');
     }
     else if(time>=thresholds.green){
-      document.body.style.background='#4B5320';sym.textContent='✅';
-      title.style.color='#fff';avatar.style.filter='invert(1)';
+      document.body.style.background='#4B5320'; sym.textContent='✅';
+      avatar.style.filter='invert(1)'; title.style.color='#fff';
     }
     else{
-      document.body.style.background='#111';sym.textContent='';
-      title.style.color='#fff';avatar.style.filter='invert(0)';
+      document.body.style.background='#111'; sym.textContent='';
+      avatar.style.filter='invert(0)'; title.style.color='#fff';
     }
   }
 }
 
-/* === 其他功能 === */
-function toggleFullscreen(){
-  const b=document.getElementById('fsBtn');
-  if(!document.fullscreenElement){document.documentElement.requestFullscreen();b.textContent='❌ 結束全螢幕';}
-  else{document.exitFullscreen();b.textContent='🔲 全螢幕';}
+/* === 音效播放 === */
+function playSound(id){
+  const el=document.getElementById(id);
+  if(el){ el.currentTime=0; el.play().catch(()=>{}); }
 }
 
-/* === 手機橫式限制與桌機縮放 === */
+/* === 全螢幕切換 === */
+function toggleFullscreen(){
+  const b=document.getElementById('fsBtn');
+  if(!document.fullscreenElement){
+    document.documentElement.requestFullscreen();
+    b.textContent='❌ 結束全螢幕';
+  } else {
+    document.exitFullscreen();
+    b.textContent='🔲 全螢幕';
+  }
+}
+
+/* === 手機橫式偵測與桌機縮放 === */
 function handleOrientation(){
   const isMobile=/Mobi|Android|iPhone/i.test(navigator.userAgent);
   const isLandscape=window.matchMedia("(orientation: landscape)").matches;
@@ -603,12 +594,14 @@ function handleOrientation(){
   if(isMobile && isLandscape){
     tip.style.display='flex';
     content.style.display='none';
-  }else{
+  } else {
     tip.style.display='none';
     content.style.display='block';
     scaleApp();
   }
 }
+
+/* === 桌機縮放 === */
 function scaleApp(){
   const app=document.getElementById('appContent');
   const baseWidth=360, baseHeight=640;
@@ -616,7 +609,7 @@ function scaleApp(){
   app.style.transform=`translate(-50%, -50%) scale(${scale})`;
 }
 
-/* === 載入事件 === */
+/* === 綁定事件 === */
 window.addEventListener('resize',handleOrientation);
 window.addEventListener('orientationchange',handleOrientation);
 window.addEventListener('load',handleOrientation);
