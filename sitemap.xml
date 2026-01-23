@@ -1,35 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <url>
-    <loc>https://ckc300.github.io/</loc>
-    <lastmod>2026-01-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <!-- 首頁與主要頁面 -->
+  <url><loc>https://ckc300.github.io/</loc><lastmod>2026-01-23</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/</loc><lastmod>2026-01-23</lastmod></url>
+  <url><loc>https://ckc300.github.io/Mentor/</loc><lastmod>2026-01-23</lastmod></url>
+  <url><loc>https://ckc300.github.io/Timer/timer.html</loc><lastmod>2026-01-23</lastmod></url>
 
-  <url>
-    <loc>https://ckc300.github.io/DTM/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <!-- Projects 子頁，共 76 筆 -->
+  <url><loc>https://ckc300.github.io/Projects/8104_抑揚頓挫與肢體語言入門.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8200_積極聆聽.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8201_連結觀眾交流共鳴.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8202_跨文化理解.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8203_有效的肢體語言.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8204_國際演講會指導計畫介紹.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8205_時間管理.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8206_了解自身溝通風格.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8207_瞭解你的領導風格.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8208_發掘幽默感.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8300_巧說故事拉近距離.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8301_製作有效的視覺輔具.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8302_發表社交演講.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8303_制定溝通計畫.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8304_聚焦正面思考.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8305_激勵啟發.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8306_運用人際網絡建立關係.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8307_協調最佳結果.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8308_說服型演講.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8309_計劃與執行.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8310_準備面談.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8311_為成為導師做準備.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8312_發表企畫案.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8313_達成共識.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8314_成功的合作.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8315_掌握解決衝突之道.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8316_了解情緒智能.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8317_了解抑揚頓挫.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8318_運用描述性語彙.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8319_使用簡報軟體.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8320_使用幽默吸引觀眾.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8400_提高社群媒體能見度.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8401_傳達改變.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8402_製作播客.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8403_透過正向教練達成改進.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8404_困境中領導.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8405_領導您的團隊.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8406_掌理改變.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8407_組織線上會議.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8408_成功管理專案.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8409_應對棘手的觀眾.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8410_指導.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8411_激勵他人.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8412_公關策略.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8413_問答時間.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8414_撰寫吸引人的部落格.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8415_在即席演講展示幽默力量.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8500_進階指導.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8501_建立您的願景.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8502_道德領導.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8503_高成效領導.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8504_時時挺身領導.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8505_於志工組織領導.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8506_學習心得.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8507_舉辦成功的活動.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8508_主持小組專題討論.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8509_為專業演講做好準備.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8510_回顧您的學習路徑.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8511_團隊營造.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8512_運用幽默傳達訊息.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8599_傑出會員專案.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/DL_活力領導.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/EC_高效能教練.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/EH_善用幽默.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/IP_創新計劃.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/LD_培育領導力.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/MS_激勵策略.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/PI_說服影響.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/PM_精通演講.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/SR_策略關係.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/TC_團隊合作.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/VC_願景溝通.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8100_講評與回饋.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8101_初試啼聲.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8102_研究和發表.html</loc><lastmod>2026-01-17</lastmod></url>
+  <url><loc>https://ckc300.github.io/Projects/8103_撰寫具備目的性的演講稿.html</loc><lastmod>2026-01-17</lastmod></url>
 
-  <url>
-    <loc>https://ckc300.github.io/Mentor/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://ckc300.github.io/Projects/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://ckc300.github.io/Timer/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <!-- 其他系統頁 -->
+  <url><loc>https://ckc300.github.io/404.html</loc><lastmod>2026-01-10</lastmod></url>
 
 </urlset>
