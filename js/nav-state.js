@@ -54,15 +54,17 @@
   resetAll();
 
   /* --- 首頁 --- */
-  if (isHome) {
-    activate(nav.home);
-    disable(nav.home);
+if (isHome) {
+  activate(nav.home);
+  disable(nav.home);
 
-    disable(nav.path); // 路徑尚未選定，語意不存在
-    enable(nav.project);
-    enable(nav.timer);
-    return;
-  }
+  nav.path.classList.remove('active'); // 🔒 封口：首頁不能有我的路徑高亮
+  disable(nav.path);
+
+  enable(nav.project);
+  enable(nav.timer);
+  return;
+}
 
   /* --- 路徑系統 --- */
   if (isPathway) {
