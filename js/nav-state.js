@@ -1,3 +1,4 @@
+// JavaScript Document
 (function () {
   const nav = {
     home: document.querySelector('[data-nav="home"]'),
@@ -53,18 +54,27 @@
 
   resetAll();
 
-  /* --- 首頁 --- */
+/* --- 首頁（強制狀態）--- */
 if (isHome) {
-  activate(nav.home);
+  // 先把所有 active 全部清掉（不相信任何前置狀態）
+  Object.values(nav).forEach(el => {
+    el.classList.remove('active');
+  });
+
+  // 首頁：唯一高亮
+  nav.home.classList.add('active');
   disable(nav.home);
 
-  nav.path.classList.remove('active'); // 🔒 封口：首頁不能有我的路徑高亮
+  // 我的路徑：語意不存在
   disable(nav.path);
 
+  // 其他入口
   enable(nav.project);
   enable(nav.timer);
-  return;
+
+  return; // ⚠️ 必須在最外層 function / IIFE 內
 }
+
 
   /* --- 路徑系統 --- */
   if (isPathway) {
