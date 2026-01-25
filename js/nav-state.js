@@ -7,7 +7,7 @@
     timer: document.querySelector('[data-nav="timer"]')
   };
 
-  const pathName = window.location.pathname;
+  const pathName = window.location.pathname.replace(/\/+$/, '');
 
   /* ========= 工具函式 ========= */
 
@@ -21,9 +21,7 @@
   function enable(el, handler = null) {
     el.classList.remove('disabled');
     el.removeAttribute('aria-disabled');
-    if (handler) {
-      el.onclick = handler;
-    }
+    if (handler) el.onclick = handler;
   }
 
   function activate(el) {
@@ -32,60 +30,52 @@
 
   function resetAll() {
     Object.values(nav).forEach(el => {
-      el.classList.remove('active');
-      el.classList.remove('disabled');
+      el.classList.remove('active', 'disabled');
       el.removeAttribute('aria-disabled');
       el.onclick = null;
     });
   }
 
-  /* ========= 狀態判斷 ========= */
+  /* ========= 狀態判斷（關鍵修正） ========= */
 
-  const isHome = pathName === '/' || pathName.endsWith('/index.html');
-  const isPathway = pathName.includes('/Projects/');
-  const isProject = pathName.includes('/DTM/');
-  const isTimer = pathName.includes('/Timer/');
+  // ✅ 首頁只允許根目錄
+  const isHome =
+    pathName === '' ||
+    pathName === '/' ||
+    pathName === '/index.html';
 
-  // 第二層 vs 第三層（是否為內容頁）
-  const isPathwayDetail = isPathway && !pathName.endsWith('.html') ? false : isPathway && pathName.match(/\d{4}_/);
-  const isProjectDetail = isProject && pathName.match(/\d{4}_/);
+  // ✅ 宇宙用資料夾判斷
+  const isPathway = pathName.startsWith('/Projects/');
+  const isProject = pathName.startsWith('/DTM/');
+  const isTimer = pathName.startsWith('/Timer/');
+
+  // ✅ 第三層：內容頁（用命名規則判斷）
+  const isPathwayDetail = isPathway && /\d{4}_/.test(pathName);
+  const isProjectDetail = isProject && /\d{4}_/.test(pathName);
 
   /* ========= 主邏輯 ========= */
 
   resetAll();
 
-/* --- 首頁（強制狀態）--- */
-if (isHome) {
-  // 先把所有 active 全部清掉（不相信任何前置狀態）
-  Object.values(nav).forEach(el => {
-    el.classList.remove('active');
-  });
+  /* --- 首頁 --- */
+  if (isHome) {
+    activate(nav.home);
+    disable(nav.home);
 
-  // 首頁：唯一高亮
-  nav.home.classList.add('active');
-  disable(nav.home);
-
-  // 我的路徑：語意不存在
-  disable(nav.path);
-
-  // 其他入口
-  enable(nav.project);
-  enable(nav.timer);
-
-  return; // ⚠️ 必須在最外層 function / IIFE 內
-}
-
+    disable(nav.path);      // 路徑未選，語意不存在
+    enable(nav.project);
+    enable(nav.timer);
+    return;
+  }
 
   /* --- 路徑系統 --- */
   if (isPathway) {
     activate(nav.path);
 
     if (isPathwayDetail) {
-      // 第三層：高亮 + 可用（回上一層）
-      enable(nav.path, () => history.back());
+      enable(nav.path, () => history.back()); // 第三層
     } else {
-      // 第二層：高亮 + 不可用
-      disable(nav.path);
+      disable(nav.path); // 第二層
     }
 
     enable(nav.home);
@@ -99,11 +89,9 @@ if (isHome) {
     activate(nav.project);
 
     if (isProjectDetail) {
-      // 第三層：高亮 + 可用（回上一層）
-      enable(nav.project, () => history.back());
+      enable(nav.project, () => history.back()); // 第三層
     } else {
-      // 第二層：高亮 + 不可用
-      disable(nav.project);
+      disable(nav.project); // 第二層
     }
 
     enable(nav.home);
