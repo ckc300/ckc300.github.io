@@ -13,8 +13,8 @@ body {
   flex-direction: column;
   margin: 0;
   background: image-set(
-    url('../images/Pathways_èµ°è·¯.webp') type("image/webp"),
-    url('../images/Pathways_èµ°è·¯.jpg') type("image/jpeg")
+    url('../images/Pathways_¨«¸ô.webp') type("image/webp"),
+    url('../images/Pathways_¨«¸ô.jpg') type("image/jpeg")
   ) no-repeat center center fixed;
   background-size: cover;
   background-attachment: fixed;
@@ -389,7 +389,12 @@ body {
   }
 }
 /* ?”§ ä¿®æ­£æ®µè½çµæ? */
-/* ?? ­º­¶¡Gdisabled ªº¡u§Úªº¸ô®|¡v¤£À³¸Ó¦³°ª«G¸Ë¹¢ */
+/* ?? ­º­¶¡G§Úªº¸ô®|¦b disabled ª¬ºA¤U¡A¤£À³¦³¥ô¦ó°ª«GµøÄ± */
+.navbar a[data-nav="path"].disabled {
+  background: none;
+  color: #aaa;          /* ©ú½T¦Ç¦â */
+}
+
 .navbar a[data-nav="path"].disabled::after {
-  display: none;
+  display: none;        /* ²¾°£»~¾É©Êªº¸Ë¹¢ */
 }
