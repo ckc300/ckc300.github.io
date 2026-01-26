@@ -1,4 +1,4 @@
-// JavaScript Document
+// nav-state.js
 (function () {
   const nav = {
     home: document.querySelector('[data-nav="home"]'),
@@ -6,6 +6,8 @@
     project: document.querySelector('[data-nav="project"]'),
     timer: document.querySelector('[data-nav="timer"]')
   };
+
+  if (!nav.home || !nav.path || !nav.project || !nav.timer) return;
 
   const pathName = window.location.pathname.replace(/\/+$/, '');
 
@@ -38,18 +40,18 @@
 
   /* ========= 狀態判斷（關鍵修正） ========= */
 
-  // ✅ 首頁只允許根目錄
+  // 首頁只允許根目錄 index
   const isHome =
     pathName === '' ||
     pathName === '/' ||
     pathName === '/index.html';
 
-  // ✅ 宇宙用資料夾判斷
-  const isPathway = pathName.startsWith('/Projects/');
-  const isProject = pathName.startsWith('/DTM/');
-  const isTimer = pathName.startsWith('/Timer/');
+  // 宇宙判斷：使用資料夾語意（支援 GitHub Pages）
+  const isPathway = /\/Projects\//.test(pathName);
+  const isProject = /\/DTM\//.test(pathName);
+  const isTimer   = /\/Timer\//.test(pathName);
 
-  // ✅ 第三層：內容頁（用命名規則判斷）
+  // 第三層內容頁（僅用於層級，不用於宇宙）
   const isPathwayDetail = isPathway && /\d{4}_/.test(pathName);
   const isProjectDetail = isProject && /\d{4}_/.test(pathName);
 
@@ -62,40 +64,40 @@
     activate(nav.home);
     disable(nav.home);
 
-    disable(nav.path);      // 路徑未選，語意不存在
+    disable(nav.path);
     enable(nav.project);
     enable(nav.timer);
     return;
   }
 
-  /* --- 路徑系統 --- */
+  /* --- 我的路徑宇宙 --- */
   if (isPathway) {
+    if (isPathwayDetail) {
+      enable(nav.path, () => history.back());
+    } else {
+      disable(nav.path);
+    }
+
     activate(nav.path);
 
-    if (isPathwayDetail) {
-      enable(nav.path, () => history.back()); // 第三層
-    } else {
-      disable(nav.path); // 第二層
-    }
-
     enable(nav.home);
     enable(nav.project);
     enable(nav.timer);
     return;
   }
 
-  /* --- 專案計畫系統 --- */
+  /* --- 專案計畫宇宙 --- */
   if (isProject) {
-    activate(nav.project);
-
     if (isProjectDetail) {
-      enable(nav.project, () => history.back()); // 第三層
+      enable(nav.project, () => history.back());
     } else {
-      disable(nav.project); // 第二層
+      disable(nav.project);
     }
 
+    activate(nav.project);
+
     enable(nav.home);
-    disable(nav.path); // 不屬於此宇宙
+    disable(nav.path);
     enable(nav.timer);
     return;
   }
