@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ckc300.github.io/sitemap-index.xml
