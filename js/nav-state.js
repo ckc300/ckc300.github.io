@@ -9,7 +9,7 @@
 
   if (!nav.home) return;
 
-  const path = window.location.pathname;
+  const pathName = window.location.pathname;
 
   /* ================= 工具函式 ================= */
 
@@ -31,37 +31,51 @@
     el.classList.add('disabled');
     el.setAttribute('aria-disabled', 'true');
     el.removeAttribute('href');
-    el.onclick = null;
+
+    // ⭐ 關鍵：真的鎖死點擊
+    el.onclick = function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    };
   }
 
-  function enable(el, href = null, handler = null) {
+  function enable(el, handler = null, href = null) {
     if (!el) return;
     el.classList.remove('disabled');
     el.removeAttribute('aria-disabled');
+
     if (href) el.setAttribute('href', href);
     if (handler) el.onclick = handler;
   }
 
-  /* ================= 宇宙判斷（只看資料夾） ================= */
+  /* ================= 宇宙與層級判斷 ================= */
 
   const isHome =
-    path === '/' ||
-    path === '/index.html';
+    pathName === '/' || pathName === '/index.html';
 
   const isPathway =
-    path.startsWith('/Projects/');
+    pathName.startsWith('/Projects/');
 
   const isProject =
-    path.startsWith('/DTM/');
+    pathName.startsWith('/DTM/');
 
   const isTimer =
-    path.startsWith('/Timer/');
+    pathName.startsWith('/Timer/');
 
-  const isPathwayIndex =
-    path === '/Projects/index.html';
+  // 第二層（清單頁）判斷
+  const isPathwaySecondLevel =
+    isPathway && !pathName.match(/\/\d{4}_/);
 
-  const isProjectIndex =
-    path === '/DTM/index.html';
+  const isProjectSecondLevel =
+    pathName === '/DTM/index.html';
+
+  // 第三層（內容頁）判斷
+  const isPathwayThirdLevel =
+    isPathway && pathName.match(/\/\d{4}_/);
+
+  const isProjectThirdLevel =
+    isProject && !isProjectSecondLevel;
 
   /* ================= 主邏輯 ================= */
 
@@ -73,44 +87,48 @@
     disable(nav.home);
 
     disable(nav.path);
-    enable(nav.project, '/DTM/index.html');
-    enable(nav.timer, '/Timer/timer.html');
+    enable(nav.project, null, '/DTM/index.html');
+    enable(nav.timer, null, '/Timer/timer.html');
     return;
   }
 
-  /* ---------- Pathway 宇宙 ---------- */
+  /* ---------- Pathways（我的路徑） ---------- */
   if (isPathway) {
     activate(nav.path);
 
-    if (isPathwayIndex) {
-      // 第二層
+    if (isPathwaySecondLevel) {
+      // 第二層：高亮 + 不可用（不回首頁）
       disable(nav.path);
-    } else {
-      // 第三層
-      enable(nav.path, null, () => history.back());
     }
 
-    enable(nav.home, '/index.html');
-    enable(nav.project, '/DTM/index.html');
-    enable(nav.timer, '/Timer/timer.html');
+    if (isPathwayThirdLevel) {
+      // 第三層：高亮 + 可用（回上一頁）
+      enable(nav.path, () => history.back());
+    }
+
+    enable(nav.home, null, '/index.html');
+    enable(nav.project, null, '/DTM/index.html');
+    enable(nav.timer, null, '/Timer/timer.html');
     return;
   }
 
-  /* ---------- 專案計畫（DTM）宇宙 ---------- */
+  /* ---------- 專案計畫（DTM） ---------- */
   if (isProject) {
     activate(nav.project);
 
-    if (isProjectIndex) {
-      // 第二層
+    if (isProjectSecondLevel) {
+      // 第二層：高亮 + 不可用
       disable(nav.project);
-    } else {
-      // 第三層
-      enable(nav.project, null, () => history.back());
     }
 
-    enable(nav.home, '/index.html');
+    if (isProjectThirdLevel) {
+      // 第三層：高亮 + 可用（回上一頁）
+      enable(nav.project, () => history.back());
+    }
+
+    enable(nav.home, null, '/index.html');
     disable(nav.path);
-    enable(nav.timer, '/Timer/timer.html');
+    enable(nav.timer, null, '/Timer/timer.html');
     return;
   }
 
@@ -119,8 +137,8 @@
     activate(nav.timer);
     disable(nav.timer);
 
-    enable(nav.home, '/index.html');
+    enable(nav.home, null, '/index.html');
     disable(nav.path);
-    enable(nav.project, '/DTM/index.html');
+    enable(nav.project, null, '/DTM/index.html');
   }
 })();
