@@ -1,6 +1,5 @@
 // nav-state.js
 (function () {
-
   const nav = {
     home: document.querySelector('[data-nav="home"]'),
     path: document.querySelector('[data-nav="path"]'),
@@ -8,98 +7,115 @@
     timer: document.querySelector('[data-nav="timer"]')
   };
 
-  const pathname = window.location.pathname;
+  const pathName = window.location.pathname;
 
-  /* ================= 工具 ================= */
+  /* ---------- 工具 ---------- */
 
   function clear(el) {
     if (!el) return;
-    el.classList.remove('active', 'disabled', 'back');
+    el.classList.remove('active', 'disabled');
     el.removeAttribute('aria-disabled');
     el.onclick = null;
   }
 
-  function setActive(el) {
-    el?.classList.add('active');
+  function activate(el) {
+    el && el.classList.add('active');
   }
 
-  function setDisabled(el) {
+  function disable(el) {
     if (!el) return;
     el.classList.add('disabled');
     el.setAttribute('aria-disabled', 'true');
+    el.removeAttribute('href');
     el.onclick = e => e.preventDefault();
   }
 
-  function setBack(el) {
+  function blockClick(el) {
     if (!el) return;
-    el.classList.add('back');
-    el.onclick = () => history.back();
+    el.onclick = e => e.preventDefault();
+  }
+
+  function enable(el, handler = null) {
+    if (!el) return;
+    el.classList.remove('disabled');
+    el.removeAttribute('aria-disabled');
+    if (handler) el.onclick = handler;
   }
 
   function resetAll() {
     Object.values(nav).forEach(clear);
   }
 
-  /* ================= 路徑判斷 ================= */
+  /* ---------- 狀態判斷 ---------- */
 
   const isHome =
-    pathname === '/' ||
-    pathname === '/index.html';
+    pathName === '/' ||
+    pathName === '/index.html' ||
+    (pathName.endsWith('/index.html') &&
+     !pathName.startsWith('/Projects/') &&
+     !pathName.startsWith('/DTM/'));
 
-  const isPathways = pathname.startsWith('/Projects/');
-  const isDTM = pathname.startsWith('/DTM/');
-  const isTimer = pathname.startsWith('/Timer/');
+  const isPathway = pathName.startsWith('/Projects/');
+  const isProject = pathName.startsWith('/DTM/');
+  const isTimer = pathName.startsWith('/Timer/');
 
-  const isPathwaysDetail = isPathways && /\/\d{4}_/.test(pathname);
-  const isDTMDetail = isDTM && /\/\d{4}_/.test(pathname);
+  const isPathwayDetail = isPathway && /\/\d{4}_/.test(pathName);
+  const isProjectDetail = isProject && /\/\d{4}_/.test(pathName);
 
-  /* ================= 狀態主流程 ================= */
+  /* ---------- 主流程 ---------- */
 
   resetAll();
 
-  /* ---------- Home ---------- */
+  /* 首頁 */
   if (isHome) {
-    setActive(nav.home);
-    setDisabled(nav.home);
+    activate(nav.home);
+    blockClick(nav.home);
 
-    setDisabled(nav.path);
-
+    disable(nav.path);      // 語意不存在
+    enable(nav.project);
+    enable(nav.timer);
     return;
   }
 
-  /* ---------- Pathways ---------- */
-  if (isPathways) {
-    setActive(nav.path);
+  /* Pathways（我的路徑） */
+  if (isPathway) {
+    activate(nav.path);
 
-    if (isPathwaysDetail) {
-      setBack(nav.path);           // 第三層：回上一頁
+    if (isPathwayDetail) {
+      enable(nav.path, () => history.back());
     } else {
-      setDisabled(nav.path);       // 第二層：不可點
+      blockClick(nav.path);   // 第二層：高亮 + 不可點，但不灰
     }
 
+    enable(nav.home);
+    enable(nav.project);
+    enable(nav.timer);
     return;
   }
 
-  /* ---------- DTM ---------- */
-  if (isDTM) {
-    setActive(nav.project);
+  /* 專案計畫（DTM） */
+  if (isProject) {
+    activate(nav.project);
 
-    if (isDTMDetail) {
-      setBack(nav.project);
+    if (isProjectDetail) {
+      enable(nav.project, () => history.back());
     } else {
-      setDisabled(nav.project);
+      blockClick(nav.project); // 第二層
     }
 
-    setDisabled(nav.path);         // 不屬於此宇宙
+    enable(nav.home);
+    disable(nav.path);        // 語意不存在
+    enable(nav.timer);
     return;
   }
 
-  /* ---------- Timer ---------- */
+  /* 工具頁 */
   if (isTimer) {
-    setActive(nav.timer);
-    setDisabled(nav.timer);
+    activate(nav.timer);
+    blockClick(nav.timer);
 
-    setDisabled(nav.path);
+    enable(nav.home);
+    disable(nav.path);
+    enable(nav.project);
   }
-
 })();
