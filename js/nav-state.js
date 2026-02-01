@@ -1,5 +1,6 @@
 // nav-state.js
 (function () {
+
   const nav = {
     home: document.querySelector('[data-nav="home"]'),
     path: document.querySelector('[data-nav="path"]'),
@@ -7,104 +8,98 @@
     timer: document.querySelector('[data-nav="timer"]')
   };
 
-  const pathName = window.location.pathname;
+  const pathname = window.location.pathname;
 
-  /* ---------- 工具 ---------- */
+  /* ================= 工具 ================= */
 
-  function resetAll() {
-    Object.values(nav).forEach(el => {
-      if (!el) return;
-      el.classList.remove('active', 'disabled');
-      el.removeAttribute('aria-disabled');
-      el.onclick = null;
-    });
+  function clear(el) {
+    if (!el) return;
+    el.classList.remove('active', 'disabled', 'back');
+    el.removeAttribute('aria-disabled');
+    el.onclick = null;
   }
 
-  function activate(el) {
-    el && el.classList.add('active');
+  function setActive(el) {
+    el?.classList.add('active');
   }
 
-  function disable(el) {
+  function setDisabled(el) {
     if (!el) return;
     el.classList.add('disabled');
     el.setAttribute('aria-disabled', 'true');
     el.onclick = e => e.preventDefault();
   }
 
-  function enable(el, handler = null) {
+  function setBack(el) {
     if (!el) return;
-    el.classList.remove('disabled');
-    el.removeAttribute('aria-disabled');
-    if (handler) el.onclick = handler;
+    el.classList.add('back');
+    el.onclick = () => history.back();
   }
 
-  /* ---------- 路徑判斷 ---------- */
+  function resetAll() {
+    Object.values(nav).forEach(clear);
+  }
+
+  /* ================= 路徑判斷 ================= */
 
   const isHome =
-    pathName === '/' ||
-    pathName === '/index.html';
+    pathname === '/' ||
+    pathname === '/index.html';
 
-  const isPathway = pathName.startsWith('/Projects/');
-  const isProject = pathName.startsWith('/DTM/');
-  const isTimer = pathName.startsWith('/Timer/');
+  const isPathways = pathname.startsWith('/Projects/');
+  const isDTM = pathname.startsWith('/DTM/');
+  const isTimer = pathname.startsWith('/Timer/');
 
-  const isPathwayDetail = isPathway && /\/\d{4}_/.test(pathName);
-  const isProjectDetail = isProject && /\/\d{4}_/.test(pathName);
+  const isPathwaysDetail = isPathways && /\/\d{4}_/.test(pathname);
+  const isDTMDetail = isDTM && /\/\d{4}_/.test(pathname);
 
-  /* ---------- 主流程 ---------- */
+  /* ================= 狀態主流程 ================= */
 
   resetAll();
 
-  /* 首頁 */
+  /* ---------- Home ---------- */
   if (isHome) {
-    activate(nav.home);
-    disable(nav.home);
+    setActive(nav.home);
+    setDisabled(nav.home);
 
-    disable(nav.path);
-    enable(nav.project);
-    enable(nav.timer);
+    setDisabled(nav.path);
+
     return;
   }
 
-  /* Pathways（我的路徑） */
-  if (isPathway) {
-    activate(nav.path);
+  /* ---------- Pathways ---------- */
+  if (isPathways) {
+    setActive(nav.path);
 
-    if (isPathwayDetail) {
-      enable(nav.path, () => history.back());
+    if (isPathwaysDetail) {
+      setBack(nav.path);           // 第三層：回上一頁
     } else {
-      disable(nav.path); // 第二層：高亮 + 不可用
+      setDisabled(nav.path);       // 第二層：不可點
     }
 
-    enable(nav.home);
-    enable(nav.project);
-    enable(nav.timer);
     return;
   }
 
-  /* 專案計畫（DTM） */
-  if (isProject) {
-    activate(nav.project);
+  /* ---------- DTM ---------- */
+  if (isDTM) {
+    setActive(nav.project);
 
-    if (isProjectDetail) {
-      enable(nav.project, () => history.back());
+    if (isDTMDetail) {
+      setBack(nav.project);
     } else {
-      disable(nav.project);
+      setDisabled(nav.project);
     }
 
-    enable(nav.home);
-    disable(nav.path);
-    enable(nav.timer);
+    setDisabled(nav.path);         // 不屬於此宇宙
     return;
   }
 
-  /* 工具頁 */
+  /* ---------- Timer ---------- */
   if (isTimer) {
-    activate(nav.timer);
-    disable(nav.timer);
+    setActive(nav.timer);
+    setDisabled(nav.timer);
 
-    enable(nav.home);
-    disable(nav.path);
-    enable(nav.project);
+    setDisabled(nav.path);
   }
+
 })();
