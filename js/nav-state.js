@@ -1,3 +1,4 @@
+// nav-state.js
 (function () {
   const nav = {
     home: document.querySelector('[data-nav="home"]'),
@@ -6,28 +7,11 @@
     timer: document.querySelector('[data-nav="timer"]')
   };
 
-  const pathName = window.location.pathname;
+  if (!nav.home) return;
 
-  function disable(el) {
-    if (!el) return;
-    el.classList.add('disabled');
-    el.classList.remove('active');
-    el.setAttribute('aria-disabled', 'true');
-    el.removeAttribute('href');
-    el.onclick = null;
-  }
+  const path = window.location.pathname;
 
-  function enable(el, handler = null) {
-    if (!el) return;
-    el.classList.remove('disabled');
-    el.removeAttribute('aria-disabled');
-    if (handler) el.onclick = handler;
-  }
-
-  function activate(el) {
-    if (!el) return;
-    el.classList.add('active');
-  }
+  /* ================= 工具函式 ================= */
 
   function resetAll() {
     Object.values(nav).forEach(el => {
@@ -38,71 +22,105 @@
     });
   }
 
-  /* ========= 宇宙判定（只看資料夾） ========= */
+  function activate(el) {
+    if (el) el.classList.add('active');
+  }
+
+  function disable(el) {
+    if (!el) return;
+    el.classList.add('disabled');
+    el.setAttribute('aria-disabled', 'true');
+    el.removeAttribute('href');
+    el.onclick = null;
+  }
+
+  function enable(el, href = null, handler = null) {
+    if (!el) return;
+    el.classList.remove('disabled');
+    el.removeAttribute('aria-disabled');
+    if (href) el.setAttribute('href', href);
+    if (handler) el.onclick = handler;
+  }
+
+  /* ================= 宇宙判斷（只看資料夾） ================= */
 
   const isHome =
-    pathName === '/' ||
-    pathName.endsWith('/index.html');
+    path === '/' ||
+    path === '/index.html';
 
-  const isPathway = pathName.startsWith('/Projects/');
-  const isProject = pathName.startsWith('/DTM/');
-  const isTimer = pathName.startsWith('/Timer/');
+  const isPathway =
+    path.startsWith('/Projects/');
 
-  const isThirdLayer =
-    pathName.match(/\/\d{4}_.*\.html$/);
+  const isProject =
+    path.startsWith('/DTM/');
+
+  const isTimer =
+    path.startsWith('/Timer/');
+
+  const isPathwayIndex =
+    path === '/Projects/index.html';
+
+  const isProjectIndex =
+    path === '/DTM/index.html';
+
+  /* ================= 主邏輯 ================= */
 
   resetAll();
 
-  /* ===== 首頁 ===== */
+  /* ---------- 首頁 ---------- */
   if (isHome) {
     activate(nav.home);
     disable(nav.home);
 
     disable(nav.path);
-    enable(nav.project);
-    enable(nav.timer);
+    enable(nav.project, '/DTM/index.html');
+    enable(nav.timer, '/Timer/timer.html');
     return;
   }
 
-  /* ===== 我的路徑 ===== */
+  /* ---------- Pathway 宇宙 ---------- */
   if (isPathway) {
     activate(nav.path);
 
-    if (isThirdLayer) {
-      enable(nav.path, () => history.back());
-    } else {
+    if (isPathwayIndex) {
+      // 第二層
       disable(nav.path);
+    } else {
+      // 第三層
+      enable(nav.path, null, () => history.back());
     }
 
-    enable(nav.home);
-    enable(nav.project);
-    enable(nav.timer);
+    enable(nav.home, '/index.html');
+    enable(nav.project, '/DTM/index.html');
+    enable(nav.timer, '/Timer/timer.html');
     return;
   }
 
-  /* ===== 專案計畫 ===== */
+  /* ---------- 專案計畫（DTM）宇宙 ---------- */
   if (isProject) {
     activate(nav.project);
 
-    if (isThirdLayer) {
-      enable(nav.project, () => history.back());
-    } else {
+    if (isProjectIndex) {
+      // 第二層
       disable(nav.project);
+    } else {
+      // 第三層
+      enable(nav.project, null, () => history.back());
     }
 
-    enable(nav.home);
+    enable(nav.home, '/index.html');
     disable(nav.path);
-    enable(nav.timer);
+    enable(nav.timer, '/Timer/timer.html');
     return;
   }
 
-  /* ===== 計時器 ===== */
+  /* ---------- 工具頁 ---------- */
   if (isTimer) {
     activate(nav.timer);
     disable(nav.timer);
 
-    enable(nav.home);
+    enable(nav.home, '/index.html');
     disable(nav.path);
-    enable(nav.project);
+    enable(nav.project, '/DTM/index.html');
   }
 })();
