@@ -21,7 +21,7 @@ const iconObserver = new IntersectionObserver((entries, observer) => {
       fadedIconCount++;
       if (fadedIconCount === icons.length) {
         observer.disconnect();
-        console.log("[fadein.js] All icons have faded in ¡X observer disconnected.");
+        console.log("[fadein.js] All icons have faded in â€” observer disconnected.");
       }
     }
   });
