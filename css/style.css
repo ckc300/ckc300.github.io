@@ -6,7 +6,7 @@ html, body {
   overflow-x: hidden !important;
   overflow-y: auto;
   max-width: 100%;
-  font-family: "TaipeiSansTCBeta", sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", sans-serif;
   scroll-behavior: smooth;
 }
 
