@@ -1,4 +1,24 @@
 // nav-state.js
+// 固定導覽列可能因螢幕寬度或字型載入而換行，讓總覽頁使用實際高度。
+(function () {
+  const header = document.querySelector('header');
+  if (!header) return;
+
+  function updateHeaderHeight() {
+    if (window.getComputedStyle(header).position !== 'fixed') return;
+    const height = Math.ceil(header.getBoundingClientRect().height);
+    document.documentElement.style.setProperty('--site-header-height', height + 'px');
+  }
+
+  updateHeaderHeight();
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(updateHeaderHeight).observe(header);
+  }
+  window.addEventListener('resize', updateHeaderHeight);
+  window.addEventListener('load', updateHeaderHeight, { once: true });
+  if (document.fonts) document.fonts.ready.then(updateHeaderHeight);
+})();
+
 (function () {
   const nav = {
     home: document.querySelector('[data-nav="home"]'),

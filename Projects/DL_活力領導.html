@@ -103,9 +103,9 @@ header {
     background-color: rgba(0, 65, 101, 0.85);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
-/* 避免被 header 蓋住 → main 加 padding-top */
+/* 依固定導覽列實際高度留白，避免手機換行後遮住標題 */
 main {
-    padding-top: 80px;
+    padding-top: var(--site-header-height, 140px);
 }
 
 /* route-title-wrapper 間距優化 */
@@ -197,7 +197,7 @@ main {
     </section>
 
     <section class="unit-level fade-in">
-      <h3>🟣 <span class="level-number">第<span class="unit-num">5</span>級</span> <span class="unit-sub">(必修 ×1｜選修 ×1：請任選一項)</span></h3>
+      <h3>🟣 <span class="level-number">第<span class="unit-num">5</span>級</span> <span class="unit-sub">(必修 ×2｜選修 ×1：請任選一項)</span></h3>
       <div class="required-block"><div class="block-label required-label">📘 必修單元</div><ul class="unit-list required">
         <li><a href="../Projects/8504_時時挺身領導.html">★ 時時挺身領導</a></li>
         <li><a href="../Projects/8510_回顧您的學習路徑.html">★ 回顧您的學習路徑 (本單元於路徑最末完成)</a></li>
