@@ -250,11 +250,12 @@ select {
   background: #FFD700; color: #000;
 }
 </style>
+<link rel="stylesheet" href="../css/timer-interface.css"/>
 </head>
 
 <body>
 <div id="intro">
-  <img src="Pathways_Power_Hub.webp" alt="頭像">
+  <img src="Pathways_Power_Hub.webp" alt="頭像" width="558" height="580">
   <div class="intro-title" aria-hidden="true">雨軒計時器</div>
 </div>
 
@@ -264,7 +265,7 @@ select {
   <div id="appContent">
     <div id="symbol"></div>
     <div class="header" id="header">
-      <img id="avatar" src="Pathways_Power_Hub.webp" alt="頭像">
+      <img id="avatar" src="Pathways_Power_Hub.webp" alt="頭像" width="558" height="580">
       <h1 id="title">雨軒計時器</h1>
     </div>
     <div class="divider"></div>
@@ -548,6 +549,8 @@ function scaleApp(){
   const scale=Math.min(window.innerWidth/baseWidth, window.innerHeight/baseHeight);
   app.style.transform=`translate(-50%, -50%) scale(${scale})`;
 }
+// 先依視窗尺寸完成排版，不等待頭像下載。
+handleOrientation();
 window.addEventListener('resize',handleOrientation);
 window.addEventListener('orientationchange',handleOrientation);
 window.addEventListener('load',handleOrientation);
