@@ -1,0 +1,168 @@
+@charset "UTF-8";
+
+/* 深青綠與柔和暖灰：依使用者確認降低底色亮度、加強內容分組。
+   首頁與全部 65 個課程內容頁載入；計時燈色不使用這組變數。 */
+:root {
+  --page-bg: #e4e6de;
+  --surface: #fff;
+  --title-bg: #dce5db;
+  --title-line: #91a69c;
+  --ink: #25383d;
+  --muted: #51666b;
+  --brand: #123f46;
+  --brand-dark: #0b2d33;
+  --accent: #e9c46a;
+  --line: #cad8d5;
+  --return: #7c4251;
+  --nav-text: #fff;
+  --nav-current: var(--accent);
+  --nav-current-text: var(--brand-dark);
+  --nav-hover: #28575e;
+  --nav-disabled-text: #b5cbce;
+  --nav-disabled-bg: #214950;
+  --nav-focus: #fff;
+}
+
+body {
+  background: var(--page-bg);
+  color: var(--ink);
+  animation: none;
+}
+
+main::before {
+  background: transparent;
+}
+
+header {
+  background: var(--brand);
+  border-bottom-color: var(--accent);
+  box-shadow: 0 2px 8px rgba(18, 63, 70, 0.12);
+  backdrop-filter: none;
+}
+
+header::after {
+  background: transparent;
+  animation: none;
+}
+
+.site-title,
+.logo-title-wrapper:hover .site-title {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: #f5f0d9;
+  text-shadow: none;
+  animation: none;
+  transform: none;
+}
+
+.section-divider {
+  background: var(--line);
+  box-shadow: none;
+  animation: none;
+}
+
+.icon-label {
+  background: var(--brand);
+  color: #fff;
+  text-shadow: none;
+  backdrop-filter: none;
+}
+
+.icon-wrapper:hover .icon-label {
+  transform: translate(-50%, -2px);
+  background: var(--brand-dark);
+}
+
+.unit-header {
+  color: var(--brand);
+  background: var(--title-bg);
+  border-color: var(--title-line);
+}
+
+/* 舊頁面各區塊有行內色彩，針對已套用頁面的色彩覆寫；
+   不動文字、段落、字級、行距或課程結構。 */
+.unit-section {
+  --section-bg: #fff;
+  --section-accent: #123f46;
+  --section-line: #91a69c;
+  background-color: var(--section-bg) !important;
+  /* 內描邊與色線不占排版空間，保持段落位置及整頁高度。 */
+  box-shadow: inset 4px 0 var(--section-accent), inset 0 0 0 1px var(--section-line), 0 2px 6px rgba(18, 63, 70, 0.06);
+}
+
+.unit-section:nth-of-type(2) {
+  --section-bg: #e5d1d8;
+  --section-accent: #7c4251;
+  --section-line: #b48f9e;
+}
+
+.unit-section:nth-of-type(3) {
+  --section-bg: #cfe0d8;
+  --section-accent: #185a63;
+  --section-line: #8ba99b;
+}
+
+.unit-section:nth-of-type(4) {
+  --section-bg: #d0dbe6;
+  --section-accent: #415d72;
+  --section-line: #91a4b8;
+}
+
+.unit-section:nth-of-type(5) {
+  --section-bg: #e6dbc1;
+  --section-accent: #795c23;
+  --section-line: #b4a071;
+}
+
+.unit-section h2 {
+  color: var(--section-accent) !important;
+  border-left-color: var(--section-accent) !important;
+}
+
+.unit-section p {
+  color: var(--ink) !important;
+}
+
+.button-row a {
+  background: var(--brand);
+  color: #fff;
+}
+
+.button-row a:hover {
+  background: #28575e;
+  box-shadow: 0 2px 6px rgba(18, 63, 70, 0.15);
+}
+
+.button-row a.btn-home {
+  background: var(--return);
+  color: #fff;
+}
+
+.button-row a.btn-home:hover {
+  background: #643341;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(124, 66, 81, 0.15);
+}
+
+.button-row a:focus-visible,
+.button-row a.btn-home:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--brand);
+}
+
+.button-row a:active {
+  background: var(--brand-dark);
+  color: #fff;
+}
+
+.button-row a.btn-home:active {
+  background: #502633;
+  color: #fff;
+}
+
+footer {
+  color: var(--muted);
+  background: var(--surface);
+  border-top-color: var(--line);
+}

@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+/* 僅用於三個新增入口與簡介頁；沿用既有配色與精簡導覽。 */
+.additional-learning .icon-link { text-decoration: none; }
+.additional-learning .icon-label { white-space: normal; text-overflow: clip; }
+.learning-note {
+  display: block;
+  margin: 0 auto 8px;
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+.additional-learning .icon-link:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.learning-brief main {
+  width: 100%;
+  max-width: 880px;
+  margin: 1.5em auto;
+  padding: 0 1.2em;
+}
+.learning-brief .unit-header-wrapper { text-align: center; margin-bottom: 1.5em; }
+.learning-brief .unit-header {
+  display: inline-block;
+  max-width: 100%;
+  margin: 0;
+  padding: 0.4em 0.7em;
+  border: 3px solid var(--title-line);
+  border-radius: 14px;
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  line-height: 1.4;
+}
+.learning-brief .unit-section { margin: 1.4em 0; padding: 1em 1.4em; border-radius: 12px; }
+.learning-brief .unit-section h2 {
+  margin: 0 0 0.6em;
+  padding-left: 0.6em;
+  border-left: 4px solid;
+  font-size: 1.2em;
+  line-height: 1.4;
+}
+.learning-brief p { margin: 0.5em 0; line-height: 1.7; }
+.learning-brief .brief-facts { margin: 0; }
+.learning-brief .brief-facts div { display: flex; gap: 0.75em; padding: 0.35em 0; }
+.learning-brief dt { flex: 0 0 4em; font-weight: 700; }
+.learning-brief dd { margin: 0; min-width: 0; line-height: 1.5; }
+.learning-brief .brief-levels { width: 100%; margin-top: 0.9em; border-collapse: collapse; }
+.learning-brief .brief-levels th,
+.learning-brief .brief-levels td {
+  padding: 0.45em 0.65em;
+  border-bottom: 1px solid var(--section-line);
+  text-align: left;
+  line-height: 1.5;
+}
+.learning-brief .brief-levels thead th { color: var(--section-accent); }
+.learning-brief .brief-levels th:first-child { width: 40%; }
+.learning-brief .brief-steps { margin: 0.8em 0; padding-left: 1.5em; line-height: 1.8; }
+.learning-brief .brief-note { font-size: 0.9em; }
+.learning-brief .button-row { margin: 1.5em 0 0; text-align: center; }
+.learning-brief .button-row button {
+  padding: 0.4em 0.9em;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: var(--return);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.learning-brief .button-row button:hover { background: #643341; }
+.learning-brief .button-row button:active { background: #502633; }
+.learning-brief .button-row button:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }

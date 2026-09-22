@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+/* 計時器專用外觀：保留頁面燈色、計時邏輯、按鈕順序與隱藏規則。 */
+#intro { animation-duration: 0.6s; }
+@media (prefers-reduced-motion: reduce) {
+  #intro { display: none; animation: none; }
+}
+#intro img { filter: none; }
+#intro .intro-title { color: #e9c46a; animation: none; text-shadow: none; }
+.header img, .header h1 { animation: none; }
+.header h1 { color: #f5f0d9; }
+.divider { background: #51666b; }
+
+.preset-btn { background: #214950; color: #fff; }
+.preset-btn.selected { background: #123f46; color: #e9c46a; border-color: #e9c46a; }
+.preset-btn:disabled { background: #30393b; color: #afbbb8; cursor: not-allowed; }
+.preset-btn.selected:disabled { color: #e9c46a; border-color: #e9c46a; }
+
+#mainControl, #reset { background: #30393b; color: #afbbb8; }
+#mainControl.active, #reset.active { background: #e9c46a; color: #0b2d33; }
+.controls button:disabled { cursor: not-allowed; }
+
+.bottom-bar button { background: #123f46; color: #fff; border-color: #91a69c; }
+button:not(:disabled):hover { filter: brightness(1.08); }
+button:not(:disabled):active { filter: brightness(0.85); }
+button:focus-visible { outline: 2px solid #e9c46a; outline-offset: 3px; }
+
+.modal-content { background: #e4e6de; color: #25383d; box-shadow: inset 0 0 0 1px #91a69c; }
+.modal-content h3 { color: #123f46; }
+.custom-row {
+  background: #dce5db;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px #91a69c;
+  padding-inline: 8px;
+  white-space: nowrap;
+}
+/* 右側 8px 內距含 1px 內描邊；秒字左側留相同的 7px 可見空隙。 */
+.custom-row select:last-of-type { margin-inline-end: 7px; }
+select { background: #cfe0d8; color: #25383d; border-color: #185a63; }
+select:has(option[value=""]:checked) { background: #e4e6de; color: #51666b; border-color: #91a69c; }
+select:focus-visible, .modal-btns button:focus-visible { outline: 2px solid #123f46; outline-offset: 2px; }
+#applyBtn { background: #c5cdc5; color: #465958; }
+#applyBtn:disabled { cursor: not-allowed; }
+#applyBtn.active { background: #123f46; color: #fff; }
+#cancelBtn { background: #7c4251; color: #fff; }
+
+@keyframes flashBorder {
+  0% { box-shadow: 0 0 8px 3px #e9c46a; }
+  100% { box-shadow: none; }
+}
+
+/* 原程式以 360 × 640 畫布整體縮放；內部尺寸須以畫布為基準，
+   避免 vw/vh 先隨螢幕放大，再被 scale 重複放大而溢出或遮擋。 */
+.header img { height: 60px; }
+.header h1 { font-size: 2rem; }
+.preset-btn { font-size: 0.9em; }
+.timer-display {
+  box-sizing: border-box;
+  width: 95%;
+  max-width: none;
+  height: auto;
+  padding: 12px 8px;
+  margin: 0.6em auto 1.4em;
+}
+.timer-display span { font-size: 90px; line-height: 1; white-space: nowrap; }
+.modal-content { padding: 20px 22px; }

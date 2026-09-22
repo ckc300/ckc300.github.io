@@ -35,11 +35,18 @@
     if (!el) return;
     el.classList.remove('active', 'disabled');
     el.removeAttribute('aria-disabled');
+    el.removeAttribute('aria-current');
+    el.removeAttribute('aria-label');
+    el.removeAttribute('role');
+    el.removeAttribute('tabindex');
     el.onclick = null;
+    el.onkeydown = null;
   }
 
-  function activate(el) {
-    el && el.classList.add('active');
+  function activate(el, current = 'page') {
+    if (!el) return;
+    el.classList.add('active');
+    el.setAttribute('aria-current', current);
   }
 
   function disable(el) {
@@ -47,11 +54,16 @@
     el.classList.add('disabled');
     el.setAttribute('aria-disabled', 'true');
     el.removeAttribute('href');
+    el.setAttribute('role', 'link');
+    el.setAttribute('tabindex', '-1');
     el.onclick = e => e.preventDefault();
   }
 
   function blockClick(el) {
     if (!el) return;
+    el.setAttribute('aria-disabled', 'true');
+    el.setAttribute('tabindex', '-1');
+    if (!el.hasAttribute('href')) el.setAttribute('role', 'link');
     el.onclick = e => e.preventDefault();
   }
 
@@ -59,7 +71,22 @@
     if (!el) return;
     el.classList.remove('disabled');
     el.removeAttribute('aria-disabled');
-    if (handler) el.onclick = handler;
+    if (handler) {
+      // 返回依據瀏覽歷程；鍵盤與滑鼠使用同一個動作，避免 href 再次導頁。
+      el.removeAttribute('href');
+      el.setAttribute('role', 'button');
+      el.setAttribute('tabindex', '0');
+      el.setAttribute('aria-label', el.textContent.trim() + '：回上一頁');
+      el.onclick = e => {
+        e.preventDefault();
+        handler();
+      };
+      el.onkeydown = e => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault();
+        if (!e.repeat) el.click();
+      };
+    }
   }
 
   function resetAll() {
@@ -86,6 +113,15 @@
 
   resetAll();
 
+  /* 簡介頁保留四個入口，但不提供路徑導覽。 */
+  if (document.body.classList.contains('learning-brief')) {
+    disable(nav.path);
+    enable(nav.home);
+    enable(nav.project);
+    enable(nav.timer);
+    return;
+  }
+
   /* 首頁 */
   if (isHome) {
     activate(nav.home);
@@ -99,7 +135,7 @@
 
   /* Pathways（我的路徑） */
   if (isPathway) {
-    activate(nav.path);
+    activate(nav.path, isPathwayDetail ? 'location' : 'page');
 
     if (isPathwayDetail) {
       enable(nav.path, () => history.back());
@@ -115,7 +151,7 @@
 
   /* 專案計畫（DTM） */
   if (isProject) {
-    activate(nav.project);
+    activate(nav.project, isProjectDetail ? 'location' : 'page');
 
     if (isProjectDetail) {
       enable(nav.project, () => history.back());

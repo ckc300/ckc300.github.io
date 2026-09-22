@@ -14,10 +14,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  background: image-set(
-    url('../images/Pathways_走路.webp') type("image/webp"),
-    url('../images/Pathways_走路.jpg') type("image/jpeg")
-  ) no-repeat center center fixed;
+  background: #e4e6de;
   background-size: cover;
   background-attachment: fixed;
   position: relative;
@@ -141,8 +138,9 @@ header::after {
 
 .logo {
   max-height: 50px;
-  height: auto;
+  height: 50px;
   width: auto;
+  aspect-ratio: 558 / 580;
   object-fit: contain;
   flex-shrink: 0;
   position: relative;
@@ -263,10 +261,16 @@ header::after {
   transform: translateY(0);
 }
 
+.icon-link {
+  width: 100%;
+  max-width: 100px;
+}
+
 .icon {
   width: 100%;
   max-width: 100px;
   height: auto;
+  aspect-ratio: 1;
   border-radius: 50%;
   display: block;
   margin: 0 auto;
@@ -407,4 +411,73 @@ body {
 
 .navbar a[data-nav="path"].disabled::after {
   display: none;
+}
+
+/* 2026-09-20：四個導覽入口在手機、平板與桌面皆維持單行。
+   尺寸不隨目前位置、滑鼠移入或按壓改變；行為仍由 nav-state.js 管理。 */
+header .navbar {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(2px, 1vw, 8px);
+  width: 100%;
+  padding: 0 8px;
+}
+
+header .navbar a,
+header .navbar a.active,
+header .navbar a:hover,
+header .navbar a:active,
+header .navbar a:not(.active):hover {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  min-height: 24px;
+  padding: 2px clamp(4px, 1.5vw, 12px);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-size: clamp(14px, 4vw, 16px);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0;
+  white-space: nowrap;
+  transform: none;
+  box-shadow: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+header .navbar a {
+  color: var(--nav-text, #fff);
+  background: transparent;
+}
+
+header .navbar a.active {
+  color: var(--nav-current-text, #004165);
+  background: var(--nav-current, #ffd700);
+}
+
+header .navbar a:not(.active):not(.disabled):hover,
+header .navbar a:not(.active):not(.disabled):active {
+  color: var(--nav-text, #fff);
+  background: var(--nav-hover, #1e5876);
+}
+
+header .navbar a[data-nav].disabled,
+header .navbar a[data-nav].disabled:hover,
+header .navbar a[data-nav].disabled:active {
+  color: var(--nav-disabled-text, #c7d4d9);
+  background: var(--nav-disabled-bg, #234957);
+  cursor: not-allowed;
+}
+
+header .navbar a::after {
+  display: none;
+}
+
+header .navbar a:focus-visible {
+  outline: 2px solid var(--nav-focus, #fff);
+  outline-offset: 2px;
 }
