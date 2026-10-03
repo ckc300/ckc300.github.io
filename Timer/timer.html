@@ -189,7 +189,7 @@ button.flash {animation:flashBorder 0.3s ease;}
   padding: 0 1em;
   transition: opacity 0.3s ease;
 }
-.bottom-bar.hidden { opacity: 0; pointer-events: none; }
+.bottom-bar.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
 .bottom-bar button {
   background: #222; color: #fff;
@@ -289,13 +289,17 @@ select {
       <button id="fsBtn" onclick="buttonFlash(this); toggleFullscreen()">🔲 全螢幕</button>
     </div>
 
-    <div class="modal" id="customModal">
+    <div class="timer-notices" role="status" aria-live="polite">
+      <p id="wakeNotice" hidden></p>
+      <p id="fullscreenNotice" hidden></p>
+    </div>
+    <div class="modal" id="customModal" role="dialog" aria-modal="true" aria-labelledby="customTitle">
       <div class="modal-content">
-        <h3>自定義時間設定</h3>
-        <div class="custom-row">綠燈：<select id="gMin"></select>分<select id="gSec"></select>秒</div>
-        <div class="custom-row">黃燈：<select id="yMin"></select>分<select id="ySec"></select>秒</div>
-        <div class="custom-row">紅燈：<select id="rMin"></select>分<select id="rSec"></select>秒</div>
-        <div class="custom-row">閃紅：<select id="bMin"></select>分<select id="bSec"></select>秒</div>
+        <h3 id="customTitle">自定義時間設定</h3>
+        <div class="custom-row">綠燈：<select id="gMin" aria-label="綠燈分鐘"></select>分<select id="gSec" aria-label="綠燈秒數"></select>秒</div>
+        <div class="custom-row">黃燈：<select id="yMin" aria-label="黃燈分鐘"></select>分<select id="ySec" aria-label="黃燈秒數"></select>秒</div>
+        <div class="custom-row">紅燈：<select id="rMin" aria-label="紅燈分鐘"></select>分<select id="rSec" aria-label="紅燈秒數"></select>秒</div>
+        <div class="custom-row">閃紅：<select id="bMin" aria-label="閃紅分鐘"></select>分<select id="bSec" aria-label="閃紅秒數"></select>秒</div>
         <div class="modal-btns">
           <button id="applyBtn" onclick="buttonFlash(this); applyCustom();" disabled>套用</button>
           <button id="cancelBtn" onclick="buttonFlash(this); closeModal()">取消</button>
@@ -306,49 +310,65 @@ select {
 </div>
 <!-- 第3段開始 -->
 <script>
-/* === 防鎖屏功能（含 Safari 保險方案） === */
+/* === 防鎖屏：無法取得時明確提示，不使用無效影片假裝成功。 === */
 let wakeLock = null;
-let videoLock = null;
-
-async function requestWakeLock() {
-  try {
-    if ('wakeLock' in navigator) {
-      wakeLock = await navigator.wakeLock.request('screen');
-      wakeLock.addEventListener('release', () => console.log('🔓 防鎖屏已釋放'));
-      console.log('✅ 已啟用防鎖屏');
-    } else {
-      console.warn('⚠️ 不支援 Wake Lock API，啟用保險方案');
-      enableVideoLock();
+let wakeRequest = null;
+let wakeGeneration = 0;
+function setNotice(id, message) {
+  const notice = document.getElementById(id);
+  notice.textContent = message;
+  notice.hidden = !message;
+}
+function requestWakeLock() {
+  if (document.visibilityState !== 'visible') return Promise.resolve();
+  if (wakeLock && !wakeLock.released) return Promise.resolve();
+  if (wakeRequest) return wakeRequest;
+  const generation = wakeGeneration;
+  const pending = (async () => {
+    if (!navigator.wakeLock || typeof navigator.wakeLock.request !== 'function') {
+      setNotice('wakeNotice', '此瀏覽器無法防止自動鎖屏；計時前請調整裝置的自動鎖屏設定。');
+      return;
     }
-  } catch (err) {
-    console.error('⚠️ 防鎖屏錯誤:', err);
-    enableVideoLock();
-  }
+    try {
+      const lock = await navigator.wakeLock.request('screen');
+      if (generation !== wakeGeneration || document.visibilityState !== 'visible') {
+        await lock.release();
+        return;
+      }
+      wakeLock = lock;
+      lock.addEventListener('release', () => {
+        if (wakeLock !== lock) return;
+        wakeLock = null;
+        if (document.visibilityState === 'visible') {
+          setNotice('wakeNotice', '防鎖屏已中斷，螢幕可能自動熄滅；請檢查裝置的自動鎖屏設定。');
+        }
+      });
+      setNotice('wakeNotice', lock.released ? '尚未啟用防鎖屏，請檢查裝置的自動鎖屏設定。' : '');
+    } catch (err) {
+      if (generation === wakeGeneration && document.visibilityState === 'visible') {
+        setNotice('wakeNotice', '尚未啟用防鎖屏，螢幕可能自動熄滅；請檢查瀏覽器權限或裝置的自動鎖屏設定。');
+      }
+    }
+  })();
+  wakeRequest = pending;
+  pending.finally(() => { if (wakeRequest === pending) wakeRequest = null; });
+  return pending;
 }
-
-// iOS Safari 保險方案 — 隱藏靜音影片保持亮屏
-function enableVideoLock() {
-  if (videoLock) return;
-  const v = document.createElement('video');
-  v.src = 'data:video/mp4;base64,AAAAHGZ0eXBtcDQyAAAAAG1wNDFtcDQyaXNvbQAAABxnZHJtaW5mAAAAE21kaW5mAAAAA2libWlhbmltAAAAAW1vb3YAAAABbWRhdGEAAAAA';
-  v.loop = true; v.muted = true; v.playsInline = true; v.style.display = 'none';
-  document.body.appendChild(v);
-  v.play().then(()=>console.log('🎥 啟用隱藏影片防鎖屏')).catch(()=>{});
-  videoLock = v;
-}
-
 async function releaseWakeLock() {
-  if (wakeLock) {
-    try { await wakeLock.release(); wakeLock = null; console.log('🔓 已釋放防鎖屏'); } catch (err) {}
+  wakeGeneration++;
+  wakeRequest = null;
+  const lock = wakeLock;
+  wakeLock = null;
+  if (lock && !lock.released) {
+    try { await lock.release(); } catch (err) { /* 已失效的鎖無須重複釋放。 */ }
   }
-  if (videoLock) { videoLock.pause(); videoLock.remove(); videoLock = null; console.log('🛑 關閉隱藏影片防鎖屏'); }
 }
-
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'visible') requestWakeLock();
   else releaseWakeLock();
 });
-window.addEventListener('beforeunload', releaseWakeLock);
+window.addEventListener('pagehide', releaseWakeLock);
+window.addEventListener('pageshow', requestWakeLock);
 window.addEventListener('load', requestWakeLock);
 
 /* === 狀態物件 === */
@@ -356,6 +376,7 @@ const TimerState = {
   status: 'init',
   thresholds: {green:0,yellow:0,red:0,blink:0},
   time: 0,
+  elapsedMs: 0,
   startAt: 0,
   timer: null,
   blink: null,
@@ -396,15 +417,43 @@ function buttonFlash(btn){
 /* === UI控制 === */
 function toggleBottomBar(show){
   const bar=document.getElementById('bottomBar');
-  if(show) bar.classList.remove('hidden'); else bar.classList.add('hidden');
+  bar.classList.toggle('hidden', !show);
+  bar.inert=!show;
+  if(show) bar.removeAttribute('aria-hidden');
+  else bar.setAttribute('aria-hidden','true');
 }
+let modalTrigger=null;
+let modalBackground=[];
+function isCustomModalOpen(){return document.getElementById('customModal').style.display==='flex';}
 function openCustomModal(btn){
-  if(TimerState.status!=='init')return;
-  TimerState.selectedPreset=btn;
-  document.getElementById('customModal').style.display='flex';
+  if(TimerState.status!=='init' || isCustomModalOpen())return;
+  modalTrigger=btn;
+  const modal=document.getElementById('customModal');
+  modal.style.display='flex';
   checkCustomInputs();
+  document.getElementById('gMin').focus();
+  modalBackground=[...modal.parentElement.children].filter(el=>el!==modal).map(el=>({el,inert:el.inert}));
+  modalBackground.forEach(({el})=>{el.inert=true;});
 }
-function closeModal(){document.getElementById('customModal').style.display='none';}
+function closeModal(){
+  if(!isCustomModalOpen())return;
+  document.getElementById('customModal').style.display='none';
+  modalBackground.forEach(({el,inert})=>{el.inert=inert;});
+  modalBackground=[];
+  if(modalTrigger && !modalTrigger.disabled)modalTrigger.focus();
+}
+document.getElementById('customModal').addEventListener('keydown', e=>{
+  if(e.key==='Escape'){e.preventDefault();closeModal();return;}
+  if(e.key!=='Tab')return;
+  const items=[...e.currentTarget.querySelectorAll('select:not(:disabled),button:not(:disabled)')];
+  const first=items[0],last=items[items.length-1];
+  if(e.shiftKey && document.activeElement===first){e.preventDefault();last.focus();}
+  else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus();}
+});
+document.addEventListener('focusin', e=>{
+  const modal=document.getElementById('customModal');
+  if(isCustomModalOpen() && !modal.contains(e.target))document.getElementById('gMin').focus();
+});
 
 function getVal(id){
   const m=document.getElementById(id).value;
@@ -425,7 +474,7 @@ function applyCustom(){
   if([g,y,r,b].some(isNaN))return;
   if(!(g<y && y<r && r<b))return;
   TimerState.thresholds={green:g,yellow:y,red:r,blink:b};
-  closeModal();enableControls();highlight(TimerState.selectedPreset);
+  closeModal();enableControls();highlight(modalTrigger);
 }
 function setPreset(g,y,r,b,btn){
   if(TimerState.status!=='init')return;
@@ -441,13 +490,15 @@ function highlight(btn){
 
 /* === 控制 === */
 function mainControl(){
+  if(isCustomModalOpen())return;
   if(TimerState.status==='init') startTimer();
   else if(TimerState.status==='running') pauseTimer();
   else if(TimerState.status==='paused') resumeTimer();
 }
 function startTimer(){
   TimerState.status='running';
-  TimerState.startAt=Date.now()-TimerState.time*1000;
+  TimerState.startAt=performance.now();
+  requestWakeLock();
   TimerState.timer=setInterval(update,100);
   document.getElementById('mainControl').textContent='⏸️ 暫停';
   document.getElementById('reset').disabled=true;
@@ -455,6 +506,10 @@ function startTimer(){
   toggleBottomBar(false);
 }
 function pauseTimer(){
+  update();
+  TimerState.elapsedMs+=Math.max(0,performance.now()-TimerState.startAt);
+  TimerState.time=Math.floor(TimerState.elapsedMs/1000);
+  updateDisplay();
   clearInterval(TimerState.timer);
   TimerState.status='paused';
   document.getElementById('mainControl').textContent='▶️ 繼續';
@@ -464,7 +519,8 @@ function pauseTimer(){
   if(TimerState.blink){clearInterval(TimerState.blink);TimerState.blink=null;}
 }
 function resumeTimer(){
-  TimerState.startAt=Date.now()-TimerState.time*1000;
+  TimerState.startAt=performance.now();
+  requestWakeLock();
   TimerState.timer=setInterval(update,100);
   TimerState.status='running';
   document.getElementById('mainControl').textContent='⏸️ 暫停';
@@ -479,7 +535,7 @@ function resetTimer(){
   document.getElementById('symbol').textContent='';
   document.getElementById('avatar').style.filter='invert(0)';
   document.getElementById('title').style.color='#fff';
-  TimerState.status='init';TimerState.time=0;
+  TimerState.status='init';TimerState.time=0;TimerState.elapsedMs=0;TimerState.startAt=0;
   updateDisplay();
   document.getElementById('mainControl').textContent='▶️ 開始';
   document.getElementById('mainControl').classList.remove('active');
@@ -497,7 +553,8 @@ function enableControls(){
 
 /* === 更新 === */
 function update(){
-  TimerState.time=Math.floor((Date.now()-TimerState.startAt)/1000);
+  const runningMs=TimerState.status==='running'?Math.max(0,performance.now()-TimerState.startAt):0;
+  TimerState.time=Math.floor((TimerState.elapsedMs+runningMs)/1000);
   updateDisplay();updateBg();
 }
 function updateDisplay(){
@@ -530,11 +587,35 @@ function updateBg(){
 }
 
 /* === 其他 === */
-function toggleFullscreen(){
-  const b=document.getElementById('fsBtn');
-  if(!document.fullscreenElement){document.documentElement.requestFullscreen();b.textContent='❌ 結束全螢幕';}
-  else{document.exitFullscreen();b.textContent='🔲 全螢幕';}
+let fullscreenPending=false;
+function syncFullscreenButton(){
+  const button=document.getElementById('fsBtn');
+  const active=!!document.fullscreenElement;
+  button.textContent=active?'❌ 結束全螢幕':'🔲 全螢幕';
+  button.setAttribute('aria-pressed', String(active));
 }
+async function toggleFullscreen(){
+  if(fullscreenPending)return;
+  const entering=!document.fullscreenElement;
+  const target=entering?document.documentElement:document;
+  const action=entering?target.requestFullscreen:target.exitFullscreen;
+  if(typeof action!=='function' || (entering && document.fullscreenEnabled===false)){
+    setNotice('fullscreenNotice','此瀏覽器不支援頁面全螢幕，仍可在目前畫面使用計時器。');
+    syncFullscreenButton();return;
+  }
+  fullscreenPending=true;
+  try {
+    await action.call(target);
+    setNotice('fullscreenNotice','');
+  } catch(err) {
+    setNotice('fullscreenNotice','無法切換全螢幕，請再試一次或使用瀏覽器的全螢幕功能。');
+  } finally {
+    fullscreenPending=false;
+    syncFullscreenButton();
+  }
+}
+document.addEventListener('fullscreenchange',syncFullscreenButton);
+syncFullscreenButton();
 function handleOrientation(){
   const isMobile=/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
   const isLandscape=window.matchMedia("(orientation: landscape)").matches;

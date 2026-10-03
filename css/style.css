@@ -201,8 +201,8 @@ header::after {
 
 .icon-section {
   padding: 4px 5%;
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   position: relative;
   z-index: 1;
@@ -251,8 +251,8 @@ header::after {
   display: flex;
   flex-direction: column;
   align-items: center;
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
@@ -480,4 +480,10 @@ header .navbar a::after {
 header .navbar a:focus-visible {
   outline: 2px solid var(--nav-focus, #fff);
   outline-offset: 2px;
+}
+
+/* 內容預設可見；只有成功啟動觀察器的元素暫時等待淡入。 */
+.icon-section.reveal-pending, .icon-wrapper.reveal-pending {
+  opacity: 0;
+  transform: translateY(20px);
 }

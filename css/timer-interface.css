@@ -64,3 +64,8 @@ select:focus-visible, .modal-btns button:focus-visible { outline: 2px solid #123
 }
 .timer-display span { font-size: 90px; line-height: 1; white-space: nowrap; }
 .modal-content { padding: 20px 22px; }
+
+/* 僅在瀏覽器功能無法使用時顯示，不占用原有按鈕及計時框空間。 */
+.timer-notices { position: absolute; bottom: 80px; left: 16px; right: 16px; font-size: 12px; line-height: 1.5; }
+.timer-notices p { margin: 4px 0; padding: 6px 8px; border-radius: 6px; background: #214950; color: #fff; }
+.timer-notices p[hidden] { display: none; }
